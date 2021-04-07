@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -103,6 +104,24 @@ public class CookLogin extends AppCompatActivity {
                 });
             }
         });
+        rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (compoundButton.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences("checked",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember","true");
+                    editor.apply();
+
+                }else if (!compoundButton.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences("checked",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember","false");
+                    editor.apply();
+                }
+            }
+        });
+
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

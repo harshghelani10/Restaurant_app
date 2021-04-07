@@ -2,7 +2,9 @@ package com.example.restaurant_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +15,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.restaurant_app.Retrofit.MenuResult;
 import com.example.restaurant_app.Retrofit.RetrofitClient;
+import com.example.restaurant_app.Retrofit.RetrofitInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class Menu extends AppCompatActivity {
 
     Button backbtn;
     GridView gridView;
+    RetrofitInterface retrofitInterface;
 
-    List<ImageResult> imageResultList = new ArrayList<>();
+    //List<ImageResult> imageResultList = new ArrayList<>();
 
 
     @Override
@@ -37,10 +45,31 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        Retrofit retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+
+
         backbtn = (Button) findViewById(R.id.btnback);
         gridView = (GridView) findViewById(R.id.gridView);
 
-        getAllImages();
+//        getAllImages();
+        Call<List<MenuResult>> imageResults = retrofitInterface.getMenu();
+
+        imageResults.enqueue(new Callback<List<MenuResult>>() {
+
+            @Override
+            public void onResponse(Call<List<MenuResult>> call, Response<List<MenuResult>> response) {
+                if (response.isSuccessful()) {
+                    Log.e("menu", response.body().toString());
+                    Toast.makeText(Menu.this,"Greate....",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<MenuResult>> call, Throwable t) {
+                Toast.makeText(Menu.this,"error",Toast.LENGTH_LONG).show();
+            }
+        });
 
 
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -51,32 +80,31 @@ public class Menu extends AppCompatActivity {
             }
         });
     }
+}
+//    public void getAllImages() {
+//
+//       Call<List<ImageResult>> imageResults = RetrofitClient.getInterface().getAllImage();
 
-    public void getAllImages() {
-        Call<List<ImageResult>> imageResults = RetrofitClient.getInterface().getAllImages();
-        imageResults.enqueue(new Callback<List<ImageResult>>() {
-            @Override
-            public void onResponse(Call<List<ImageResult>> call, Response<List<ImageResult>> response) {
-
-                if (response.code() == 200) {
-                    Toast.makeText(Menu.this,
-                            "Request Successful", Toast.LENGTH_LONG).show();
-
-                    //startActivity(new Intent(Menu.this, UserLogin.class));
-                } else if (response.code() == 500) {
-                    Toast.makeText(Menu.this,
-                            "An Error occurred try again later", Toast.LENGTH_LONG).show();
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<List<ImageResult>> call, Throwable t) {
-                String message = t.getLocalizedMessage();
-                Toast.makeText(Menu.this, message, Toast.LENGTH_LONG).show();
-            }
-        });
+//        imageResults.enqueue(new Callback<List<ImageResult>>() {
+//            @Override
+//            public void onResponse(Call<List<ImageResult>> call, Response<List<ImageResult>> response) {
+//
+//                if (response.code() == 200) {
+//                    Toast.makeText(Menu.this,
+//                            "Request Successful", Toast.LENGTH_LONG).show();
+//
+//                } else if (response.code() == 500) {
+//                    Toast.makeText(Menu.this,
+//                            "An Error occurred try again later", Toast.LENGTH_LONG).show();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<ImageResult>> call, Throwable t) {
+//                Toast.makeText(Menu.this, "Failed..", Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 
         class CustomAdepter extends BaseAdapter {
@@ -85,6 +113,7 @@ public class Menu extends AppCompatActivity {
             private Context context;
             private LayoutInflater layoutInflater;
 
+            @RequiresApi(api = Build.VERSION_CODES.M)
             public CustomAdepter(List<ImageResult> imageResultList, Context context) {
                 this.imageResultList = imageResultList;
                 this.context = context;
@@ -122,5 +151,4 @@ public class Menu extends AppCompatActivity {
                 return null;
             }
         }
-    }
-}
+

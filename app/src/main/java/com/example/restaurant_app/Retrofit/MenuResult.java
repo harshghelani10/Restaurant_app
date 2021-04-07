@@ -1,27 +1,26 @@
-package com.example.restaurant_app;
+package com.example.restaurant_app.Retrofit;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class ImageResult {
-
+public class MenuResult {
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("name")
+    @Expose
     private String name;
-    private String imageUrl;
+    @SerializedName("description")
+    @Expose
     private String description;
+    @SerializedName("price")
+    @Expose
     private String price;
+    @SerializedName("imageUrl")
+    @Expose
+    private String imageUrl;
 
-    @SerializedName("menu")
-    private List<ImageResult> imageResultList;
 
-    public List<ImageResult> getImageResultList() {
-        return imageResultList;
-    }
-
-    public void setImageResultList(List<ImageResult> imageResultList) {
-        this.imageResultList = imageResultList;
-    }
 
     public String getId() {
         return id;
@@ -39,14 +38,6 @@ public class ImageResult {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -61,5 +52,13 @@ public class ImageResult {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

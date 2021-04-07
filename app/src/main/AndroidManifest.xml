@@ -126,6 +126,7 @@
         <activity
             android:name=".waiter_ready_to_serve"
             android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

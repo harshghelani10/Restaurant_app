@@ -1,9 +1,12 @@
 package com.example.restaurant_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +30,7 @@ public class WaiterLogin extends AppCompatActivity {
     Button login_btn;
     EditText email, password;
     TextView forgot_password;
+    private CheckBox rememberMe;
     RetrofitInterface retrofitInterface;
 
     @Override
@@ -41,6 +45,7 @@ public class WaiterLogin extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         login_btn = (Button) findViewById(R.id.login_btn);
         forgot_password = (TextView) findViewById(R.id.forgot_password);
+        rememberMe = (CheckBox) findViewById(R.id.rememberMe);
 
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +97,25 @@ public class WaiterLogin extends AppCompatActivity {
                 });
             }
         });
+
+        rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (compoundButton.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences("checked",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember","true");
+                    editor.apply();
+
+                }else if (!compoundButton.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences("checked",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember","false");
+                    editor.apply();
+                }
+            }
+        });
+
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

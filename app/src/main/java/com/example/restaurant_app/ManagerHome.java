@@ -74,6 +74,8 @@ public class ManagerHome extends AppCompatActivity {
                         editor.putString("remember","false");
                         editor.apply();
                         finish();
+                        Intent logout = new Intent(ManagerHome.this, ViewPayment.class);
+                        startActivity(logout);
                         break;
 
 
