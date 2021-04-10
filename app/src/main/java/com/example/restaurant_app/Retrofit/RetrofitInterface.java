@@ -22,7 +22,7 @@ public interface RetrofitInterface {
     @PUT("/auth/register")
     Call<Void> executeRegister(@Body HashMap<String, String> map);
 
-    @POST("/home/login")
+    @POST("/auth/login")
     Call<LoginResult> executeLogin(@Body HashMap<String, String> map);
 
     //Waiter register & login

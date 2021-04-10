@@ -1,20 +1,13 @@
 package com.example.restaurant_app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
@@ -22,12 +15,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class Menu extends AppCompatActivity {
-    private static final String SERVER = "http://192.168.0.2:8080/feed/menu";
+    private static final String SERVER = "http://192.168.0.3:8080/feed/getposts";
     Button backbtn;
     GridView gridView;
     private TextView tv_result;
@@ -53,26 +43,6 @@ public class Menu extends AppCompatActivity {
         request.execute();
 //        Retrofit retrofitClient = RetrofitClient.getInstance();
 //        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
-
-//        getAllImages();
-//        Call<List<MenuResult>> imageResults = retrofitInterface.getMenu();
-//
-//        imageResults.enqueue(new Callback<List<MenuResult>>() {
-//
-//            @Override
-//            public void onResponse(Call<List<MenuResult>> call, Response<List<MenuResult>> response) {
-//                if (response.isSuccessful()) {
-//                    Log.e("menu", response.body().toString());
-//                    Toast.makeText(Menu.this,"Greate....",Toast.LENGTH_LONG).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<MenuResult>> call, Throwable t) {
-//                Toast.makeText(Menu.this,"error",Toast.LENGTH_LONG).show();
-//            }
-//        });
-
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +73,7 @@ public class Menu extends AppCompatActivity {
                 connection.setConnectTimeout(CONNECTION_TIMEOUT);
                 connection.connect();
 
+
                 // get the string from the input stream
                 InputStreamReader streamReader = new InputStreamReader(connection.getInputStream());
                 BufferedReader reader = new BufferedReader(streamReader);
@@ -124,7 +95,6 @@ public class Menu extends AppCompatActivity {
 
         protected void onPostExecute(String result){
             super.onPostExecute(result);
-//            gridView.setAdapter();
             tv_result.setText(result);
         }
     }
@@ -155,49 +125,49 @@ public class Menu extends AppCompatActivity {
 //            }
 //        });
 
-
-        class CustomAdepter extends BaseAdapter {
-
-            private List<ImageResult> imageResultList;
-            private Context context;
-            private LayoutInflater layoutInflater;
-
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            public CustomAdepter(List<ImageResult> imageResultList, Context context) {
-                this.imageResultList = imageResultList;
-                this.context = context;
-                this.layoutInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-            }
-
-            @Override
-            public int getCount() {
-                return imageResultList.size();
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return null;
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return 0;
-            }
-
-            @Override
-            public View getView(int i, View view, ViewGroup viewGroup) {
-                if (view == null) {
-                    view = layoutInflater.inflate(R.layout.row_grid_iteam, viewGroup, false);
-                }
-
-                ImageView imageView = view.findViewById(R.id.iteam_image);
-                TextView textview = view.findViewById(R.id.tv1);
-
-                textview.setText(imageResultList.get(i).getName());
-                GlideApp.with(context)
-                        .load(imageResultList.get(i).getImageUrl())
-                        .into(imageView);
-                return null;
-            }
-        }
+//
+//        class CustomAdepter extends BaseAdapter {
+//
+//            private List<ImageResult> imageResultList;
+//            private Context context;
+//            private LayoutInflater layoutInflater;
+//
+//            @RequiresApi(api = Build.VERSION_CODES.M)
+//            public CustomAdepter(List<ImageResult> imageResultList, Context context) {
+//                this.imageResultList = imageResultList;
+//                this.context = context;
+//                this.layoutInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+//            }
+//
+//            @Override
+//            public int getCount() {
+//                return imageResultList.size();
+//            }
+//
+//            @Override
+//            public Object getItem(int position) {
+//                return null;
+//            }
+//
+//            @Override
+//            public long getItemId(int position) {
+//                return 0;
+//            }
+//
+//            @Override
+//            public View getView(int i, View view, ViewGroup viewGroup) {
+//                if (view == null) {
+//                    view = layoutInflater.inflate(R.layout.row_grid_iteam, viewGroup, false);
+//                }
+//
+//                ImageView imageView = view.findViewById(R.id.iteam_image);
+//                TextView textview = view.findViewById(R.id.tv1);
+//
+//                textview.setText(imageResultList.get(i).getName());
+//                GlideApp.with(context)
+//                        .load(imageResultList.get(i).getImageUrl())
+//                        .into(imageView);
+//                return null;
+//            }
+//        }
 

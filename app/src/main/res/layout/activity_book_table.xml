@@ -42,38 +42,43 @@
     android:weightSum="3"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_height="308dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="Date"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"/>
+            android:textStyle="bold" />
 
         <CalendarView
             android:layout_width="match_parent"
-            android:layout_height="309dp" />
+            android:layout_height="350dp" />
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="Time"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"/>
+            android:textStyle="bold" />
+
 
     </LinearLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -86,6 +91,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:gravity="center_horizontal"/>
+
     </LinearLayout>
 
     </LinearLayout>

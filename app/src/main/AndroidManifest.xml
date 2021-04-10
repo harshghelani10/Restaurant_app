@@ -13,11 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Restaurant_App"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WaiterForgotPassword"/>
-        <activity android:name=".CookForgotPassword" />
-        <activity android:name=".ManagerForgotPassword" />
-        <activity android:name=".AdminForgotPassword" />
-        <activity android:name=".UserForgetPassword" />
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -126,6 +122,16 @@
         <activity
             android:name=".waiter_ready_to_serve"
             android:screenOrientation="portrait" />
+        <activity android:name=".WaiterForgotPassword"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CookForgotPassword"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ManagerForgotPassword"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AdminForgotPassword"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UserForgetPassword"
+            android:screenOrientation="portrait"/>
 
     </application>
 

@@ -54,9 +54,7 @@ public class ManagerForgotPassword extends AppCompatActivity {
                         } else if (response.code() == 401) {
                             Toast.makeText(ManagerForgotPassword.this,
                                     "Email is not found", Toast.LENGTH_LONG).show();
-                        }
-
-                    }
+                        }}
 
                     @Override
                     public void onFailure(Call<ForgotResult> call, Throwable t) {

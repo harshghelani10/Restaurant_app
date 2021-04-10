@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     ImageView logo_image;
     TextView welcome_txt;
-    Button login,sign_up;
+    Button login, sign_up;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         logo_image = (ImageView) findViewById(R.id.logo_image);
-        welcome_txt =(TextView) findViewById(R.id.welcome_txt);
-        login =(Button) findViewById(R.id.login);
-        sign_up= (Button) findViewById(R.id.sign_up);
+        welcome_txt = (TextView) findViewById(R.id.welcome_txt);
+        login = (Button) findViewById(R.id.login);
+        sign_up = (Button) findViewById(R.id.sign_up);
 
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +40,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 }
