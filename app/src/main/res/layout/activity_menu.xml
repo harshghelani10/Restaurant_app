@@ -40,6 +40,14 @@
 <!--        android:layout_height="wrap_content"-->
 <!--        android:layout_below="@id/s_menu"-->
 <!--        android:text="Hello!!"/>-->
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/s_menu"
+        android:layout_marginBottom="20dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"/>
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"

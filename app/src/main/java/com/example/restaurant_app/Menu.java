@@ -2,9 +2,9 @@ package com.example.restaurant_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,29 +13,28 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.restaurant_app.Retrofit.MenuResult;
-import com.example.restaurant_app.Retrofit.RetrofitClient;
-import com.example.restaurant_app.Retrofit.RetrofitInterface;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class Menu extends AppCompatActivity {
-
+    private static final String SERVER = "http://192.168.0.2:8080/feed/menu";
     Button backbtn;
     GridView gridView;
-    RetrofitInterface retrofitInterface;
+    private TextView tv_result;
+
+
+
+    //   RetrofitInterface retrofitInterface;
 
     //List<ImageResult> imageResultList = new ArrayList<>();
 
@@ -45,31 +44,34 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Retrofit retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
-
-
         backbtn = (Button) findViewById(R.id.btnback);
         gridView = (GridView) findViewById(R.id.gridView);
+        tv_result = (TextView) findViewById(R.id.tv_result);
+
+
+        HttpGetRequest request = new HttpGetRequest();
+        request.execute();
+//        Retrofit retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
 //        getAllImages();
-        Call<List<MenuResult>> imageResults = retrofitInterface.getMenu();
-
-        imageResults.enqueue(new Callback<List<MenuResult>>() {
-
-            @Override
-            public void onResponse(Call<List<MenuResult>> call, Response<List<MenuResult>> response) {
-                if (response.isSuccessful()) {
-                    Log.e("menu", response.body().toString());
-                    Toast.makeText(Menu.this,"Greate....",Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<MenuResult>> call, Throwable t) {
-                Toast.makeText(Menu.this,"error",Toast.LENGTH_LONG).show();
-            }
-        });
+//        Call<List<MenuResult>> imageResults = retrofitInterface.getMenu();
+//
+//        imageResults.enqueue(new Callback<List<MenuResult>>() {
+//
+//            @Override
+//            public void onResponse(Call<List<MenuResult>> call, Response<List<MenuResult>> response) {
+//                if (response.isSuccessful()) {
+//                    Log.e("menu", response.body().toString());
+//                    Toast.makeText(Menu.this,"Greate....",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<MenuResult>> call, Throwable t) {
+//                Toast.makeText(Menu.this,"error",Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +82,53 @@ public class Menu extends AppCompatActivity {
             }
         });
     }
+
+    public class HttpGetRequest extends AsyncTask<Void, Void, String> {
+
+        static final String REQUEST_METHOD = "GET";
+        static final int READ_TIMEOUT = 15000;
+        static final int CONNECTION_TIMEOUT = 15000;
+
+        @Override
+        protected String doInBackground(Void... params){
+            String result;
+            String inputLine;
+
+            try {
+                // connect to the server
+                URL myUrl = new URL(SERVER);
+                HttpURLConnection connection =(HttpURLConnection) myUrl.openConnection();
+                connection.setRequestMethod(REQUEST_METHOD);
+                connection.setReadTimeout(READ_TIMEOUT);
+                connection.setConnectTimeout(CONNECTION_TIMEOUT);
+                connection.connect();
+
+                // get the string from the input stream
+                InputStreamReader streamReader = new InputStreamReader(connection.getInputStream());
+                BufferedReader reader = new BufferedReader(streamReader);
+                StringBuilder stringBuilder = new StringBuilder();
+                while((inputLine = reader.readLine()) != null){
+                    stringBuilder.append(inputLine);
+                }
+                reader.close();
+                streamReader.close();
+                result = stringBuilder.toString();
+
+            } catch(IOException e) {
+                e.printStackTrace();
+                result = "error";
+            }
+
+            return result;
+        }
+
+        protected void onPostExecute(String result){
+            super.onPostExecute(result);
+//            gridView.setAdapter();
+            tv_result.setText(result);
+        }
+    }
+
 }
 //    public void getAllImages() {
 //
