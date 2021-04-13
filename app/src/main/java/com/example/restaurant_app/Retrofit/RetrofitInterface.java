@@ -2,6 +2,7 @@ package com.example.restaurant_app.Retrofit;
 
 import com.example.restaurant_app.ForgotResult;
 import com.example.restaurant_app.LoginResult;
+import com.example.restaurant_app.Menu;
 
 import java.util.HashMap;
 import java.util.List;
@@ -50,8 +51,8 @@ public interface RetrofitInterface {
     @POST("/auth/forgot")
     Call<ForgotResult> executeforgotpass(@Body HashMap<String,String>map);
 
-    @GET("/feed/menu")
-    Call<List<MenuResult>> getMenu();
+    @GET("/feed/getposts")
+    Call<List<Menu>> getMenu();
 
 
 }
