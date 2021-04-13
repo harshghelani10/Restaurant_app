@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
@@ -71,11 +70,6 @@ public class WaiterLogin extends AppCompatActivity {
                         if (response.code() == 200) {
 
                             LoginResult result = response.body();
-
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(WaiterLogin.this);
-                            builder1.setTitle(result.getEmail());
-                            builder1.setMessage(result.getPassword());
-                            builder1.show();
                             Toast.makeText(WaiterLogin.this, "Login Success",
                                     Toast.LENGTH_LONG).show();
 

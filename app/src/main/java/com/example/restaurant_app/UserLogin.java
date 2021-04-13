@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
@@ -58,6 +57,7 @@ public class UserLogin extends AppCompatActivity {
         rememberMe = (CheckBox) findViewById(R.id.rememberMe);
 
         SharedPreferences preferences = getSharedPreferences("checked",MODE_PRIVATE);
+        SharedPreferences token_value = getSharedPreferences("token",MODE_PRIVATE);
         String checkbox = preferences.getString("remember","");
         if (checkbox.equals("true")) {
             Intent intent = new Intent(UserLogin.this, UserHome.class);
@@ -99,18 +99,14 @@ public class UserLogin extends AppCompatActivity {
                         if (response.code() == 200) {
 
                             LoginResult result = response.body();
-
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(UserLogin.this);
-                            builder1.setTitle(result.getEmail());
-                            builder1.setMessage(result.getPassword());
-                            builder1.show();
                             Toast.makeText(UserLogin.this, "Login Success",
                                     Toast.LENGTH_LONG).show();
 
                             Intent intent = new Intent(UserLogin.this, UserHome.class);
                             startActivity(intent);
 
-                        } else if (response.code() == 401) {
+                        }
+                        else if (response.code() == 401) {
                             Toast.makeText(UserLogin.this, "Wrong Credentials",
                                     Toast.LENGTH_LONG).show();
                         }
@@ -143,6 +139,8 @@ public class UserLogin extends AppCompatActivity {
                 }
             }
         });
+
+
 
         admin_panel_link.setOnClickListener(new View.OnClickListener() {
             @Override
