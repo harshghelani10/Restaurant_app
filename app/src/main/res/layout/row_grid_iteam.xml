@@ -25,16 +25,16 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iteam_image"
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@drawable/p_1"
            android:scaleType="fitXY"/>
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iteam_image"
+            android:layout_below="@id/imageView"
             android:layout_centerHorizontal="true"
             android:text="Sample"
             android:layout_marginTop="5dp"

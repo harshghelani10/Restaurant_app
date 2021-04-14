@@ -2,6 +2,7 @@ package com.example.restaurant_app.Retrofit;
 
 import com.example.restaurant_app.ForgotResult;
 import com.example.restaurant_app.LoginResult;
+import com.example.restaurant_app.model.CategoryResponse;
 
 import java.util.HashMap;
 
@@ -18,10 +19,10 @@ public interface RetrofitInterface {
     Call<LoginResult> executeAdminLogin(@Body HashMap<String,String>map);
 
     //User register & login
-    @PUT("/auth/register")
+    @PUT("/all/register")
     Call<Void> executeRegister(@Body HashMap<String, String> map);
 
-    @POST("/auth/login")
+    @POST("/all/login")
     Call<LoginResult> executeLogin(@Body HashMap<String, String> map);
 
     //Waiter register & login
@@ -54,4 +55,11 @@ public interface RetrofitInterface {
 
     @GET("/feed/getposts")
     Call<Product> Getdata();
+
+    @GET("/categorypost/categories")
+    Call<CategoryResponse> getCategory();
+
+
+
+
 }

@@ -50,15 +50,19 @@
 <!--        android:layout_marginTop="-3dp"-->
 <!--        tools:layout_editor_absoluteX="8dp"-->
 <!--        tools:layout_editor_absoluteY="8dp" />-->
-
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/s_menu"
-        android:layout_marginBottom="20dp"
-        android:textSize="15sp"
-        android:textColor="@color/black"/>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/menuList"-->
+<!--        android:layout_below="@id/s_menu"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_result"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@id/s_menu"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textColor="@color/black"/>-->
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
