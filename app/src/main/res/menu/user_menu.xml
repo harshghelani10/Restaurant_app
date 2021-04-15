@@ -2,21 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="User">
         <menu>
-    <item android:title="Home"
-        android:id="@+id/home"
-        android:icon="@drawable/ic_home"/>
+            <item
+                android:id="@+id/home"
+                android:icon="@drawable/ic_home"
+                android:title="Home" />
 
-    <item android:title="Show Menu"
-        android:id="@+id/menu"
-        android:icon="@drawable/ic_menu"/>
+            <item
+                android:id="@+id/menu"
+                android:icon="@drawable/ic_menu"
+                android:title="Show Menu" />
 
-    <item android:title="Book Table"
-        android:id="@+id/booktable"
-        android:icon="@drawable/ic_table"/>
+            <item
+                android:id="@+id/sub_menu"
+                android:icon="@drawable/ic_menu"
+                android:title="Show subMenu" />
 
-    <item android:title="Cart"
-        android:id="@+id/cart"
-        android:icon="@drawable/ic_cart"/>
+            <item
+                android:id="@+id/booktable"
+                android:icon="@drawable/ic_table"
+                android:title="Book Table" />
+
+            <item
+                android:id="@+id/cart"
+                android:icon="@drawable/ic_cart"
+                android:title="Cart" />
 
 
         </menu>
@@ -24,17 +33,20 @@
     <item android:title="App">
         <menu>
 
-            <item android:title="Feedback"
+            <item
                 android:id="@+id/feedback"
-                android:icon="@drawable/ic_feedback"/>
+                android:icon="@drawable/ic_feedback"
+                android:title="Feedback" />
 
-            <item android:title="Rate"
+            <item
                 android:id="@+id/rate"
-                android:icon="@drawable/ic_rate"/>
+                android:icon="@drawable/ic_rate"
+                android:title="Rate" />
 
-            <item android:title="Logout"
+            <item
                 android:id="@+id/logout"
-                android:icon="@drawable/ic_logout"/>
+                android:icon="@drawable/ic_logout"
+                android:title="Logout" />
 
         </menu>
     </item>

@@ -2,7 +2,9 @@ package com.example.restaurant_app.Retrofit;
 
 import com.example.restaurant_app.ForgotResult;
 import com.example.restaurant_app.LoginResult;
+import com.example.restaurant_app.model.Addtocart;
 import com.example.restaurant_app.model.CategoryResponse;
+import com.example.restaurant_app.model.Subcategory;
 
 import java.util.HashMap;
 
@@ -50,16 +52,19 @@ public interface RetrofitInterface {
     @POST("/auth/forgot")
     Call<ForgotResult> executeforgotpass(@Body HashMap<String,String>map);
 
-    @GET("/feed/getposts")
-    Call<MenuResult> getMenu();
+//    @GET("/feed/getposts")
+//    Call<MenuResult> getMenu();
 
-    @GET("/feed/getposts")
-    Call<Product> Getdata();
-
+//    @GET("/menu/menues")
+//    Call<Subcategory> getSubCategory();
+    @GET("/menu/menu/6076527faf90d151f4d513f1")
+    Call<Subcategory> getSubCategory();
+    //fetch category
     @GET("/categorypost/categories")
     Call<CategoryResponse> getCategory();
 
-
-
+    //add to cart
+    @POST("/cart/addtocart/60766079dda0dc0dd007089c")
+    Call<Addtocart> executecart();
 
 }

@@ -1,5 +1,6 @@
 package com.example.restaurant_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -57,7 +58,13 @@ public class UserLogin extends AppCompatActivity {
         rememberMe = (CheckBox) findViewById(R.id.rememberMe);
 
         SharedPreferences preferences = getSharedPreferences("checked",MODE_PRIVATE);
-        SharedPreferences token_value = getSharedPreferences("token",MODE_PRIVATE);
+        //SharedPreferences token_value = getSharedPreferences("token",MODE_PRIVATE);
+
+        //save token here
+        String token = "Some token From Server";
+        SharedPreferences token_value = getSharedPreferences("token", Context.MODE_PRIVATE);
+        preferences.edit().putString("TOKEN",token).apply();
+
         String checkbox = preferences.getString("remember","");
         if (checkbox.equals("true")) {
             Intent intent = new Intent(UserLogin.this, UserHome.class);

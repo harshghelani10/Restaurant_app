@@ -57,6 +57,10 @@ public class UserHome extends AppCompatActivity {
                         Intent cart = new Intent(UserHome.this, Cart.class);
                         startActivity(cart);
                         break;
+                    case R.id.sub_menu:
+                        Intent sub_menu = new Intent(UserHome.this, SubMenu.class);
+                        startActivity(sub_menu);
+                        break;
                     case R.id.feedback:
                         Intent feedback = new Intent(UserHome.this, Feedback.class);
                         startActivity(feedback);

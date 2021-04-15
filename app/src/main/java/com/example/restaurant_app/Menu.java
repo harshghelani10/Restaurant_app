@@ -38,7 +38,6 @@ public class Menu extends AppCompatActivity {
     Button backbtn;
     RecyclerView recyclerView;
     GridView gridView;
-    private TextView tv_result;
     RetrofitInterface retrofitInterface;
 
     CategoryResponse categorypostList = new CategoryResponse();
@@ -57,7 +56,6 @@ public class Menu extends AppCompatActivity {
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = retrofitClient.create(RetrofitInterface.class);
-
         listingdata();
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +110,7 @@ public class Menu extends AppCompatActivity {
 
             this.context = context;
             this.categorypostList = categorypostList;
+
         }
 
         @Override
@@ -141,6 +140,17 @@ public class Menu extends AppCompatActivity {
 
             ImageView imageView = view.findViewById(R.id.imageView);
             TextView textview = view.findViewById(R.id.textView);
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String get  = categorypostList.get(i).getId();
+                          Intent intent = new Intent(Menu.this, SubMenu.class);
+                          intent.putExtra("_id",get);
+                          startActivity(intent);
+                    Toast.makeText(Menu.this,"Click",Toast.LENGTH_SHORT).show();
+                }
+            });
 
             textview.setText(categorypostList.get(i).getCategoryName());
             Picasso.with(Menu.this).load(categorypostList.get(i).getImageUrl()).into(imageView);
