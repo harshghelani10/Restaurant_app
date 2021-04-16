@@ -42,6 +42,7 @@ public class SubMenu extends AppCompatActivity {
     Subcategory subcategoryList = new Subcategory();
     List<Product> product = new ArrayList<>();
 
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class SubMenu extends AppCompatActivity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-        Call<Subcategory> call = retrofitInterface.getSubCategory();
+        Call<Subcategory> call = retrofitInterface.getSubCategory(id);
 
         call.enqueue(new Callback<Subcategory>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -101,6 +102,7 @@ public class SubMenu extends AppCompatActivity {
         private Button Add_to_cart;
         private EditText quantity,priority;
         RetrofitInterface retrofitInterface;
+        private  String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicGhvbmUiOiIxMDI5Mzg0NzU2IiwiSWQiOiI2MDc2N2UwNTcxMWFhODM4MGNlMTE4ZWIiLCJpYXQiOjE2MTg1NjMzNzcsImV4cCI6MTYxODY0OTc3N30.KzvFCBeZPFpez2G5smNJEvahyuACTnuEGlEUr0W_62M";
 
         public CustomAdepter(List<Product> product, SubMenu context) {
 
@@ -147,7 +149,7 @@ public class SubMenu extends AppCompatActivity {
             Add_to_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Call<Addtocart> call = retrofitInterface.executecart();
+                    Call<Addtocart> call = retrofitInterface.executecart(token);
 
                     call.enqueue(new Callback<Addtocart>() {
                         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -176,9 +178,6 @@ public class SubMenu extends AppCompatActivity {
             textview2.setText(product.get(i).getPrice());
             Picasso.with(SubMenu.this).load(product.get(i).getImageUrl()).into(imageView);
             return view;
-
-
         }
     }
-
 }

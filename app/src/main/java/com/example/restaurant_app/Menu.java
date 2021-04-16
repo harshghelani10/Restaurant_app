@@ -42,6 +42,7 @@ public class Menu extends AppCompatActivity {
 
     CategoryResponse categorypostList = new CategoryResponse();
     List<Categorypost> categoryposts = new ArrayList<>();
+    public static String id;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -144,9 +145,10 @@ public class Menu extends AppCompatActivity {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     String get  = categorypostList.get(i).getId();
                           Intent intent = new Intent(Menu.this, SubMenu.class);
-                          intent.putExtra("_id",get);
+                          intent.putExtra("_id",categorypostList.get(i).getId());
                           startActivity(intent);
                     Toast.makeText(Menu.this,"Click",Toast.LENGTH_SHORT).show();
                 }

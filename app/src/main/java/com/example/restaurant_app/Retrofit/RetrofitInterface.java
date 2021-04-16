@@ -13,6 +13,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface RetrofitInterface {
 
@@ -55,16 +56,17 @@ public interface RetrofitInterface {
 //    @GET("/feed/getposts")
 //    Call<MenuResult> getMenu();
 
-//    @GET("/menu/menues")
+    @GET("/menu/menu/{path}")
+    Call<Subcategory> getSubCategory(@Path(value = "path")String path);
+
+//    @GET("/menu/menu/6076527faf90d151f4d513f1")
 //    Call<Subcategory> getSubCategory();
-    @GET("/menu/menu/6076527faf90d151f4d513f1")
-    Call<Subcategory> getSubCategory();
     //fetch category
     @GET("/categorypost/categories")
     Call<CategoryResponse> getCategory();
 
     //add to cart
-    @POST("/cart/addtocart/60766079dda0dc0dd007089c")
-    Call<Addtocart> executecart();
+    @POST("/cart/addtocart/{path}")
+    Call<Addtocart> executecart(@Path(value = "path")String path);
 
 }

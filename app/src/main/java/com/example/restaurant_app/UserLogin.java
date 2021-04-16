@@ -1,6 +1,5 @@
 package com.example.restaurant_app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -33,6 +32,7 @@ public class UserLogin extends AppCompatActivity {
     TextView forgot_password, admin_panel_link, manager_panel_link, cook_panel_link, waiter_panel_link;
     Button sign_up, login_btn;
     private CheckBox rememberMe;
+    private  static String token;
     RetrofitInterface retrofitInterface;
 
     @Override
@@ -60,10 +60,7 @@ public class UserLogin extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("checked",MODE_PRIVATE);
         //SharedPreferences token_value = getSharedPreferences("token",MODE_PRIVATE);
 
-        //save token here
-        String token = "Some token From Server";
-        SharedPreferences token_value = getSharedPreferences("token", Context.MODE_PRIVATE);
-        preferences.edit().putString("TOKEN",token).apply();
+
 
         String checkbox = preferences.getString("remember","");
         if (checkbox.equals("true")) {
@@ -71,7 +68,6 @@ public class UserLogin extends AppCompatActivity {
             startActivity(intent);
         }else if(checkbox.equals("false")){
             Toast.makeText(UserLogin.this, "Please Sign in...", Toast.LENGTH_SHORT).show();
-
         }
 
         sign_up.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +77,7 @@ public class UserLogin extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
 
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,8 +106,11 @@ public class UserLogin extends AppCompatActivity {
                             Toast.makeText(UserLogin.this, "Login Success",
                                     Toast.LENGTH_LONG).show();
 
+                            token = response.body().getAccessToken();
+
                             Intent intent = new Intent(UserLogin.this, UserHome.class);
                             startActivity(intent);
+
 
                         }
                         else if (response.code() == 401) {
@@ -146,8 +146,6 @@ public class UserLogin extends AppCompatActivity {
                 }
             }
         });
-
-
 
         admin_panel_link.setOnClickListener(new View.OnClickListener() {
             @Override

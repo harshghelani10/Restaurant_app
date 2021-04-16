@@ -12,10 +12,6 @@
                 android:icon="@drawable/ic_menu"
                 android:title="Show Menu" />
 
-            <item
-                android:id="@+id/sub_menu"
-                android:icon="@drawable/ic_menu"
-                android:title="Show subMenu" />
 
             <item
                 android:id="@+id/booktable"

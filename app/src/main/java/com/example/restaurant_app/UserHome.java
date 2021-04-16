@@ -42,7 +42,7 @@ public class UserHome extends AppCompatActivity {
                 drawer.closeDrawer(GravityCompat.START);
                 switch (item.getItemId()) {
                     case R.id.home:
-                        Intent home = new Intent(UserHome.this,UserHome.class);
+                        Intent home = new Intent(UserHome.this, UserHome.class);
                         startActivity(home);
                         break;
                     case R.id.menu:
@@ -57,18 +57,14 @@ public class UserHome extends AppCompatActivity {
                         Intent cart = new Intent(UserHome.this, Cart.class);
                         startActivity(cart);
                         break;
-                    case R.id.sub_menu:
-                        Intent sub_menu = new Intent(UserHome.this, SubMenu.class);
-                        startActivity(sub_menu);
-                        break;
                     case R.id.feedback:
                         Intent feedback = new Intent(UserHome.this, Feedback.class);
                         startActivity(feedback);
                         break;
                     case R.id.logout:
-                        SharedPreferences preferences = getSharedPreferences("checked",MODE_PRIVATE);
+                        SharedPreferences preferences = getSharedPreferences("checked", MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("remember","false");
+                        editor.putString("remember", "false");
                         editor.apply();
                         finish();
                         Intent logout = new Intent(UserHome.this, MainActivity.class);
