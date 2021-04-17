@@ -79,7 +79,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(Menu.this, "Success", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Menu.this, "Success", Toast.LENGTH_SHORT).show();
 
                     categorypostList = response.body();
                     categoryposts = categorypostList.getCategoryposts();
@@ -150,7 +150,7 @@ public class Menu extends AppCompatActivity {
                           Intent intent = new Intent(Menu.this, SubMenu.class);
                           intent.putExtra("_id",categorypostList.get(i).getId());
                           startActivity(intent);
-                    Toast.makeText(Menu.this,"Click",Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(Menu.this,"Click",Toast.LENGTH_SHORT).show();
                 }
             });
 

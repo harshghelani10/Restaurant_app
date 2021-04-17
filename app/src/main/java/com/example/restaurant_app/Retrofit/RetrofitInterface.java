@@ -5,12 +5,14 @@ import com.example.restaurant_app.LoginResult;
 import com.example.restaurant_app.model.Addtocart;
 import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Subcategory;
+import com.example.restaurant_app.model.YourCart;
 
 import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -66,7 +68,20 @@ public interface RetrofitInterface {
     Call<CategoryResponse> getCategory();
 
     //add to cart
-    @POST("/cart/addtocart/{path}")
-    Call<Addtocart> executecart(@Path(value = "path")String path);
+//    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+//    @POST("/cart/addtocart/{path}")
+//    Call<Addtocart> executecart(@Path(value = "path")String path, @Header("Authorization") String auth);
 
+    //@Headers({ "Content-Type: application/json;charset=UTF-8"})
+//    @POST("/cart/addtocart/60766079dda0dc0dd007089c")
+//    Call<Addtocart> executecart( @Header("Authorization") String auth);
+
+    @Headers({"Content-type: application/json",
+            "Authorization: Bearer my token"})
+    @POST("/cart/addtocart/60766079dda0dc0dd007089c")
+    Call<Addtocart> executecart();
+
+    //view cart
+    @GET("/cart/getcart")
+    Call<YourCart> getCart();
 }

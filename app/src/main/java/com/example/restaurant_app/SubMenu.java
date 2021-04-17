@@ -2,6 +2,7 @@ package com.example.restaurant_app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -72,7 +73,7 @@ public class SubMenu extends AppCompatActivity {
             @Override
             public void onResponse(Call<Subcategory> call, Response<Subcategory> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(SubMenu.this, "Success", Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(SubMenu.this, "Success", Toast.LENGTH_SHORT).show();
 
                     subcategoryList = response.body();
                     product = subcategoryList.getProducts();
@@ -102,7 +103,6 @@ public class SubMenu extends AppCompatActivity {
         private Button Add_to_cart;
         private EditText quantity,priority;
         RetrofitInterface retrofitInterface;
-        private  String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicGhvbmUiOiIxMDI5Mzg0NzU2IiwiSWQiOiI2MDc2N2UwNTcxMWFhODM4MGNlMTE4ZWIiLCJpYXQiOjE2MTg1NjMzNzcsImV4cCI6MTYxODY0OTc3N30.KzvFCBeZPFpez2G5smNJEvahyuACTnuEGlEUr0W_62M";
 
         public CustomAdepter(List<Product> product, SubMenu context) {
 
@@ -129,9 +129,7 @@ public class SubMenu extends AppCompatActivity {
         public View getView(int i, View view, ViewGroup viewGroup) {
 
             if (view == null) {
-                LayoutInflater lInflater = (LayoutInflater) context.getSystemService(
-                        Activity.LAYOUT_INFLATER_SERVICE);
-
+                LayoutInflater lInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
                 view = lInflater.inflate(R.layout.custom_list_layout, null);
             }
 
@@ -144,35 +142,45 @@ public class SubMenu extends AppCompatActivity {
 
             Retrofit retrofitClient = RetrofitClient.getInstance();
             retrofitInterface = retrofitClient.create(RetrofitInterface.class);
-            
+
+            SharedPreferences preferences = getSharedPreferences("MY_APP",MODE_PRIVATE);
             
             Add_to_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Call<Addtocart> call = retrofitInterface.executecart(token);
+                    Call<Addtocart> call = retrofitInterface.executecart();
+
+//                    SharedPreferences preferences = getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
+//                    String retrivedToken  = preferences.getString("TOKEN",null);
+//                    String token = preferences.getString("TOKEN","");
+//                    if (token.equals("true")) {
+////                        Toast.makeText(SubMenu.this, "product add in cart.", Toast.LENGTH_SHORT).show();
+//                        SharedPreferences preferences = getSharedPreferences("MY_APP", MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = preferences.edit();
+//                        editor.putString("TOKEN", "true");
+//                        editor.apply();
+//                    }
 
                     call.enqueue(new Callback<Addtocart>() {
                         @RequiresApi(api = Build.VERSION_CODES.M)
                         @Override
                         public void onResponse(Call<Addtocart> call, Response<Addtocart> response) {
                             if (response.isSuccessful()) {
-                                Toast.makeText(SubMenu.this, "Item add in cart", Toast.LENGTH_SHORT).show();
-
+                                Toast.makeText(SubMenu.this, "add in cart", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(SubMenu.this, "" + response.message(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SubMenu.this, "check network"+response.message(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Addtocart> call, Throwable t) {
                             System.out.println("############################ " + t.getLocalizedMessage());
+
                         }
                     });
-
                     //Toast.makeText(SubMenu.this, "clicked", Toast.LENGTH_SHORT).show();
                 }
             });
-
 
             textview1.setText(product.get(i).getName());
             textview2.setText(product.get(i).getPrice());

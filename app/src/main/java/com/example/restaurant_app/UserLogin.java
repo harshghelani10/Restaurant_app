@@ -1,5 +1,6 @@
 package com.example.restaurant_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -106,7 +107,9 @@ public class UserLogin extends AppCompatActivity {
                             Toast.makeText(UserLogin.this, "Login Success",
                                     Toast.LENGTH_LONG).show();
 
-                            token = response.body().getAccessToken();
+                            String token = "Some token From Server";
+                            SharedPreferences preferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
+                            preferences.edit().putString("TOKEN",token).apply();
 
                             Intent intent = new Intent(UserLogin.this, UserHome.class);
                             startActivity(intent);
