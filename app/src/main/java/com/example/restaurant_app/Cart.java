@@ -39,6 +39,7 @@ public class Cart extends AppCompatActivity {
 
     YourCart yourCart = new YourCart();
     List<Item> items = new ArrayList<>();
+    public static String id;
 
 
 
@@ -46,6 +47,7 @@ public class Cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        id = getIntent().getStringExtra("_id");
 
         SharedPreferences preferences = getSharedPreferences("token",MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();

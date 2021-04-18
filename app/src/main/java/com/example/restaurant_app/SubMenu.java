@@ -2,6 +2,7 @@ package com.example.restaurant_app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,9 +27,13 @@ import com.example.restaurant_app.model.Product;
 import com.example.restaurant_app.model.Subcategory;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,10 +43,11 @@ public class SubMenu extends AppCompatActivity {
 
     GridView gridView;
     RetrofitInterface retrofitInterface;
-    String id;
+
 
     Subcategory subcategoryList = new Subcategory();
     List<Product> product = new ArrayList<>();
+    public static String id;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -73,7 +79,7 @@ public class SubMenu extends AppCompatActivity {
             @Override
             public void onResponse(Call<Subcategory> call, Response<Subcategory> response) {
                 if (response.isSuccessful()) {
-                 //   Toast.makeText(SubMenu.this, "Success", Toast.LENGTH_SHORT).show();
+                    //   Toast.makeText(SubMenu.this, "Success", Toast.LENGTH_SHORT).show();
 
                     subcategoryList = response.body();
                     product = subcategoryList.getProducts();
@@ -101,7 +107,7 @@ public class SubMenu extends AppCompatActivity {
         private Context context;
         private LayoutInflater layoutInflater;
         private Button Add_to_cart;
-        private EditText quantity,priority;
+        private EditText quantity, priority;
         RetrofitInterface retrofitInterface;
 
         public CustomAdepter(List<Product> product, SubMenu context) {
@@ -138,28 +144,31 @@ public class SubMenu extends AppCompatActivity {
             TextView textview2 = view.findViewById(R.id.item_price);
             Add_to_cart = view.findViewById(R.id.add_to_cart);
             quantity = view.findViewById(R.id.enter_qty);
-            priority  = view.findViewById(R.id.set_priority);
+            priority = view.findViewById(R.id.set_priority);
+
 
             Retrofit retrofitClient = RetrofitClient.getInstance();
             retrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-            SharedPreferences preferences = getSharedPreferences("MY_APP",MODE_PRIVATE);
-            
+
             Add_to_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Call<Addtocart> call = retrofitInterface.executecart();
 
-//                    SharedPreferences preferences = getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
-//                    String retrivedToken  = preferences.getString("TOKEN",null);
-//                    String token = preferences.getString("TOKEN","");
-//                    if (token.equals("true")) {
-////                        Toast.makeText(SubMenu.this, "product add in cart.", Toast.LENGTH_SHORT).show();
-//                        SharedPreferences preferences = getSharedPreferences("MY_APP", MODE_PRIVATE);
-//                        SharedPreferences.Editor editor = preferences.edit();
-//                        editor.putString("TOKEN", "true");
-//                        editor.apply();
-//                    }
+                    SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
+                    String token = gettoken.getString("TOKEN", "");
+                    token.concat("TOKEN");
+
+                    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+                        @Override
+                        public okhttp3.Response intercept(Chain chain) throws IOException {
+                            Request newRequest  = chain.request().newBuilder()
+                                    .addHeader("Authorization", "Bearer " + token)
+                                    .build();
+                            return chain.proceed(newRequest);
+                        }
+                    }).build();
+                    Call<Addtocart> call = retrofitInterface.executecart(id);
 
                     call.enqueue(new Callback<Addtocart>() {
                         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -167,14 +176,18 @@ public class SubMenu extends AppCompatActivity {
                         public void onResponse(Call<Addtocart> call, Response<Addtocart> response) {
                             if (response.isSuccessful()) {
                                 Toast.makeText(SubMenu.this, "add in cart", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SubMenu.this,Cart.class);
+                                intent.putExtra("_id",product.get(i).getCategoryId());
+                                startActivity(intent);
                             } else {
-                                Toast.makeText(SubMenu.this, "check network"+response.message(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SubMenu.this, "" + response.message(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
+
                         @Override
                         public void onFailure(Call<Addtocart> call, Throwable t) {
-                            System.out.println("############################ " + t.getLocalizedMessage());
+                            System.out.println("############################" + t.getLocalizedMessage());
 
                         }
                     });

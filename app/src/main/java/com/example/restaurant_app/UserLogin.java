@@ -59,9 +59,6 @@ public class UserLogin extends AppCompatActivity {
         rememberMe = (CheckBox) findViewById(R.id.rememberMe);
 
         SharedPreferences preferences = getSharedPreferences("checked",MODE_PRIVATE);
-        //SharedPreferences token_value = getSharedPreferences("token",MODE_PRIVATE);
-
-
 
         String checkbox = preferences.getString("remember","");
         if (checkbox.equals("true")) {
@@ -101,15 +98,15 @@ public class UserLogin extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
 
-                        if (response.code() == 200) {
-
-                            LoginResult result = response.body();
+                        if (response.isSuccessful()) {
                             Toast.makeText(UserLogin.this, "Login Success",
                                     Toast.LENGTH_LONG).show();
 
-                            String token = "Some token From Server";
-                            SharedPreferences preferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
-                            preferences.edit().putString("TOKEN",token).apply();
+                            String token = response.toString();
+                            SharedPreferences preferences = getSharedPreferences("token", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("TOKEN",token);
+                            editor.apply();
 
                             Intent intent = new Intent(UserLogin.this, UserHome.class);
                             startActivity(intent);
@@ -131,6 +128,8 @@ public class UserLogin extends AppCompatActivity {
                 });
             }
         });
+
+
 
         rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
