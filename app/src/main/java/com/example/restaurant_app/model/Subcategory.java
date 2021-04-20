@@ -9,38 +9,27 @@ import java.util.List;
 
 public class Subcategory {
 
-    @SerializedName("message")
-    @Expose
-    private String message;
-    @SerializedName("products")
-    @Expose
-    private List<Product> products = null;
-    @SerializedName("totalItems")
-    @Expose
-    private Integer totalItems;
+        @SerializedName("message")
+        @Expose
+        private String message;
+        @SerializedName("products")
+        @Expose
+        private List<Product> products = null;
 
-    public String getMessage() {
-        return message;
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public List<Product> getProducts() {
+            return products;
+        }
+
+        public void setProducts(List<Product> products) {
+            this.products = products;
+        }
+
     }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public Integer getTotalItems() {
-        return totalItems;
-    }
-
-    public void setTotalItems(Integer totalItems) {
-        this.totalItems = totalItems;
-    }
-
-}

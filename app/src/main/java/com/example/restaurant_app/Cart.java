@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
 import com.example.restaurant_app.model.Item;
+import com.example.restaurant_app.model.Viewcart;
 import com.example.restaurant_app.model.YourCart;
 
 import java.util.ArrayList;
@@ -37,10 +37,10 @@ public class Cart extends AppCompatActivity {
     RetrofitInterface retrofitInterface;
     Button backbtn;
 
+    Viewcart viewcart = new Viewcart();
     YourCart yourCart = new YourCart();
     List<Item> items = new ArrayList<>();
     public static String id;
-
 
 
     @Override
@@ -49,15 +49,7 @@ public class Cart extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         id = getIntent().getStringExtra("_id");
 
-        SharedPreferences preferences = getSharedPreferences("token",MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("remember","true");
-        editor.apply();
-
-        SharedPreferences token_value = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
-        String retrivedToken  = preferences.getString("TOKEN",null);
-
-        backbtn = (Button)findViewById(R.id.btnback);
+        backbtn = (Button) findViewById(R.id.btnback);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,10 +59,6 @@ public class Cart extends AppCompatActivity {
         });
 
         listingdata();
-
-        Retrofit retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
-
     }
 
 
@@ -79,16 +67,19 @@ public class Cart extends AppCompatActivity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-        Call<YourCart> call = retrofitInterface.getCart();
+        SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
+        String token = gettoken.getString("TOKEN", "");
 
-        call.enqueue(new Callback<YourCart>() {
+        Call<Viewcart> call = retrofitInterface.getCart(token);
+
+        call.enqueue(new Callback<Viewcart>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            public void onResponse(Call<YourCart> call, Response<YourCart> response) {
+            public void onResponse(Call<Viewcart> call, Response<Viewcart> response) {
                 if (response.isSuccessful()) {
-                    //   Toast.makeText(SubMenu.this, "Success", Toast.LENGTH_SHORT).show();
 
-                    yourCart = response.body();
+                    viewcart = response.body();
+                    yourCart = viewcart.getYourCart();
                     items = yourCart.getItems();
 
                     Cart.CustomAdepter customAdepter = new Cart.CustomAdepter(items, Cart.this);
@@ -101,7 +92,7 @@ public class Cart extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<YourCart> call, Throwable t) {
+            public void onFailure(Call<Viewcart> call, Throwable t) {
                 System.out.println("############################ " + t.getLocalizedMessage());
             }
         });
@@ -113,8 +104,6 @@ public class Cart extends AppCompatActivity {
         List<Item> item;
         private Context context;
         private LayoutInflater layoutInflater;
-        private Button Add_to_cart;
-        private EditText quantity,priority;
         RetrofitInterface retrofitInterface;
 
         public CustomAdepter(List<Item> product, Cart context) {
@@ -147,17 +136,13 @@ public class Cart extends AppCompatActivity {
             }
 
 
-            TextView textview1 = view.findViewById(R.id.item_name);
-            TextView textview2 = view.findViewById(R.id.item_price);
-            Add_to_cart = view.findViewById(R.id.add_to_cart);
-            quantity = view.findViewById(R.id.enter_qty);
-            priority  = view.findViewById(R.id.set_priority);
+            TextView quantity = view.findViewById(R.id.item_Quantity);
+            TextView priority = view.findViewById(R.id.item_priority);
+            TextView totalPrice = view.findViewById(R.id.item_price);
 
-            Retrofit retrofitClient = RetrofitClient.getInstance();
-            retrofitInterface = retrofitClient.create(RetrofitInterface.class);
-
-            textview1.setText(items.get(i).getPriority());
-            textview2.setText(items.get(i).getPrice());
+            quantity.setText(items.get(i).getQty());
+            priority.setText(items.get(i).getPriority());
+            totalPrice.setText(items.get(i).getPrice());
             return view;
         }
     }

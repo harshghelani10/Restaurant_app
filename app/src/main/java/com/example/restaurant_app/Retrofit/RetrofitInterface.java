@@ -5,13 +5,14 @@ import com.example.restaurant_app.LoginResult;
 import com.example.restaurant_app.model.Addtocart;
 import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Subcategory;
-import com.example.restaurant_app.model.YourCart;
+import com.example.restaurant_app.model.Viewcart;
 
 import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -55,34 +56,22 @@ public interface RetrofitInterface {
     @POST("/auth/forgot")
     Call<ForgotResult> executeforgotpass(@Body HashMap<String, String> map);
 
-//    @GET("/feed/getposts")
-//    Call<MenuResult> getMenu();
-
-    @GET("/menu/menu/{path}")
-    Call<Subcategory> getSubCategory(@Path(value = "path") String path);
-
-    //    @GET("/menu/menu/6076527faf90d151f4d513f1")
-//    Call<Subcategory> getSubCategory();
     //fetch category
     @GET("/categorypost/categories")
     Call<CategoryResponse> getCategory();
 
-    //add to cart
-//    @Headers({ "Content-Type: application/json;charset=UTF-8"})
-//    @POST("/cart/addtocart/{path}")
-//    Call<Addtocart> executecart(@Path(value = "path")String path, @Header("Authorization") String auth);
+    //fetch menu
+    @GET("/menu/menu/{path}")
+    Call<Subcategory> getSubCategory(@Path(value = "path") String path);
 
-    //@Headers({ "Content-Type: application/json;charset=UTF-8"})
-//    @POST("/cart/addtocart/60766079dda0dc0dd007089c")
-//    Call<Addtocart> executecart( @Header("Authorization") String auth);
-
-    //    @Headers({"Content-type: application/json",
-//            "Authorization: Bearer my token"})
     @Headers({"Content-Type: application/json;charset=UTF-8"})
-    @POST("/cart/addtocart/{path}")
-    Call<Addtocart> executecart(@Path(value = "path") String path);
+    @POST("/cart/addtocart/{path1}")
+    Call<Addtocart> executecart(@Body HashMap<String, Integer> map,
+                                @Path(value = "path1") String path,
+                                @Header("Authorization") String auth);
 
     //view cart
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
     @GET("/cart/getcart")
-    Call<YourCart> getCart();
+    Call<Viewcart>getCart(@Header("Authorization") String authHeader);
 }
