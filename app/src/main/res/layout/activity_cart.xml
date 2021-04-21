@@ -8,6 +8,7 @@
 
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/v_cart"
         android:layout_width="match_parent"
         android:background="@color/Yellow"
         android:layout_height="50dp">
@@ -34,5 +35,16 @@
                 />
             </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/v_cart"
+        android:layout_marginTop="-5dp"
+        android:layout_marginBottom="1dp"
+        android:horizontalSpacing="4dp"
+        android:numColumns="1"
+        android:verticalSpacing="4dp" />
 
 </RelativeLayout>

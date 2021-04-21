@@ -4,16 +4,17 @@ import com.example.restaurant_app.ForgotResult;
 import com.example.restaurant_app.LoginResult;
 import com.example.restaurant_app.model.Addtocart;
 import com.example.restaurant_app.model.CategoryResponse;
+import com.example.restaurant_app.model.DeleteCart;
 import com.example.restaurant_app.model.Subcategory;
-import com.example.restaurant_app.model.Viewcart;
+import com.example.restaurant_app.model.ViewCart;
 
 import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -64,14 +65,17 @@ public interface RetrofitInterface {
     @GET("/menu/menu/{path}")
     Call<Subcategory> getSubCategory(@Path(value = "path") String path);
 
-    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    //Add To Cart
     @POST("/cart/addtocart/{path1}")
-    Call<Addtocart> executecart(@Body HashMap<String, Integer> map,
-                                @Path(value = "path1") String path,
-                                @Header("Authorization") String auth);
+    Call<Addtocart> executecart(@Path("path1") String path,
+                                @Header("Authorization") String auth,
+                                @Body com.example.restaurant_app.model.Body.Body body);
 
     //view cart
-    @Headers({"Content-Type: application/json;charset=UTF-8"})
     @GET("/cart/getcart")
-    Call<Viewcart>getCart(@Header("Authorization") String authHeader);
+    Call<ViewCart> getCart(@Header("Authorization") String auth);
+
+    //Empty Cart
+    @DELETE("/cart/emptycart")
+    Call<DeleteCart> deleteCart(@Header("Authorization") String auth);
 }

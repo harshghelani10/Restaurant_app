@@ -1,3 +1,4 @@
+
 package com.example.restaurant_app.model;
 
 import com.google.gson.annotations.Expose;
@@ -8,7 +9,7 @@ public class Item {
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("product_id")
+    @SerializedName("productId")
     @Expose
     private String productId;
     @SerializedName("qty")

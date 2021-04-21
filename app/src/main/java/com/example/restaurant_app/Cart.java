@@ -1,5 +1,6 @@
 package com.example.restaurant_app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,8 +21,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
+import com.example.restaurant_app.model.DeleteCart;
 import com.example.restaurant_app.model.Item;
-import com.example.restaurant_app.model.Viewcart;
+import com.example.restaurant_app.model.ViewCart;
 import com.example.restaurant_app.model.YourCart;
 
 import java.util.ArrayList;
@@ -37,19 +39,19 @@ public class Cart extends AppCompatActivity {
     RetrofitInterface retrofitInterface;
     Button backbtn;
 
-    Viewcart viewcart = new Viewcart();
+    ViewCart viewcart = new ViewCart();
     YourCart yourCart = new YourCart();
     List<Item> items = new ArrayList<>();
-    public static String id;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        id = getIntent().getStringExtra("_id");
+
 
         backbtn = (Button) findViewById(R.id.btnback);
+        gridView = (GridView) findViewById(R.id.gridView);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,12 +72,12 @@ public class Cart extends AppCompatActivity {
         SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
         String token = gettoken.getString("TOKEN", "");
 
-        Call<Viewcart> call = retrofitInterface.getCart(token);
+        Call<ViewCart> call = retrofitInterface.getCart("Bearer "+token);
 
-        call.enqueue(new Callback<Viewcart>() {
+        call.enqueue(new Callback<ViewCart>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            public void onResponse(Call<Viewcart> call, Response<Viewcart> response) {
+            public void onResponse(Call<ViewCart> call, Response<ViewCart> response) {
                 if (response.isSuccessful()) {
 
                     viewcart = response.body();
@@ -87,13 +89,13 @@ public class Cart extends AppCompatActivity {
 
 
                 } else {
-                    Toast.makeText(Cart.this, "" + response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Cart.this, "Your cart is Empty..!!"+response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Viewcart> call, Throwable t) {
-                System.out.println("############################ " + t.getLocalizedMessage());
+            public void onFailure(Call<ViewCart> call, Throwable t) {
+                System.out.println("Your cart is Empty..!!" + t.getLocalizedMessage());
             }
         });
     }
@@ -103,13 +105,11 @@ public class Cart extends AppCompatActivity {
 
         List<Item> item;
         private Context context;
-        private LayoutInflater layoutInflater;
-        RetrofitInterface retrofitInterface;
 
         public CustomAdepter(List<Item> product, Cart context) {
 
             this.context = context;
-            this.item = item;
+            this.item = product;
         }
 
         @Override
@@ -119,30 +119,77 @@ public class Cart extends AppCompatActivity {
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return position;
         }
 
         @Override
         public long getItemId(int position) {
-            return 0;
+            return position;
         }
 
+        @SuppressLint({"ViewHolder", "SetTextI18n"})
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-
+        public View getView(int position, View view, ViewGroup viewGroup) {
             if (view == null) {
-                LayoutInflater lInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater lInflater = (LayoutInflater) context.getSystemService(
+                        Activity.LAYOUT_INFLATER_SERVICE);
+
                 view = lInflater.inflate(R.layout.custom_cart, null);
             }
 
+//            view = LayoutInflater.from(context).inflate(R.layout.custom_cart, viewGroup, false);
 
-            TextView quantity = view.findViewById(R.id.item_Quantity);
             TextView priority = view.findViewById(R.id.item_priority);
+            TextView quantity = view.findViewById(R.id.item_Quantity);
             TextView totalPrice = view.findViewById(R.id.item_price);
+            Button delete_cart = view.findViewById(R.id.delete_cart);
+            Button make_order = view.findViewById(R.id.make_order);
 
-            quantity.setText(items.get(i).getQty());
-            priority.setText(items.get(i).getPriority());
-            totalPrice.setText(items.get(i).getPrice());
+            delete_cart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(Cart.this, "delete cart clicked", Toast.LENGTH_SHORT).show();
+                    Retrofit retrofitClient = RetrofitClient.getInstance();
+                    retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+
+                    SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
+                    String token = gettoken.getString("TOKEN", "");
+
+                    Call<DeleteCart> call = retrofitInterface.deleteCart("Bearer "+token);
+
+                    call.enqueue(new Callback<DeleteCart>() {
+                        @Override
+                        public void onResponse(Call<DeleteCart> call, Response<DeleteCart> response) {
+                            if (response.isSuccessful()){
+                                Toast.makeText(Cart.this, "Cart is Deleted..", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(Cart.this, ""+response.message(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<DeleteCart> call, Throwable t) {
+                            Toast.makeText(Cart.this, " ##### "+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                }
+            });
+            
+            make_order.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(Cart.this, "make order", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+            
+            
+            priority.setText(item.get(position).getPriority()+"");
+            quantity.setText(item.get(position).getQty()+"");
+            totalPrice.setText(item.get(position).getPrice()+"");
+            
+
             return view;
         }
     }
