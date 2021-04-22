@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="2">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -44,6 +47,17 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/tv_price1"-->
+<!--                android:layout_below="@id/tv_q"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:text="Price:"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold" />-->
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_below="@id/tv_q"
@@ -57,7 +71,7 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/item_priority"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="110dp"
@@ -67,7 +81,7 @@
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/item_Quantity"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="110dp"
@@ -76,40 +90,87 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/item_price1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/item_Quantity"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:text="Price"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold" />-->
             <TextView
-                android:id="@+id/item_price"
-                android:layout_width="match_parent"
+                android:id="@+id/cart_item_price"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="120dp"
                 android:text="Total Price"
                 android:layout_below="@id/item_Quantity"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/delete_cart"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item_price"
-                android:layout_marginTop="20dp"
-                android:text="Delete Cart"
-                android:layout_marginLeft="30dp"
-                />
-
-            <Button
-                android:id="@+id/make_order"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item_price"
-                android:layout_marginTop="20dp"
-                android:text="Make Order"
+            <ImageView
+                android:id="@+id/cart_image"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:src="@drawable/ic_launcher_background"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
+                android:layout_margin="20sp"
                 />
-
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-</RelativeLayout>
+</LinearLayout>
+<!--<TextView-->
+<!--    android:id="@+id/tv_total"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginLeft="10dp"-->
+<!--    android:text=" Sub Total Price:"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:layout_above="@id/delete_cart"-->
+<!--    android:layout_marginBottom="20dp"-->
+<!--    android:textSize="18sp"-->
+<!--    android:textStyle="bold" />-->
+
+<!--<TextView-->
+<!--    android:id="@+id/sub_total"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginLeft="150dp"-->
+<!--    android:text="Total Price"-->
+<!--    android:layout_above="@id/delete_cart"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:layout_marginBottom="20dp"-->
+<!--    android:textSize="18sp"-->
+<!--    android:textStyle="bold" />-->
+
+<!--<Button-->
+<!--    android:id="@+id/delete_cart"-->
+<!--    android:layout_width="150dp"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginLeft="30dp"-->
+<!--    android:layout_marginBottom="10dp"-->
+<!--    android:layout_alignParentBottom="true"-->
+<!--    android:text="Delete Cart" />-->
+
+<!--<Button-->
+<!--    android:id="@+id/make_order"-->
+<!--    android:layout_width="150dp"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_alignParentRight="true"-->
+<!--    android:layout_alignParentBottom="true"-->
+<!--    android:layout_marginRight="30dp"-->
+<!--    android:layout_marginBottom="10dp"-->
+<!--    android:text="Make Order" />-->
+
+
+
+
+
+
+
+

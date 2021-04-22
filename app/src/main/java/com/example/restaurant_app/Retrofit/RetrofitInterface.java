@@ -4,9 +4,10 @@ import com.example.restaurant_app.ForgotResult;
 import com.example.restaurant_app.LoginResult;
 import com.example.restaurant_app.model.Addtocart;
 import com.example.restaurant_app.model.CategoryResponse;
-import com.example.restaurant_app.model.DeleteCart;
 import com.example.restaurant_app.model.Subcategory;
-import com.example.restaurant_app.model.ViewCart;
+import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
+import com.example.restaurant_app.model.makeordermodel.MakeOrder;
+import com.example.restaurant_app.model.viewcartmodel.ViewCart;
 
 import java.util.HashMap;
 
@@ -78,4 +79,8 @@ public interface RetrofitInterface {
     //Empty Cart
     @DELETE("/cart/emptycart")
     Call<DeleteCart> deleteCart(@Header("Authorization") String auth);
+
+    //User Make Order
+    @PUT("/order/makeorder")
+    Call<MakeOrder> makeOrder(@Header("Authorization") String auth);
 }

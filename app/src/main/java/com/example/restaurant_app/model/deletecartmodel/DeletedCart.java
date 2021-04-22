@@ -1,5 +1,5 @@
 
-package com.example.restaurant_app.model;
+package com.example.restaurant_app.model.deletecartmodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

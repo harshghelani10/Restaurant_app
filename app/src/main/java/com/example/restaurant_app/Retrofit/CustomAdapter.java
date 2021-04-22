@@ -2,7 +2,6 @@ package com.example.restaurant_app.Retrofit;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.restaurant_app.Cart;
 import com.example.restaurant_app.R;
 import com.example.restaurant_app.SubMenu;
 import com.example.restaurant_app.model.Addtocart;
@@ -106,8 +104,8 @@ public class CustomAdapter extends BaseAdapter {
                     public void onResponse(Call<Addtocart> call, Response<Addtocart> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(activity, "Item added in your cart..", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(activity, Cart.class);
-                            activity.startActivity(intent);
+//                            Intent intent = new Intent(activity, Cart.class);
+//                            activity.startActivity(intent);
                         } else {
                             Toast.makeText(activity, "" + response.message(), Toast.LENGTH_SHORT).show();
                         }

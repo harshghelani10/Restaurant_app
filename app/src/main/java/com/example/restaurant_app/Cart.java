@@ -1,7 +1,5 @@
 package com.example.restaurant_app;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,10 +20,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
-import com.example.restaurant_app.model.DeleteCart;
-import com.example.restaurant_app.model.Item;
-import com.example.restaurant_app.model.ViewCart;
-import com.example.restaurant_app.model.YourCart;
+import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
+import com.example.restaurant_app.model.deletecartmodel.DeletedCart;
+import com.example.restaurant_app.model.deletecartmodel.Item;
+import com.example.restaurant_app.model.makeordermodel.MakeOrder;
+import com.example.restaurant_app.model.viewcartmodel.ViewCart;
+import com.example.restaurant_app.model.viewcartmodel.YourCart;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +43,7 @@ public class Cart extends AppCompatActivity {
 
     ViewCart viewcart = new ViewCart();
     YourCart yourCart = new YourCart();
-    List<Item> items = new ArrayList<>();
+    List<com.example.restaurant_app.model.viewcartmodel.Item> items = new ArrayList<>();
 
 
     @Override
@@ -52,6 +54,15 @@ public class Cart extends AppCompatActivity {
 
         backbtn = (Button) findViewById(R.id.btnback);
         gridView = (GridView) findViewById(R.id.gridView);
+        TextView tv_total = (TextView) findViewById(R.id.tv_total);
+        TextView sub_total = (TextView) findViewById(R.id.sub_total);
+        Button delete_cart = (Button) findViewById(R.id.delete_cart);
+        Button make_order = (Button) findViewById(R.id.make_order);
+
+        // sub_total.setText(viewcart.getYourCart().getSubTotal()+"");
+
+        listingdata();
+
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,11 +71,94 @@ public class Cart extends AppCompatActivity {
             }
         });
 
-        listingdata();
+        delete_cart.setOnClickListener(new View.OnClickListener() {
+
+            DeleteCart deleteCart = new DeleteCart();
+            DeletedCart deletedCart = new DeletedCart();
+            List<Item> items = new ArrayList<>();
+
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(Cart.this, "Clicked", Toast.LENGTH_SHORT).show();
+                Retrofit retrofitClient = RetrofitClient.getInstance();
+                retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+
+                SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
+                String token = gettoken.getString("TOKEN", "");
+
+                Call<DeleteCart> call = retrofitInterface.deleteCart("Bearer "+token);
+
+                call.enqueue(new Callback<DeleteCart>() {
+                    @Override
+                    public void onResponse(Call<DeleteCart> call, Response<DeleteCart> response) {
+                        if (response.isSuccessful()){
+                            Intent intent = new Intent(Cart.this,Menu.class);
+                            startActivity(intent);
+                            Toast.makeText(Cart.this, "Your cart is deleted...", Toast.LENGTH_SHORT).show();
+                            deleteCart = response.body();
+                            deletedCart = deleteCart.getDeletedCart();
+                            items = deletedCart.getItems();
+                        }
+                        else{
+                            Toast.makeText(Cart.this, ""+response.message(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DeleteCart> call, Throwable t) {
+                        Toast.makeText(Cart.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+        make_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                handleLoginDialog();
+
+                Retrofit retrofitClient = RetrofitClient.getInstance();
+                retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+
+                SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
+                String token = gettoken.getString("TOKEN", "");
+
+//                HashMap<String, String> map = new HashMap<>();
+//
+//                map.put("email", email.getText().toString());
+//                map.put("password", password.getText().toString());
+
+                Call<MakeOrder> call = retrofitInterface.makeOrder("Bearer "+token);
+
+                call.enqueue(new Callback<MakeOrder>() {
+                    @Override
+                    public void onResponse(Call<MakeOrder> call, Response<MakeOrder> response) {
+                        if (response.isSuccessful()){
+                            Toast.makeText(Cart.this, "Your Order Is Placed.....!!", Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            Toast.makeText(Cart.this, ""+response.message(), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<MakeOrder> call, Throwable t) {
+                        Toast.makeText(Cart.this, "#####"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
     }
 
+    private void handleLoginDialog() {
+
+    }
 
     private void listingdata() {
+
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = retrofitClient.create(RetrofitInterface.class);
@@ -72,7 +166,8 @@ public class Cart extends AppCompatActivity {
         SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
         String token = gettoken.getString("TOKEN", "");
 
-        Call<ViewCart> call = retrofitInterface.getCart("Bearer "+token);
+
+        Call<ViewCart> call = retrofitInterface.getCart("Bearer " + token);
 
         call.enqueue(new Callback<ViewCart>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -84,113 +179,66 @@ public class Cart extends AppCompatActivity {
                     yourCart = viewcart.getYourCart();
                     items = yourCart.getItems();
 
-                    Cart.CustomAdepter customAdepter = new Cart.CustomAdepter(items, Cart.this);
+                    CustomAdapter customAdepter = new CustomAdapter(Cart.this, items);
                     gridView.setAdapter(customAdepter);
 
+                    TextView sub_total = (TextView) findViewById(R.id.sub_total);
+                    sub_total.setText(viewcart.getYourCart().getSubTotal()+"");
 
                 } else {
-                    Toast.makeText(Cart.this, "Your cart is Empty..!!"+response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Cart.this, "Your Cart is Empty...!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ViewCart> call, Throwable t) {
-                System.out.println("Your cart is Empty..!!" + t.getLocalizedMessage());
+                System.out.println("############################ " + t.getLocalizedMessage());
             }
         });
     }
+}
 
-    //Adepter
-    class CustomAdepter extends BaseAdapter {
 
-        List<Item> item;
-        private Context context;
+//Adepter
+class CustomAdapter extends BaseAdapter {
+    List<com.example.restaurant_app.model.viewcartmodel.Item> item;
+    private Context context;
 
-        public CustomAdepter(List<Item> product, Cart context) {
+    public CustomAdapter(Cart cart, List<com.example.restaurant_app.model.viewcartmodel.Item> items) {
+        this.context = cart;
+        this.item = items;
+    }
 
-            this.context = context;
-            this.item = product;
-        }
+    @Override
+    public int getCount() {
+        return item.size();
+    }
 
-        @Override
-        public int getCount() {
-            return item.size();
-        }
+    @Override
+    public Object getItem(int position) {
+        return position;
+    }
 
-        @Override
-        public Object getItem(int position) {
-            return position;
-        }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
+    @Override
+    public View getView(int position, View view, ViewGroup parent) {
 
-        @SuppressLint({"ViewHolder", "SetTextI18n"})
-        @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
-            if (view == null) {
-                LayoutInflater lInflater = (LayoutInflater) context.getSystemService(
-                        Activity.LAYOUT_INFLATER_SERVICE);
+        view = LayoutInflater.from(context).inflate(R.layout.custom_cart, parent, false);
 
-                view = lInflater.inflate(R.layout.custom_cart, null);
-            }
+        TextView priority = view.findViewById(R.id.item_priority);
+        TextView quantity = view.findViewById(R.id.item_Quantity);
+        TextView totalPrice = view.findViewById(R.id.cart_item_price);
+        ImageView imageView = view.findViewById(R.id.cart_image);
 
-//            view = LayoutInflater.from(context).inflate(R.layout.custom_cart, viewGroup, false);
+        priority.setText(item.get(position).getPriority() + "");
+        quantity.setText(item.get(position).getQty() + "");
+        totalPrice.setText(item.get(position).getTotal() + "");
 
-            TextView priority = view.findViewById(R.id.item_priority);
-            TextView quantity = view.findViewById(R.id.item_Quantity);
-            TextView totalPrice = view.findViewById(R.id.item_price);
-            Button delete_cart = view.findViewById(R.id.delete_cart);
-            Button make_order = view.findViewById(R.id.make_order);
-
-            delete_cart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(Cart.this, "delete cart clicked", Toast.LENGTH_SHORT).show();
-                    Retrofit retrofitClient = RetrofitClient.getInstance();
-                    retrofitInterface = retrofitClient.create(RetrofitInterface.class);
-
-                    SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
-                    String token = gettoken.getString("TOKEN", "");
-
-                    Call<DeleteCart> call = retrofitInterface.deleteCart("Bearer "+token);
-
-                    call.enqueue(new Callback<DeleteCart>() {
-                        @Override
-                        public void onResponse(Call<DeleteCart> call, Response<DeleteCart> response) {
-                            if (response.isSuccessful()){
-                                Toast.makeText(Cart.this, "Cart is Deleted..", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(Cart.this, ""+response.message(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<DeleteCart> call, Throwable t) {
-                            Toast.makeText(Cart.this, " ##### "+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                }
-            });
-            
-            make_order.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(Cart.this, "make order", Toast.LENGTH_SHORT).show();
-
-                }
-            });
-            
-            
-            priority.setText(item.get(position).getPriority()+"");
-            quantity.setText(item.get(position).getQty()+"");
-            totalPrice.setText(item.get(position).getPrice()+"");
-            
-
-            return view;
-        }
+        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
+        return view;
     }
 }
