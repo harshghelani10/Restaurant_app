@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Feedback">
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/h_feedback"
         android:layout_width="match_parent"
         android:background="@color/Yellow"
         android:layout_height="50dp">
@@ -34,4 +35,85 @@
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/h_feedback"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="Rating:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/f_title"
+            android:layout_below="@id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Title:"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/F_message"
+            android:layout_below="@id/f_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Message:"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/feedback_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/F_message"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"/>
+
+        <EditText
+            android:id="@+id/feedback_title"
+            android:layout_below="@id/feedback_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/F_message"
+            android:layout_marginTop="18dp"/>
+
+        <EditText
+            android:id="@+id/feedback_message"
+            android:layout_below="@id/feedback_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/F_message"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="18dp"/>
+
+        <Button
+            android:id="@+id/submit_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:paddingHorizontal="50dp"
+            android:layout_below="@id/feedback_message"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"/>
+
+    </RelativeLayout>
 </RelativeLayout>

@@ -1,7 +1,10 @@
 package com.example.restaurant_app;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ public class SubMenu extends AppCompatActivity {
 
     GridView gridView;
     RetrofitInterface retrofitInterface;
+    Button backbtn;
 
 
     Subcategory subcategoryList = new Subcategory();
@@ -41,12 +45,20 @@ public class SubMenu extends AppCompatActivity {
 
         gridView = (GridView) findViewById(R.id.gridView);
         id = getIntent().getStringExtra("_id");
+        backbtn = (Button) findViewById(R.id.btnback);
 
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
         listingdata();
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SubMenu.this, Menu.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

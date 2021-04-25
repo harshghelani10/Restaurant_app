@@ -122,52 +122,6 @@ public class UserLogin extends AppCompatActivity {
                         System.out.println("############################ " + t.getLocalizedMessage());
                     }
                 });
-//                if (email.getText().toString().isEmpty()) {
-//                    Toast.makeText(UserLogin.this, "Please Enter Email", Toast.LENGTH_SHORT).show();
-//                }
-//                if (password.getText().toString().isEmpty()) {
-//                    Toast.makeText(UserLogin.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
-//                }
-//
-//                HashMap<String, String> map = new HashMap<>();
-//
-//                map.put("email", email.getText().toString());
-//                map.put("password", password.getText().toString());
-//
-//                Call<LoginResult> call = retrofitInterface.executeLogin(map);
-//
-//                call.enqueue(new Callback<LoginResult>() {
-//                    @Override
-//                    public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-//
-//                        if (response.isSuccessful()) {
-//                            Toast.makeText(UserLogin.this, "Login Success",
-//                                    Toast.LENGTH_LONG).show();
-//
-//                            String token = response.getYourAccessToken();
-//                            SharedPreferences preferences = getSharedPreferences("token", Context.MODE_PRIVATE);
-//                            SharedPreferences.Editor editor = preferences.edit();
-//                            editor.putString("TOKEN",token);
-//                            editor.commit();
-//
-//                            Intent intent = new Intent(UserLogin.this, UserHome.class);
-//                            startActivity(intent);
-//
-//
-//                        }
-//                        else if (response.code() == 401) {
-//                            Toast.makeText(UserLogin.this, "Wrong Credentials",
-//                                    Toast.LENGTH_LONG).show();
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<LoginResult> call, Throwable t) {
-//                        Toast.makeText(UserLogin.this, "Please! Check Network of Your Device",
-//                                Toast.LENGTH_LONG).show();
-//                    }
-//                });
             }
         });
 

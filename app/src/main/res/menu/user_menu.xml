@@ -23,9 +23,13 @@
                 android:icon="@drawable/ic_cart"
                 android:title="Cart" />
 
-
+            <item
+                android:id="@+id/user_view_order"
+                android:title="View Order"
+                android:icon="@drawable/ic_baseline_order"/>
         </menu>
     </item>
+
     <item android:title="App">
         <menu>
 
@@ -35,9 +39,9 @@
                 android:title="Feedback" />
 
             <item
-                android:id="@+id/rate"
+                android:id="@+id/complaint"
                 android:icon="@drawable/ic_rate"
-                android:title="Rate" />
+                android:title="Complaint" />
 
             <item
                 android:id="@+id/logout"

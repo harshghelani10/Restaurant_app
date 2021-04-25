@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Restaurant_App"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SubMenu"></activity>
+        <activity android:name=".User_view_order"></activity>
+        <activity android:name=".UserComplaint" />
+        <activity android:name=".SubMenu" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

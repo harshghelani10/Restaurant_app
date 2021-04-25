@@ -4,10 +4,12 @@ import com.example.restaurant_app.ForgotResult;
 import com.example.restaurant_app.LoginResult;
 import com.example.restaurant_app.model.Addtocart;
 import com.example.restaurant_app.model.CategoryResponse;
+import com.example.restaurant_app.model.Feedback;
 import com.example.restaurant_app.model.Subcategory;
 import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
+import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
 
 import java.util.HashMap;
 
@@ -82,5 +84,15 @@ public interface RetrofitInterface {
 
     //User Make Order
     @PUT("/order/makeorder")
-    Call<MakeOrder> makeOrder(@Header("Authorization") String auth);
+    Call<MakeOrder> makeOrder(@Header("Authorization") String auth,@Body HashMap<String, String> map);
+
+    //User give feedback
+    @POST("/feedback/feedback")
+    Call<Feedback> giveFeedback(@Header("Authorization") String auth,@Body HashMap<String, String> map);
+    
+    //user view order
+    @GET("/order/myorders")
+    Call<ViewMyOrders> viewmyorders(@Header("Authorization")String auth);
+
 }
+

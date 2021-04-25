@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +22,7 @@ public class UserHome extends AppCompatActivity {
     private NavigationView navigationView;
     private Toolbar toolbar;
     private ActionBarDrawerToggle toggle;
+    private ImageView i1, i2, i3, i4, i5, i6, i7, i8;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +32,80 @@ public class UserHome extends AppCompatActivity {
         drawer = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigation);
         toolbar = findViewById(R.id.toolbar);
+
+        i1 = (ImageView) findViewById(R.id.image1);
+        i2 = (ImageView) findViewById(R.id.image2);
+        i3 = (ImageView) findViewById(R.id.image3);
+        i4 = (ImageView) findViewById(R.id.image4);
+        i5 = (ImageView) findViewById(R.id.image5);
+        i6 = (ImageView) findViewById(R.id.image6);
+        i7 = (ImageView) findViewById(R.id.image7);
+        i8 = (ImageView) findViewById(R.id.image8);
+
+        i1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent image1 = new Intent(UserHome.this, Menu.class);
+                startActivity(image1);
+            }
+        });
+
+        i2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent image2 = new Intent(UserHome.this, Menu.class);
+                startActivity(image2);
+            }
+        });
+
+        i3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent image3 = new Intent(UserHome.this, Menu.class);
+                startActivity(image3);
+            }
+        });
+
+        i4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent image4 = new Intent(UserHome.this, Menu.class);
+                startActivity(image4);
+            }
+        });
+
+        i5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent image5 = new Intent(UserHome.this, Menu.class);
+                startActivity(image5);
+            }
+        });
+
+        i6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent image6 = new Intent(UserHome.this, Menu.class);
+                startActivity(image6);
+            }
+        });
+
+        i7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent image7 = new Intent(UserHome.this, Menu.class);
+                startActivity(image7);
+            }
+        });
+
+        i8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent image8 = new Intent(UserHome.this, Menu.class);
+                startActivity(image8);
+            }
+        });
+
 
         setSupportActionBar(toolbar);
 
@@ -69,9 +146,10 @@ public class UserHome extends AppCompatActivity {
                         finish();
                         Intent logout = new Intent(UserHome.this, MainActivity.class);
                         startActivity(logout);
-
-
                         break;
+                    case R.id.user_view_order:
+                        Intent user_view_order = new Intent(UserHome.this, User_view_order.class);
+                        startActivity(user_view_order);
                 }
                 return true;
             }
