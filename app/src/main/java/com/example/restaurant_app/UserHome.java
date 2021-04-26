@@ -138,6 +138,10 @@ public class UserHome extends AppCompatActivity {
                         Intent feedback = new Intent(UserHome.this, Feedback.class);
                         startActivity(feedback);
                         break;
+                    case R.id.complaint:
+                        Intent complaint = new Intent(UserHome.this,UserComplaint.class);
+                        startActivity(complaint);
+                        break;
                     case R.id.logout:
                         SharedPreferences preferences = getSharedPreferences("checked", MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
@@ -150,6 +154,8 @@ public class UserHome extends AppCompatActivity {
                     case R.id.user_view_order:
                         Intent user_view_order = new Intent(UserHome.this, User_view_order.class);
                         startActivity(user_view_order);
+                        break;
+
                 }
                 return true;
             }

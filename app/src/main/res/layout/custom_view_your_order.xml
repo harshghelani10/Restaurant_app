@@ -47,17 +47,17 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-            <!--            <TextView-->
-            <!--                android:id="@+id/tv_price1"-->
-            <!--                android:layout_below="@id/tv_q"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="15dp"-->
-            <!--                android:text="Price:"-->
-            <!--                android:layout_marginLeft="10dp"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:textSize="18sp"-->
-            <!--                android:textStyle="bold" />-->
+                <!--            <TextView-->
+                <!--                android:id="@+id/tv_price1"-->
+                <!--                android:layout_below="@id/tv_q"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginTop="15dp"-->
+                <!--                android:text="Price:"-->
+                <!--                android:layout_marginLeft="10dp"-->
+                <!--                android:textColor="@color/black"-->
+                <!--                android:textSize="18sp"-->
+                <!--                android:textStyle="bold" />-->
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_below="@id/tv_q"
@@ -108,8 +108,17 @@
                 android:layout_height="100sp"
                 android:src="@drawable/ic_launcher_background"
                 android:layout_alignParentRight="true"
-                android:layout_margin="20sp"
+                android:layout_margin="15sp"
                 />
+
+            <Button
+                android:id="@+id/complaint_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For Complaint on food"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/cart_item_price"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

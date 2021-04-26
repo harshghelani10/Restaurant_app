@@ -35,16 +35,13 @@
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
     <GridView
-        android:id="@+id/gridView"
         android:layout_below="@id/v_order"
-        android:layout_marginTop="5dp"
+        android:id="@+id/gridView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="1dp"
-        android:horizontalSpacing="4dp"
-        android:numColumns="1"
-        android:verticalSpacing="4dp" />
+        android:layout_height="match_parent"/>
+
 
 
 </RelativeLayout>
