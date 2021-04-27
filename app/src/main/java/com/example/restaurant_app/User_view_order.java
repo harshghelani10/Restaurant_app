@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.example.restaurant_app.model.viewmyordersmodel.Data;
 import com.example.restaurant_app.model.viewmyordersmodel.Item;
 import com.example.restaurant_app.model.viewmyordersmodel.Order;
 import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,7 +137,7 @@ class CustomAdepter extends BaseAdapter {
         TextView priority = view.findViewById(R.id.item_priority);
         TextView quantity = view.findViewById(R.id.item_Quantity);
         TextView totalPrice = view.findViewById(R.id.cart_item_price);
-        //ImageView imageView = view.findViewById(R.id.cart_image);
+        ImageView imageView = view.findViewById(R.id.cart_image);
         Button complaint_btn = view.findViewById(R.id.complaint_btn);
 
         complaint_btn.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +150,7 @@ class CustomAdepter extends BaseAdapter {
         priority.setText(item.get(position).getPriority() + "");
         quantity.setText(item.get(position).getQty() + "");
         totalPrice.setText(item.get(position).getTotal() + "");
+        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
 
         //Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
         return view;
