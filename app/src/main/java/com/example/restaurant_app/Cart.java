@@ -127,14 +127,14 @@ public class Cart extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(view).show();
 
-       final EditText make_order_name = (EditText) view.findViewById(R.id.make_order_name);
-       final EditText pay_method = (EditText) view.findViewById(R.id.pay_method);
+        final EditText make_order_name = (EditText) view.findViewById(R.id.make_order_name);
+        final EditText pay_method = (EditText) view.findViewById(R.id.pay_method);
         Button btn_make_order = (Button) view.findViewById(R.id.btn_make_order);
 
         btn_make_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Toast.makeText(Cart.this, "Make order is clicked....", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(Cart.this, "Make order is clicked....", Toast.LENGTH_SHORT).show();
 
                 Retrofit retrofitClient = RetrofitClient.getInstance();
                 retrofitInterface = retrofitClient.create(RetrofitInterface.class);
@@ -147,13 +147,13 @@ public class Cart extends AppCompatActivity {
                 map.put("name", make_order_name.getText().toString());
                 map.put("paymentMethod", pay_method.getText().toString());
 
-                Call<MakeOrder> call = retrofitInterface.makeOrder("Bearer " + token,map);
+                Call<MakeOrder> call = retrofitInterface.makeOrder("Bearer " + token, map);
 
                 call.enqueue(new Callback<MakeOrder>() {
                     @Override
                     public void onResponse(Call<MakeOrder> call, Response<MakeOrder> response) {
                         if (response.isSuccessful()) {
-                            Intent intent = new Intent(Cart.this,UserHome.class);
+                            Intent intent = new Intent(Cart.this, UserHome.class);
                             startActivity(intent);
                             Toast.makeText(Cart.this, "Your Order Is Placed.....!!", Toast.LENGTH_SHORT).show();
 
@@ -250,12 +250,46 @@ class CustomAdapter extends BaseAdapter {
         TextView quantity = view.findViewById(R.id.item_Quantity);
         TextView totalPrice = view.findViewById(R.id.cart_item_price);
         ImageView imageView = view.findViewById(R.id.cart_image);
+        ImageView b_plus_p = view.findViewById(R.id.b_plus_p);
+        ImageView b_min_p = view.findViewById(R.id.b_min_p);
+        ImageView b_plus_q = view.findViewById(R.id.b_plus_q);
+        ImageView b_min_q = view.findViewById(R.id.b_min_q);
+
 
         priority.setText(item.get(position).getPriority() + "");
         quantity.setText(item.get(position).getQty() + "");
         totalPrice.setText(item.get(position).getTotal() + "");
-
         Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
+
+        b_plus_p.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                priority.setText(item.get(position).getPriority()+""+1);
+            }
+        });
+
+        b_min_p.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                priority.setText(item.get(position).getPriority()+""+0);
+            }
+        });
+
+        b_plus_q.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                totalPrice.setText(item.get(position).getPriority()+""+1);
+                Toast.makeText(context, "cliked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        b_min_q.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "cliked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
     }
 }

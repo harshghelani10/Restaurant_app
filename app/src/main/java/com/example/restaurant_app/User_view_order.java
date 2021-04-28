@@ -143,6 +143,7 @@ class CustomAdepter extends BaseAdapter {
         complaint_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
             }
         });
