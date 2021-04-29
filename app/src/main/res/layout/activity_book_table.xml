@@ -6,96 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".BookTable">
 
-   <com.google.android.material.appbar.AppBarLayout
-       android:id="@+id/b_table"
-       android:layout_width="match_parent"
-       android:background="@color/Yellow"
-       android:layout_height="50dp">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/b_table"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/Yellow">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/btnback"
                 android:layout_width="35dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:background="@drawable/ic_back"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:paddingLeft="20dp"
+                android:text="Book Table"
                 android:textColor="#000000"
-                />
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="Book Table"
-           android:textSize="25dp"
-           android:paddingLeft="20dp"
-           android:layout_gravity="center"
-           android:layout_margin="5dp"
-           android:textColor="#000000"
-          />
+                android:textSize="25dp" />
 
         </LinearLayout>
-   </com.google.android.material.appbar.AppBarLayout>
-<LinearLayout
-    android:layout_below="@id/b_table"
-    android:orientation="vertical"
-    android:weightSum="3"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="308dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:text="Reserve Your Table Please, Scan a QR code"
+        android:textStyle="bold"
+        android:textSize="25sp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Date"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <CalendarView
-            android:layout_width="match_parent"
-            android:layout_height="350dp" />
-    </LinearLayout>
-
-    <LinearLayout
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Time"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Number Of People"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"/>
-
-    </LinearLayout>
-
-    </LinearLayout>
-
+        android:layout_alignParentBottom="true"
+        android:layout_margin="35dp"
+        android:text="Scan Barcode" />
 
 
 </RelativeLayout>

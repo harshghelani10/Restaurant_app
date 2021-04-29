@@ -75,9 +75,9 @@
             android:textColor="@color/black"
             android:textSize="20sp"/>
 
-        <EditText
+        <RatingBar
             android:id="@+id/feedback_rating"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/F_message"
             android:layout_marginTop="18dp"
@@ -114,6 +114,8 @@
             android:layout_below="@id/feedback_message"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"/>
+
+
 
     </RelativeLayout>
 </RelativeLayout>

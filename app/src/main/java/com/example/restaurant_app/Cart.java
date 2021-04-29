@@ -261,6 +261,11 @@ class CustomAdapter extends BaseAdapter {
         totalPrice.setText(item.get(position).getTotal() + "");
         Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
 
+        int quantity1 = Integer.parseInt((item.get(position).getQty()+""));
+        if(quantity1 == 1) {
+            quantity.setText(item.get(position).getQty()+"");
+        }
+        
         b_plus_p.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
