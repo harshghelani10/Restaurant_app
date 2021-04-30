@@ -2,9 +2,6 @@ package com.example.restaurant_app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,8 +39,8 @@ public class Feedback extends AppCompatActivity {
         message = (EditText) findViewById(R.id.feedback_message);
         submit = (Button) findViewById(R.id.submit_feedback);
 
-        LayerDrawable stars = (LayerDrawable)feedback_rating.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+//        LayerDrawable stars = (LayerDrawable)feedback_rating.getProgressDrawable();
+//        stars.getDrawable(2).setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +61,8 @@ public class Feedback extends AppCompatActivity {
 
                 HashMap<String, String> map = new HashMap<>();
 
+                String rating = feedback_rating.getRating()+"";
+                map.put("rating", rating);
                 map.put("title", title.getText().toString());
                 map.put("message",message.getText().toString());
 

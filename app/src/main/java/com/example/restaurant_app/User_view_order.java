@@ -140,18 +140,17 @@ class CustomAdepter extends BaseAdapter {
         ImageView imageView = view.findViewById(R.id.cart_image);
         Button complaint_btn = view.findViewById(R.id.complaint_btn);
 
-        complaint_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         priority.setText(item.get(position).getPriority() + "");
         quantity.setText(item.get(position).getQty() + "");
         totalPrice.setText(item.get(position).getTotal() + "");
         Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
+
+        complaint_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "clicked....", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
         return view;

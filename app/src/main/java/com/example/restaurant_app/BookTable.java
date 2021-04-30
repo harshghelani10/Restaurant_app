@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BookTable extends AppCompatActivity {
 
-    Button backbtn;
+    Button backbtn,scan_barcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +17,20 @@ public class BookTable extends AppCompatActivity {
         setContentView(R.layout.activity_book_table);
 
         backbtn = (Button)findViewById(R.id.btnback);
+        scan_barcode = (Button) findViewById(R.id.scan_barcode);
+
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookTable.this, UserHome.class);
+                startActivity(intent);
+            }
+        });
+
+        scan_barcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookTable.this,ScannedBarcodeActivity.class);
                 startActivity(intent);
             }
         });

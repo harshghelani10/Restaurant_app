@@ -269,7 +269,9 @@ class CustomAdapter extends BaseAdapter {
         b_plus_p.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 priority.setText(item.get(position).getPriority()+""+1);
+
             }
         });
 

@@ -49,4 +49,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+    //qrcode scanner
+    implementation 'com.google.android.gms:play-services-vision:11.8.0'
+
 }

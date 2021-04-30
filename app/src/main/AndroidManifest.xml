@@ -142,6 +142,9 @@
         <activity
             android:name=".UserForgetPassword"
             android:screenOrientation="portrait" />
+        <activity android:name=".EmailActivity"/>
+        <activity android:name=".ScannedBarcodeActivity"/>
+
     </application>
 
 </manifest>
