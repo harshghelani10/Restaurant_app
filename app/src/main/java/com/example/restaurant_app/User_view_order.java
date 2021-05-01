@@ -85,7 +85,7 @@ public class User_view_order extends AppCompatActivity {
                     orderList = data.getOrders();
                     itemList = orderList.get(i).getItems();
 
-                    CustomAdepter customAdepter = new CustomAdepter(User_view_order.this, itemList);
+                    CustomAdepter customAdepter = new CustomAdepter(User_view_order.this, itemList,orderList);
                     gridView.setAdapter(customAdepter);
 
                 } else {
@@ -104,13 +104,28 @@ public class User_view_order extends AppCompatActivity {
 
 class CustomAdepter extends BaseAdapter {
 
-
+    List<Order> data;
     List<Item> item;
     Context context;
+    private RetrofitInterface retrofitInterface;
 
-    public CustomAdepter(User_view_order user_view_order, List<Item> itemList) {
+
+//    public CustomAdepter(User_view_order user_view_order, List<Item> itemList, Data data) {
+//        this.context = user_view_order;
+//        this.item = itemList;
+////        this.dataList = (List<Data>) data;
+//    }
+
+//    public CustomAdepter(User_view_order user_view_order, List<Item> itemList) {
+//        this.context = user_view_order;
+//        this.item = itemList;
+//    }
+
+    public CustomAdepter(User_view_order user_view_order, List<Item> itemList, List<Order> orderList) {
         this.context = user_view_order;
+        this.data = orderList;
         this.item = itemList;
+
     }
 
 
@@ -134,12 +149,15 @@ class CustomAdepter extends BaseAdapter {
 
         view = LayoutInflater.from(context).inflate(R.layout.custom_view_your_order, parent, false);
 
+        TextView date = view.findViewById(R.id.item_date);
         TextView priority = view.findViewById(R.id.item_priority);
         TextView quantity = view.findViewById(R.id.item_Quantity);
         TextView totalPrice = view.findViewById(R.id.cart_item_price);
         ImageView imageView = view.findViewById(R.id.cart_image);
         Button complaint_btn = view.findViewById(R.id.complaint_btn);
 
+//        date.setText(data.get(position).getCreatedAt());
+//        date.setText(dataList.get(position).getCreatedAt());
         priority.setText(item.get(position).getPriority() + "");
         quantity.setText(item.get(position).getQty() + "");
         totalPrice.setText(item.get(position).getTotal() + "");
@@ -148,11 +166,14 @@ class CustomAdepter extends BaseAdapter {
         complaint_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Retrofit retrofitClient = RetrofitClient.getInstance();
+                retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+
+
+                
                 Toast.makeText(context, "clicked....", Toast.LENGTH_SHORT).show();
             }
         });
-
-        //Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
         return view;
     }
 }

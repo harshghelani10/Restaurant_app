@@ -220,6 +220,7 @@ public class Cart extends AppCompatActivity {
 class CustomAdapter extends BaseAdapter {
     List<com.example.restaurant_app.model.viewcartmodel.Item> item;
     private Context context;
+    private int mInteger = 0;
 
     public CustomAdapter(Cart cart, List<com.example.restaurant_app.model.viewcartmodel.Item> items) {
         this.context = cart;
@@ -250,10 +251,10 @@ class CustomAdapter extends BaseAdapter {
         TextView quantity = view.findViewById(R.id.item_Quantity);
         TextView totalPrice = view.findViewById(R.id.cart_item_price);
         ImageView imageView = view.findViewById(R.id.cart_image);
-        ImageView b_plus_p = view.findViewById(R.id.b_plus_p);
-        ImageView b_min_p = view.findViewById(R.id.b_min_p);
-        ImageView b_plus_q = view.findViewById(R.id.b_plus_q);
-        ImageView b_min_q = view.findViewById(R.id.b_min_q);
+        Button btn_plus_p = view.findViewById(R.id.b_plus_p);
+        Button btn_min_p = view.findViewById(R.id.b_min_p);
+        Button btn_plus_q = view.findViewById(R.id.b_plus_q);
+        Button btn_min_q = view.findViewById(R.id.b_min_q);
 
 
         priority.setText(item.get(position).getPriority() + "");
@@ -261,42 +262,37 @@ class CustomAdapter extends BaseAdapter {
         totalPrice.setText(item.get(position).getTotal() + "");
         Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
 
-        int quantity1 = Integer.parseInt((item.get(position).getQty()+""));
-        if(quantity1 == 1) {
-            quantity.setText(item.get(position).getQty()+"");
-        }
-        
-        b_plus_p.setOnClickListener(new View.OnClickListener() {
+        btn_min_p.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                priority.setText(item.get(position).getPriority()+""+1);
-
+                mInteger = mInteger - 1;
+                priority.setText(mInteger+"");
             }
         });
 
-        b_min_p.setOnClickListener(new View.OnClickListener() {
+        btn_plus_p.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                priority.setText(item.get(position).getPriority()+""+0);
+                mInteger = mInteger + 1;
+                priority.setText(mInteger+"");
             }
         });
 
-        b_plus_q.setOnClickListener(new View.OnClickListener() {
+        btn_min_q.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                totalPrice.setText(item.get(position).getPriority()+""+1);
-                Toast.makeText(context, "cliked", Toast.LENGTH_SHORT).show();
+                mInteger = mInteger - 1;
+                quantity.setText(mInteger+"");
             }
         });
 
-        b_min_q.setOnClickListener(new View.OnClickListener() {
+        btn_plus_q.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "cliked", Toast.LENGTH_SHORT).show();
+                mInteger = mInteger + 1;
+                quantity.setText(mInteger+"");
             }
         });
-
         return view;
     }
 }

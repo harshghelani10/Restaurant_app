@@ -74,7 +74,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ImageView
+            <Button
                 android:id="@+id/b_min_p"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -82,7 +82,7 @@
                 android:layout_marginLeft="95dp"
                 android:layout_marginTop="15dp"
                 android:foregroundGravity="center_horizontal"
-                android:src="@drawable/btn_min" />
+                android:background="@drawable/btn_min" />
 
             <TextView
                 android:id="@+id/item_priority"
@@ -90,13 +90,13 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="130dp"
                 android:layout_marginTop="15dp"
-                android:text="1"
+                android:text="0"
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ImageView
+            <Button
                 android:id="@+id/b_plus_p"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -106,9 +106,9 @@
                 android:layout_toEndOf="@+id/item_priority"
                 android:layout_toRightOf="@+id/item_priority"
                 android:foregroundGravity="center_horizontal"
-                android:src="@drawable/btn_plus" />
+                android:background="@drawable/btn_plus" />
 
-            <ImageView
+            <Button
                 android:id="@+id/b_min_q"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -117,7 +117,7 @@
                 android:layout_marginLeft="95dp"
                 android:layout_marginTop="20dp"
                 android:foregroundGravity="center_horizontal"
-                android:src="@drawable/btn_min" />
+                android:background="@drawable/btn_min" />
 
             <TextView
                 android:id="@+id/item_Quantity"
@@ -126,13 +126,13 @@
                 android:layout_marginLeft="130dp"
                 android:layout_below="@id/item_priority"
                 android:layout_marginTop="20dp"
-                android:text="1"
+                android:text="0"
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ImageView
+            <Button
                 android:id="@+id/b_plus_q"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -143,7 +143,7 @@
                 android:layout_toEndOf="@+id/item_priority"
                 android:layout_toRightOf="@+id/item_priority"
                 android:foregroundGravity="center_horizontal"
-                android:src="@drawable/btn_plus" />
+                android:background="@drawable/btn_plus" />
 
 
             <!--            <TextView-->

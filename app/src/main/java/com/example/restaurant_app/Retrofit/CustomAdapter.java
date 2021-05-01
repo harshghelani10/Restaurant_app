@@ -1,7 +1,6 @@
 package com.example.restaurant_app.Retrofit;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +33,7 @@ public class CustomAdapter extends BaseAdapter {
     Activity activity;
     List<Product> product;
     RetrofitInterface retrofitInterface;
+    private int mInteger = 0;
 
     public CustomAdapter(SubMenu subMenu, List<Product> product) {
         activity = subMenu;
@@ -61,8 +60,6 @@ public class CustomAdapter extends BaseAdapter {
 
         convertView = LayoutInflater.from(activity).inflate(R.layout.custom_list_layout, parent, false);
 
-        Context context;
-        LayoutInflater layoutInflater;
         Button Add_to_cart;
 
 
@@ -70,8 +67,45 @@ public class CustomAdapter extends BaseAdapter {
         TextView textview1 = convertView.findViewById(R.id.item_name);
         TextView textview2 = convertView.findViewById(R.id.item_price);
         Add_to_cart = convertView.findViewById(R.id.add_to_cart);
-        EditText quantity = convertView.findViewById(R.id.enter_qty);
-        EditText priority = convertView.findViewById(R.id.set_priority);
+        TextView quantity = convertView.findViewById(R.id.enter_qty);
+        TextView priority = convertView.findViewById(R.id.set_priority);
+
+        Button btn_min_p = convertView.findViewById(R.id.b_min_p);
+        Button btn_plus_p = convertView.findViewById(R.id.b_plus_p);
+        Button btn_min_q = convertView.findViewById(R.id.b_min_q);
+        Button btn_plus_q = convertView.findViewById(R.id.b_plus_q);
+
+        btn_min_p.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mInteger = mInteger - 1;
+                priority.setText(mInteger+"");
+            }
+        });
+
+        btn_plus_p.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mInteger = mInteger + 1;
+            priority.setText(mInteger+"");
+            }
+        });
+
+        btn_min_q.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mInteger = mInteger - 1;
+                quantity.setText(mInteger+"");
+            }
+        });
+
+        btn_plus_q.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mInteger = mInteger + 1;
+                quantity.setText(mInteger+"");
+            }
+        });
 
         Add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,21 +116,15 @@ public class CustomAdapter extends BaseAdapter {
                 retrofitInterface = RetrofitClient.getInstance().create(RetrofitInterface.class);
 
                 String get = product.get(position).getId();
-
                 String pri = priority.getText().toString();
                 String qty = quantity.getText().toString();
-
-//                HashMap<String, Integer> map = new HashMap<>();
-//
-//                map.put("qty", Integer.valueOf(qty));
-//                map.put("priority", Integer.valueOf(pri));
 
                 Body body = new Body();
                 body.setPriority(Integer.valueOf(pri));
                 body.setQty(Integer.valueOf(qty));
 
 
-                Call<Addtocart> call = retrofitInterface.executecart( get, "Bearer " + token,body);
+                Call<Addtocart> call = retrofitInterface.executecart(get, "Bearer " + token, body);
 
                 call.enqueue(new Callback<Addtocart>() {
                     @RequiresApi(api = Build.VERSION_CODES.M)
