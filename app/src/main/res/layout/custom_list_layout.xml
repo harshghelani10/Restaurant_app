@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/item_price"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_name"
                 android:layout_marginLeft="100dp"
@@ -67,8 +67,8 @@
                 android:layout_below="@id/tv_prio"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="20dp"
-                android:onClick="decreaseInteger"
-                android:background="@drawable/btn_min"/>
+                android:background="@drawable/btn_min"
+                android:onClick="decreaseInteger" />
 
             <TextView
                 android:id="@+id/enter_qty"
@@ -78,11 +78,11 @@
                 android:layout_marginLeft="170dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:text="0"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:inputType="number"
-                android:textAlignment="center" />
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/b_plus_q"
@@ -91,9 +91,9 @@
                 android:layout_below="@id/tv_prio"
                 android:layout_marginLeft="200dp"
                 android:layout_marginTop="20dp"
-                android:onClick="increaseInteger"
+                android:background="@drawable/btn_plus"
                 android:foregroundGravity="center_horizontal"
-                android:background="@drawable/btn_plus" />
+                android:onClick="increaseInteger" />
 
             <TextView
                 android:id="@+id/tv_prio"
@@ -112,9 +112,9 @@
                 android:layout_below="@id/tv_prio"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:onClick="decreaseInteger"
                 android:background="@drawable/btn_min"
-                android:foregroundGravity="center_horizontal" />
+                android:foregroundGravity="center_horizontal"
+                android:onClick="decreaseInteger" />
 
             <TextView
                 android:id="@+id/set_priority"
@@ -138,18 +138,28 @@
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/btn_plus"
-                android:onClick="increaseInteger"
-                android:foregroundGravity="center_horizontal" />
+                android:foregroundGravity="center_horizontal"
+                android:onClick="increaseInteger" />
 
             <Button
                 android:id="@+id/add_to_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/add_ingredient"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:text="Add To Cart" />
+
+            <Button
+                android:id="@+id/add_ingredient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_qty"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:text="Add To Cart" />
+                android:text="Add Ingedient" />
 
 
         </RelativeLayout>

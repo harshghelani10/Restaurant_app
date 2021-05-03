@@ -28,7 +28,6 @@ import com.example.restaurant_app.model.deletecartmodel.Item;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
 import com.example.restaurant_app.model.viewcartmodel.YourCart;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -115,12 +114,12 @@ public class Cart extends AppCompatActivity {
         make_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleLoginDialog();
+                handleMakeOrderDialog();
             }
         });
     }
 
-    private void handleLoginDialog() {
+    private void handleMakeOrderDialog() {
 
         View view = getLayoutInflater().inflate(R.layout.dialogbox_makeorder, null);
 
@@ -259,8 +258,8 @@ class CustomAdapter extends BaseAdapter {
 
         priority.setText(item.get(position).getPriority() + "");
         quantity.setText(item.get(position).getQty() + "");
-        totalPrice.setText(item.get(position).getTotal() + "");
-        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
+        totalPrice.setText(item.get(position).getTotal() + ""+"₹");
+//        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
 
         btn_min_p.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -85,7 +85,7 @@ public class User_view_order extends AppCompatActivity {
                     orderList = data.getOrders();
                     itemList = orderList.get(i).getItems();
 
-                    CustomAdepter customAdepter = new CustomAdepter(User_view_order.this, itemList,orderList);
+                    CustomAdepter customAdepter = new CustomAdepter(User_view_order.this, itemList, orderList);
                     gridView.setAdapter(customAdepter);
 
                 } else {
@@ -158,22 +158,21 @@ class CustomAdepter extends BaseAdapter {
 
 //        date.setText(data.get(position).getCreatedAt());
 //        date.setText(dataList.get(position).getCreatedAt());
-        priority.setText(item.get(position).getPriority() + "");
-        quantity.setText(item.get(position).getQty() + "");
-        totalPrice.setText(item.get(position).getTotal() + "");
-        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
 
         complaint_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Retrofit retrofitClient = RetrofitClient.getInstance();
-                retrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-
-                
                 Toast.makeText(context, "clicked....", Toast.LENGTH_SHORT).show();
             }
         });
+
+        priority.setText(item.get(position).getPriority() + "");
+        quantity.setText(item.get(position).getQty() + "");
+        totalPrice.setText(item.get(position).getTotal() + "" + "₹");
+        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
+//        date.setText(data.get(position).getCreatedAt());
+
         return view;
     }
 }

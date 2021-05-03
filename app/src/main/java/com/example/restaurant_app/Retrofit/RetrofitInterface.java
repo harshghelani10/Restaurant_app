@@ -7,6 +7,7 @@ import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Feedback;
 import com.example.restaurant_app.model.Subcategory;
 import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
+import com.example.restaurant_app.model.getingrideintmodel.GetIngredients;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.vcomplaintmodel.UserComplaint;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
@@ -98,6 +99,10 @@ public interface RetrofitInterface {
     //view user complaint
     @GET("/complaint/complaints")
     Call<UserComplaint> viewComplaint(@Header("Authorization")String auth);
+
+    //ingrediant call
+    @GET("/ingredients/getIngredients")
+    Call<GetIngredients> addIngredients();
 
 }
 
