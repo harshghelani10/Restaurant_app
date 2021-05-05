@@ -6,6 +6,7 @@ import com.example.restaurant_app.model.Addtocart;
 import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Feedback;
 import com.example.restaurant_app.model.Subcategory;
+import com.example.restaurant_app.model.allmenuitems.AllMenuItems;
 import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
 import com.example.restaurant_app.model.getingrideintmodel.GetIngredients;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
@@ -70,6 +71,11 @@ public interface RetrofitInterface {
     @GET("/menu/menu/{path}")
     Call<Subcategory> getSubCategory(@Path(value = "path") String path);
 
+    //fetch sub menu all items
+    @GET("/menu/menues")
+    Call<AllMenuItems> getallmenu();
+
+
     //Add To Cart
     @POST("/cart/addtocart/{path1}")
     Call<Addtocart> executecart(@Path("path1") String path,
@@ -91,7 +97,8 @@ public interface RetrofitInterface {
     //User give feedback
     @POST("/feedback/feedback")
     Call<Feedback> giveFeedback(@Header("Authorization") String auth,@Body HashMap<String, String> map);
-    
+
+
     //user view order
     @GET("/order/myorders")
     Call<ViewMyOrders> viewmyorders(@Header("Authorization")String auth);

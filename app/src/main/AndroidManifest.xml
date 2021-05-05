@@ -4,8 +4,9 @@
     package="com.example.restaurant_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
@@ -16,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Restaurant_App"
         android:usesCleartextTraffic="true">
-        <activity android:name=".User_view_order"></activity>
+        <activity android:name=".offers"></activity>
+        <activity android:name=".User_view_order" />
         <activity android:name=".UserComplaint" />
         <activity android:name=".SubMenu" />
         <activity
@@ -142,9 +144,8 @@
         <activity
             android:name=".UserForgetPassword"
             android:screenOrientation="portrait" />
-        <activity android:name=".EmailActivity"/>
-        <activity android:name=".ScannedBarcodeActivity"/>
-
+        <activity android:name=".EmailActivity" />
+        <activity android:name=".ScannedBarcodeActivity" />
     </application>
 
 </manifest>

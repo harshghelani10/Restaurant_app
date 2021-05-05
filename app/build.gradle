@@ -51,5 +51,4 @@ dependencies {
 
     //qrcode scanner
     implementation 'com.google.android.gms:play-services-vision:11.8.0'
-
 }

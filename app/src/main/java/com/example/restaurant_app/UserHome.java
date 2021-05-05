@@ -29,6 +29,8 @@ import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
 import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Categorypost;
+import com.example.restaurant_app.model.allmenuitems.AllMenuItems;
+import com.example.restaurant_app.model.allmenuitems.Product;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -42,41 +44,80 @@ import retrofit2.Retrofit;
 
 public class UserHome extends AppCompatActivity {
 
+    public static String id;
+    GridView gridView, gridview_tpfu;
+    RetrofitInterface retrofitInterface;
+    CategoryResponse categorypostList = new CategoryResponse();
+    List<Categorypost> categoryposts = new ArrayList<>();
+    AllMenuItems allMenuItems = new AllMenuItems();
+    List<Product> productList = new ArrayList<>();
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private Toolbar toolbar;
     private ActionBarDrawerToggle toggle;
-    GridView gridView;
-    RetrofitInterface retrofitInterface;
-
-    CategoryResponse categorypostList = new CategoryResponse();
-    List<Categorypost> categoryposts = new ArrayList<>();
-    public static String id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_home);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.user_home );
 
-        drawer = findViewById(R.id.drawer);
-        navigationView = findViewById(R.id.navigation);
-        toolbar = findViewById(R.id.toolbar);
-        gridView = (GridView) findViewById(R.id.gridView);
+        drawer = findViewById( R.id.drawer );
+        navigationView = findViewById( R.id.navigation );
+        toolbar = findViewById( R.id.toolbar );
+        gridView = (GridView) findViewById( R.id.gridView );
+        gridview_tpfu = (GridView) findViewById( R.id.gridView_tpfu );
+        TextView offers = (TextView) findViewById( R.id.tv_offer );
 
-
-        Retrofit retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+        offers.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( getApplicationContext(), com.example.restaurant_app.offers.class );
+                startActivity( intent );
+            }
+        } );
         listingdata();
+        listingtoppicks();
     }
+
+    private void listingtoppicks() {
+        Retrofit retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = retrofitClient.create( RetrofitInterface.class );
+
+        Call<AllMenuItems> call = retrofitInterface.getallmenu();
+
+        call.enqueue( new Callback<AllMenuItems>() {
+            @Override
+            public void onResponse(Call<AllMenuItems> call, Response<AllMenuItems> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText( UserHome.this, "okk", Toast.LENGTH_SHORT ).show();
+
+                    allMenuItems = response.body();
+                    productList = allMenuItems.getProducts();
+
+                    CustomAdepterall customAdepterall = new CustomAdepterall( productList, UserHome.this );
+                    gridview_tpfu.setAdapter( customAdepterall );
+
+                } else {
+                    Toast.makeText( UserHome.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AllMenuItems> call, Throwable t) {
+                Toast.makeText( UserHome.this, "###" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+            }
+        } );
+    }
+
 
     private void listingdata() {
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+        retrofitInterface = retrofitClient.create( RetrofitInterface.class );
 
         Call<CategoryResponse> call = retrofitInterface.getCategory();
 
-        call.enqueue(new Callback<CategoryResponse>() {
+        call.enqueue( new Callback<CategoryResponse>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
@@ -86,20 +127,20 @@ public class UserHome extends AppCompatActivity {
                     categorypostList = response.body();
                     categoryposts = categorypostList.getCategoryposts();
 
-                    CustomAdepterhome customAdepter = new CustomAdepterhome(categoryposts, UserHome.this);
-                    gridView.setAdapter(customAdepter);
+                    CustomAdepterhome customAdepter = new CustomAdepterhome( categoryposts, UserHome.this );
+                    gridView.setAdapter( customAdepter );
 
 
                 } else {
-                    Toast.makeText(UserHome.this, "" + response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText( UserHome.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
                 }
             }
 
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                System.out.println("############################ " + t.getLocalizedMessage());
+                System.out.println( "############################ " + t.getLocalizedMessage() );
             }
-        });
+        } );
 
 //
 //        i1 = (ImageView) findViewById(R.id.image1);
@@ -176,65 +217,65 @@ public class UserHome extends AppCompatActivity {
 //        });
 //
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar( toolbar );
 
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
-        drawer.addDrawerListener(toggle);
+        toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.open, R.string.close );
+        drawer.addDrawerListener( toggle );
         toggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationItemSelectedListener( new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                drawer.closeDrawer(GravityCompat.START);
+                drawer.closeDrawer( GravityCompat.START );
                 switch (item.getItemId()) {
                     case R.id.home:
-                        Intent home = new Intent(UserHome.this, UserHome.class);
-                        startActivity(home);
+                        Intent home = new Intent( UserHome.this, UserHome.class );
+                        startActivity( home );
                         break;
                     case R.id.menu:
-                        Intent menu = new Intent(UserHome.this, Menu.class);
-                        startActivity(menu);
+                        Intent menu = new Intent( UserHome.this, Menu.class );
+                        startActivity( menu );
                         break;
                     case R.id.booktable:
-                        Intent booktable = new Intent(UserHome.this, BookTable.class);
-                        startActivity(booktable);
+                        Intent booktable = new Intent( UserHome.this, BookTable.class );
+                        startActivity( booktable );
                         break;
                     case R.id.cart:
-                        Intent cart = new Intent(UserHome.this, Cart.class);
-                        startActivity(cart);
+                        Intent cart = new Intent( UserHome.this, Cart.class );
+                        startActivity( cart );
                         break;
                     case R.id.feedback:
-                        Intent feedback = new Intent(UserHome.this, Feedback.class);
-                        startActivity(feedback);
+                        Intent feedback = new Intent( UserHome.this, Feedback.class );
+                        startActivity( feedback );
                         break;
                     case R.id.complaint:
-                        Intent complaint = new Intent(UserHome.this, UserComplaint.class);
-                        startActivity(complaint);
+                        Intent complaint = new Intent( UserHome.this, UserComplaint.class );
+                        startActivity( complaint );
                         break;
                     case R.id.logout:
-                        SharedPreferences preferences = getSharedPreferences("checked", MODE_PRIVATE);
+                        SharedPreferences preferences = getSharedPreferences( "checked", MODE_PRIVATE );
                         SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("remember", "false");
+                        editor.putString( "remember", "false" );
                         editor.apply();
                         finish();
-                        Intent logout = new Intent(UserHome.this, MainActivity.class);
-                        startActivity(logout);
+                        Intent logout = new Intent( UserHome.this, MainActivity.class );
+                        startActivity( logout );
                         break;
                     case R.id.user_view_order:
-                        Intent user_view_order = new Intent(UserHome.this, User_view_order.class);
-                        startActivity(user_view_order);
+                        Intent user_view_order = new Intent( UserHome.this, User_view_order.class );
+                        startActivity( user_view_order );
                         break;
 
                 }
                 return true;
             }
-        });
+        } );
     }
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen( GravityCompat.START )) {
+            drawer.closeDrawer( GravityCompat.START );
         } else {
             super.onBackPressed();
         }
@@ -275,31 +316,81 @@ class CustomAdepterhome extends BaseAdapter {
 
         if (view == null) {
             LayoutInflater lInflater = (LayoutInflater) context.getSystemService(
-                    Activity.LAYOUT_INFLATER_SERVICE);
+                    Activity.LAYOUT_INFLATER_SERVICE );
 
-            view = lInflater.inflate(R.layout.row_grid_iteam, null);
+            view = lInflater.inflate( R.layout.row_grid_iteam, null );
         }
 
-        ImageView imageView = view.findViewById(R.id.imageView);
-        TextView textview = view.findViewById(R.id.textView);
+        ImageView imageView = view.findViewById( R.id.imageView );
+        TextView textview = view.findViewById( R.id.textView );
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String get = categorypostList.get( i ).getId();
 
-////                String get = categorypostList.get(i).getId();
-////
-//                Intent intent = new Intent(UserHome.this, Menu.class);
-//                intent.putExtra("_id", categorypostList.get(i).getId());
-//                context.startActivity(intent);
-                Toast.makeText( context, "click", Toast.LENGTH_SHORT ).show();
-              //  Toast.makeText(UserHome.this,"Click",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent( context.getApplicationContext(), SubMenu.class );
+                intent.putExtra( "_id", categorypostList.get( i ).getId() );
+                context.startActivity( intent );
+                // Toast.makeText( context, "click", Toast.LENGTH_SHORT ).show();
+                //  Toast.makeText(UserHome.this,"Click",Toast.LENGTH_SHORT).show();
             }
-        });
+        } );
 
-        textview.setText(categorypostList.get(i).getCategoryName());
-        Picasso.with(context).load(categorypostList.get(i).getImageUrl()).into(imageView);
+        textview.setText( categorypostList.get( i ).getCategoryName() );
+        Picasso.with( context ).load( categorypostList.get( i ).getImageUrl() ).into( imageView );
         return view;
+    }
+}
+
+class CustomAdepterall extends BaseAdapter {
+
+    List<Product> productList;
+    private Context context;
+
+    public CustomAdepterall(List<Product> productList, UserHome userHome) {
+        this.context = userHome;
+        this.productList = productList;
+    }
+
+    @Override
+    public int getCount() {
+        return productList.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return position;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            LayoutInflater lInflater = (LayoutInflater) context.getSystemService(
+                    Activity.LAYOUT_INFLATER_SERVICE );
+
+            convertView = lInflater.inflate( R.layout.row_grid_iteam, null );
+        }
+
+        ImageView imageView = convertView.findViewById( R.id.imageView );
+        TextView textview = convertView.findViewById( R.id.textView );
+
+        imageView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText( context, "click", Toast.LENGTH_SHORT ).show();
+                //  Toast.makeText(UserHome.this,"Click",Toast.LENGTH_SHORT).show();
+            }
+        } );
+
+        textview.setText( productList.get( position ).getName() );
+        Picasso.with( context ).load( productList.get(position).getImageUrl() ).into( imageView );
+        return convertView;
     }
 }
 

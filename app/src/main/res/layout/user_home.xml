@@ -115,10 +115,17 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <GridView
+                android:id="@+id/gridView_tpfu"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/recyclerview1"/>
+                android:layout_height="wrap_content"
+                android:layout_below="@id/s_menu"
+                android:layout_marginTop="-5dp"
+                android:layout_marginBottom="1dp"
+                android:horizontalSpacing="4dp"
+                android:numColumns="4"
+                android:verticalSpacing="4dp" />
 
 
         </LinearLayout>
@@ -167,8 +174,6 @@
                 android:verticalSpacing="4dp" />
 
         </LinearLayout>
-
-
     </RelativeLayout>
 
 
