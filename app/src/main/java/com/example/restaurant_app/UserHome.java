@@ -388,7 +388,7 @@ class CustomAdepterall extends BaseAdapter {
             }
         } );
 
-        textview.setText( productList.get( position ).getName() );
+        textview.setText( productList.get( position ).getName()+"" );
         Picasso.with( context ).load( productList.get(position).getImageUrl() ).into( imageView );
         return convertView;
     }

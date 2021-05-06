@@ -162,6 +162,9 @@ class CustomAdepter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(context.getApplicationContext(),UserComplaint.class);
+                context.startActivity( intent );
+
                 Toast.makeText(context, "clicked....", Toast.LENGTH_SHORT).show();
             }
         });
