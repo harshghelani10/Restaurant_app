@@ -29,9 +29,14 @@ public class Product {
     @SerializedName("originalPrice")
     @Expose
     private Integer originalPrice;
+
+    public void setOfferPrice(Double offerPrice) {
+        this.offerPrice = offerPrice;
+    }
+
     @SerializedName("offerPrice")
     @Expose
-    private Integer offerPrice;
+    private Double offerPrice;
     @SerializedName("imageUrl")
     @Expose
     private String imageUrl;
@@ -104,13 +109,6 @@ public class Product {
         this.originalPrice = originalPrice;
     }
 
-    public Integer getOfferPrice() {
-        return offerPrice;
-    }
-
-    public void setOfferPrice(Integer offerPrice) {
-        this.offerPrice = offerPrice;
-    }
 
     public String getImageUrl() {
         return imageUrl;

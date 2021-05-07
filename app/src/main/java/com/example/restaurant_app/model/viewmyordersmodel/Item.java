@@ -9,21 +9,30 @@ public class Item {
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("productId")
+    @SerializedName("product_id")
     @Expose
-    private ProductId productId;
+    private String productId;
     @SerializedName("qty")
     @Expose
     private Integer qty;
     @SerializedName("priority")
     @Expose
     private Integer priority;
-    @SerializedName("price")
+
+    public Double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    @SerializedName("productPrice")
     @Expose
-    private Integer price;
+    private Double productPrice;
     @SerializedName("total")
     @Expose
-    private Integer total;
+    private Double total;
 
     public String getId() {
         return id;
@@ -33,11 +42,11 @@ public class Item {
         this.id = id;
     }
 
-    public ProductId getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(ProductId productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -57,20 +66,11 @@ public class Item {
         this.priority = priority;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Integer getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
-
 }

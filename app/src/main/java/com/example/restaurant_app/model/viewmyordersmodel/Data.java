@@ -20,7 +20,7 @@ public class Data {
     private List<Object> posts = null;
     @SerializedName("feedbacks")
     @Expose
-    private List<String> feedbacks = null;
+    private List<Object> feedbacks = null;
     @SerializedName("activerole")
     @Expose
     private String activerole;
@@ -79,11 +79,11 @@ public class Data {
         this.posts = posts;
     }
 
-    public List<String> getFeedbacks() {
+    public List<Object> getFeedbacks() {
         return feedbacks;
     }
 
-    public void setFeedbacks(List<String> feedbacks) {
+    public void setFeedbacks(List<Object> feedbacks) {
         this.feedbacks = feedbacks;
     }
 

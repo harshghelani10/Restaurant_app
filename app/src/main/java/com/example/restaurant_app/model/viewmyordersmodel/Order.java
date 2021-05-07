@@ -6,14 +6,21 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+
 public class Order {
 
     @SerializedName("grandTotal")
     @Expose
-    private Integer grandTotal;
+    private Double grandTotal;
     @SerializedName("paymentMethod")
     @Expose
     private String paymentMethod;
+    @SerializedName("OrderIs")
+    @Expose
+    private String orderIs;
+    @SerializedName("complaints")
+    @Expose
+    private List<Object> complaints = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -39,11 +46,11 @@ public class Order {
     @Expose
     private Integer v;
 
-    public Integer getGrandTotal() {
+    public Double getGrandTotal() {
         return grandTotal;
     }
 
-    public void setGrandTotal(Integer grandTotal) {
+    public void setGrandTotal(Double grandTotal) {
         this.grandTotal = grandTotal;
     }
 
@@ -53,6 +60,22 @@ public class Order {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public String getOrderIs() {
+        return orderIs;
+    }
+
+    public void setOrderIs(String orderIs) {
+        this.orderIs = orderIs;
+    }
+
+    public List<Object> getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(List<Object> complaints) {
+        this.complaints = complaints;
     }
 
     public String getId() {

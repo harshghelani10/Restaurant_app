@@ -1,10 +1,10 @@
 package com.example.restaurant_app;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
@@ -31,81 +32,83 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static android.view.LayoutInflater.from;
+
 public class User_view_order extends AppCompatActivity {
 
     GridView gridView;
-    private RetrofitInterface retrofitInterface;
-
     ViewMyOrders viewMyOrders = new ViewMyOrders();
     Data data = new Data();
     Order orders = new Order();
     List<Order> orderList = new ArrayList<>();
     List<Item> itemList = new ArrayList<>();
+    private RetrofitInterface retrofitInterface;
     private int i;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_view_order2);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_user_view_order2 );
 
-        Button backbtn = (Button) findViewById(R.id.btnback);
-        gridView = (GridView) findViewById(R.id.gridView);
+        Button backbtn = (Button) findViewById( R.id.btnback );
+        gridView = (GridView) findViewById( R.id.gridView );
 
         listingdata();
 
-        backbtn.setOnClickListener(new View.OnClickListener() {
+        backbtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(User_view_order.this, UserHome.class);
-                startActivity(intent);
+                Intent intent = new Intent( User_view_order.this, UserHome.class );
+                startActivity( intent );
             }
-        });
+        } );
     }
 
     private void listingdata() {
         Retrofit retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+        retrofitInterface = retrofitClient.create( RetrofitInterface.class );
 
-        SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
-        String token = gettoken.getString("TOKEN", "");
+        SharedPreferences gettoken = getSharedPreferences( "token", MODE_PRIVATE );
+        String token = gettoken.getString( "TOKEN", "" );
 
 
-        Call<ViewMyOrders> call = retrofitInterface.viewmyorders("Bearer " + token);
+        Call<ViewMyOrders> call = retrofitInterface.viewmyorders( "Bearer " + token );
 
-        call.enqueue(new Callback<ViewMyOrders>() {
+        call.enqueue( new Callback<ViewMyOrders>() {
             @Override
             public void onResponse(Call<ViewMyOrders> call, Response<ViewMyOrders> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(User_view_order.this, "Here is your order", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( User_view_order.this, "Here is your order", Toast.LENGTH_SHORT ).show();
 
                     viewMyOrders = response.body();
                     data = viewMyOrders.getData();
                     orderList = data.getOrders();
-                    itemList = orderList.get(i).getItems();
+                    itemList = orderList.get( i ).getItems();
 
-                    CustomAdepter customAdepter = new CustomAdepter(User_view_order.this, itemList, orderList);
-                    gridView.setAdapter(customAdepter);
+                    CustomAdepter customAdepter = new CustomAdepter( User_view_order.this, itemList, orderList );
+                    gridView.setAdapter( customAdepter );
 
                 } else {
-                    Toast.makeText(User_view_order.this, "" + response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText( User_view_order.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ViewMyOrders> call, Throwable t) {
-                Toast.makeText(User_view_order.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText( User_view_order.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
 
             }
-        });
+        } );
     }
 }
 
 class CustomAdepter extends BaseAdapter {
+    Activity activity;
 
     List<Order> data;
     List<Item> item;
-    Context context;
+    private Context context;
     private RetrofitInterface retrofitInterface;
 
 
@@ -146,32 +149,35 @@ class CustomAdepter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
-        view = LayoutInflater.from(context).inflate(R.layout.custom_view_your_order, parent, false);
+        view = from( context ).inflate( R.layout.custom_view_your_order, parent, false );
 
-        TextView date = view.findViewById(R.id.item_date);
-        TextView priority = view.findViewById(R.id.item_priority);
-        TextView quantity = view.findViewById(R.id.item_Quantity);
-        TextView totalPrice = view.findViewById(R.id.cart_item_price);
-        ImageView imageView = view.findViewById(R.id.cart_image);
-        Button complaint_btn = view.findViewById(R.id.complaint_btn);
+        TextView date = view.findViewById( R.id.item_date );
+        TextView priority = view.findViewById( R.id.item_priority );
+        TextView quantity = view.findViewById( R.id.item_Quantity );
+        TextView totalPrice = view.findViewById( R.id.cart_item_price );
+        ImageView imageView = view.findViewById( R.id.cart_image );
+        Button complaint_btn = view.findViewById( R.id.complaint_btn );
 
 //        date.setText(data.get(position).getCreatedAt());
 //        date.setText(dataList.get(position).getCreatedAt());
 
-        complaint_btn.setOnClickListener(new View.OnClickListener() {
+        complaint_btn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context.getApplicationContext(),UserComplaint.class);
-                context.startActivity( intent );
+                View view1 = from(context).inflate( R. layout.dialogbox_complaint,parent,false );
+             //   View  view = LayoutInflater.from( context ).inflate( R.layout.dialogbox_complaint, parent, false );
 
-                Toast.makeText(context, "clicked....", Toast.LENGTH_SHORT).show();
+                androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(context.getApplicationContext());
+                builder.setView( view1 ).show();
+
+                Toast.makeText( context, "clicked....", Toast.LENGTH_SHORT ).show();
             }
-        });
+        } );
 
-        priority.setText(item.get(position).getPriority() + "");
-        quantity.setText(item.get(position).getQty() + "");
-        totalPrice.setText(item.get(position).getTotal() + "" + "₹");
+        priority.setText( item.get( position ).getPriority() + "" );
+        quantity.setText( item.get( position ).getQty() + "" );
+        totalPrice.setText( item.get( position ).getTotal() + "" + "₹" );
 //        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
 //        date.setText(data.get(position).getCreatedAt());
 

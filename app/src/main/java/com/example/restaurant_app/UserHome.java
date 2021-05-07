@@ -89,7 +89,8 @@ public class UserHome extends AppCompatActivity {
             @Override
             public void onResponse(Call<AllMenuItems> call, Response<AllMenuItems> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText( UserHome.this, "okk", Toast.LENGTH_SHORT ).show();
+
+                    //Toast.makeText( UserHome.this, "okk", Toast.LENGTH_SHORT ).show();
 
                     allMenuItems = response.body();
                     productList = allMenuItems.getProducts();
@@ -374,7 +375,7 @@ class CustomAdepterall extends BaseAdapter {
             LayoutInflater lInflater = (LayoutInflater) context.getSystemService(
                     Activity.LAYOUT_INFLATER_SERVICE );
 
-            convertView = lInflater.inflate( R.layout.row_grid_iteam, null );
+            convertView = lInflater.inflate( R.layout.row_grid_item_subhome, null );
         }
 
         ImageView imageView = convertView.findViewById( R.id.imageView );
@@ -383,12 +384,13 @@ class CustomAdepterall extends BaseAdapter {
         imageView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText( context, "click", Toast.LENGTH_SHORT ).show();
-                //  Toast.makeText(UserHome.this,"Click",Toast.LENGTH_SHORT).show();
+               Intent intent = new Intent(context.getApplicationContext(),Menu.class);
+               context.startActivity( intent );
+
             }
         } );
 
-        textview.setText( productList.get( position ).getName()+"" );
+        textview.setText( productList.get( position ).getName());
         Picasso.with( context ).load( productList.get(position).getImageUrl() ).into( imageView );
         return convertView;
     }
