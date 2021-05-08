@@ -1,6 +1,5 @@
 package com.example.restaurant_app;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -104,9 +103,7 @@ public class User_view_order extends AppCompatActivity {
 }
 
 class CustomAdepter extends BaseAdapter {
-    Activity activity;
-
-    List<Order> data;
+     List<Order> data;
     List<Item> item;
     private Context context;
     private RetrofitInterface retrofitInterface;
