@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-
 public class Data {
 
     @SerializedName("cart")
@@ -30,6 +29,9 @@ public class Data {
     @SerializedName("orders")
     @Expose
     private List<Order> orders = null;
+    @SerializedName("complaints")
+    @Expose
+    private List<String> complaints = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -109,6 +111,14 @@ public class Data {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public List<String> getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(List<String> complaints) {
+        this.complaints = complaints;
     }
 
     public String getId() {

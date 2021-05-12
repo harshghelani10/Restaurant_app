@@ -1,5 +1,6 @@
 package com.example.restaurant_app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -241,6 +242,7 @@ class CustomAdapter extends BaseAdapter {
         return position;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
@@ -260,6 +262,9 @@ class CustomAdapter extends BaseAdapter {
         quantity.setText(item.get(position).getQty() + "");
         totalPrice.setText(item.get(position).getTotal() + ""+"₹");
 //        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
+ //      Picasso.with( context ).load( item.get( position ).getProductId().getImageUrl() ).into( imageView );
+       // Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
+
 
         btn_min_p.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,7 +11,7 @@ public class Order {
 
     @SerializedName("grandTotal")
     @Expose
-    private Double grandTotal;
+    private Integer grandTotal;
     @SerializedName("paymentMethod")
     @Expose
     private String paymentMethod;
@@ -20,7 +20,7 @@ public class Order {
     private String orderIs;
     @SerializedName("complaints")
     @Expose
-    private List<Object> complaints = null;
+    private List<String> complaints = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -46,11 +46,11 @@ public class Order {
     @Expose
     private Integer v;
 
-    public Double getGrandTotal() {
+    public Integer getGrandTotal() {
         return grandTotal;
     }
 
-    public void setGrandTotal(Double grandTotal) {
+    public void setGrandTotal(Integer grandTotal) {
         this.grandTotal = grandTotal;
     }
 
@@ -70,11 +70,11 @@ public class Order {
         this.orderIs = orderIs;
     }
 
-    public List<Object> getComplaints() {
+    public List<String> getComplaints() {
         return complaints;
     }
 
-    public void setComplaints(List<Object> complaints) {
+    public void setComplaints(List<String> complaints) {
         this.complaints = complaints;
     }
 

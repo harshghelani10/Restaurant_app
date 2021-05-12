@@ -4,8 +4,6 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 
 public class ProductId {
 
@@ -15,9 +13,6 @@ public class ProductId {
     @SerializedName("offer")
     @Expose
     private Integer offer;
-    @SerializedName("complaints")
-    @Expose
-    private List<String> complaints = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -63,14 +58,6 @@ public class ProductId {
 
     public void setOffer(Integer offer) {
         this.offer = offer;
-    }
-
-    public List<String> getComplaints() {
-        return complaints;
-    }
-
-    public void setComplaints(List<String> complaints) {
-        this.complaints = complaints;
     }
 
     public String getId() {

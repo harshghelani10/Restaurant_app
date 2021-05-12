@@ -1,9 +1,11 @@
 package com.example.restaurant_app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -22,6 +24,7 @@ import com.example.restaurant_app.model.viewmyordersmodel.Data;
 import com.example.restaurant_app.model.viewmyordersmodel.Item;
 import com.example.restaurant_app.model.viewmyordersmodel.Order;
 import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +41,6 @@ public class User_view_order extends AppCompatActivity {
     GridView gridView;
     ViewMyOrders viewMyOrders = new ViewMyOrders();
     Data data = new Data();
-    Order orders = new Order();
     List<Order> orderList = new ArrayList<>();
     List<Item> itemList = new ArrayList<>();
     private RetrofitInterface retrofitInterface;
@@ -103,7 +105,7 @@ public class User_view_order extends AppCompatActivity {
 }
 
 class CustomAdepter extends BaseAdapter {
-     List<Order> data;
+    List<Order> data;
     List<Item> item;
     private Context context;
     private RetrofitInterface retrofitInterface;
@@ -143,12 +145,13 @@ class CustomAdepter extends BaseAdapter {
         return position;
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
         view = from( context ).inflate( R.layout.custom_view_your_order, parent, false );
 
-        TextView date = view.findViewById( R.id.item_date );
+//        TextView date = view.findViewById( R.id.item_date );
         TextView priority = view.findViewById( R.id.item_priority );
         TextView quantity = view.findViewById( R.id.item_Quantity );
         TextView totalPrice = view.findViewById( R.id.cart_item_price );
@@ -161,23 +164,33 @@ class CustomAdepter extends BaseAdapter {
         complaint_btn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                View view1 = from(context).inflate( R. layout.dialogbox_complaint,parent,false );
-             //   View  view = LayoutInflater.from( context ).inflate( R.layout.dialogbox_complaint, parent, false );
-
-                androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(context.getApplicationContext());
-                builder.setView( view1 ).show();
-
-                Toast.makeText( context, "clicked....", Toast.LENGTH_SHORT ).show();
+                handledialodbox();
+                Toast.makeText( context, "check", Toast.LENGTH_SHORT ).show();
             }
-        } );
 
+        } );
         priority.setText( item.get( position ).getPriority() + "" );
         quantity.setText( item.get( position ).getQty() + "" );
         totalPrice.setText( item.get( position ).getTotal() + "" + "₹" );
-//        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
-//        date.setText(data.get(position).getCreatedAt());
+        Picasso.with( context ).load( item.get( position ).getProductId().getImageUrl() ).into( imageView );
+        //  date.setText(data.get(position).getCreatedAt());
 
         return view;
     }
+
+    private void handledialodbox() {
+        AlertDialog.Builder builder = new AlertDialog.Builder( context );
+
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate( R.layout.dialogbox_complaint, null );
+
+        builder.setView( dialogView );
+
+
+    }
+
+    private LayoutInflater getLayoutInflater() {
+        return null;
+    }
+
 }

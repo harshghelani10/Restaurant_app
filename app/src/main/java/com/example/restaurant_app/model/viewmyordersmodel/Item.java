@@ -4,35 +4,38 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 public class Item {
 
+    @SerializedName("progress")
+    @Expose
+    private String progress;
     @SerializedName("_id")
     @Expose
     private String id;
     @SerializedName("product_id")
     @Expose
-    private String productId;
+    private ProductId productId;
     @SerializedName("qty")
     @Expose
     private Integer qty;
     @SerializedName("priority")
     @Expose
     private Integer priority;
-
-    public Double getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(Double productPrice) {
-        this.productPrice = productPrice;
-    }
-
     @SerializedName("productPrice")
     @Expose
-    private Double productPrice;
+    private Integer productPrice;
     @SerializedName("total")
     @Expose
-    private Double total;
+    private Integer total;
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
+    }
 
     public String getId() {
         return id;
@@ -42,11 +45,11 @@ public class Item {
         this.id = id;
     }
 
-    public String getProductId() {
+    public ProductId getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(ProductId productId) {
         this.productId = productId;
     }
 
@@ -66,11 +69,20 @@ public class Item {
         this.priority = priority;
     }
 
-    public Double getTotal() {
+    public Integer getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Integer productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
+
 }

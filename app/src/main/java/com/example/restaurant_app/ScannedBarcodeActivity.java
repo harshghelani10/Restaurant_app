@@ -121,12 +121,13 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                                 btnAction.setText("ADD CONTENT TO THE MAIL");
                             } else {
                                 isEmail = false;
-                                btnAction.setText("LAUNCH URL");
+                                btnAction.setText("Book Table");
                                 intentData = barcodes.valueAt(0).displayValue;
                                 txtBarcodeValue.setText(intentData);
                             }
                         }
                     });
+
                 }
             }
         });
