@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
+import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
 import com.example.restaurant_app.model.viewmyordersmodel.Data;
 import com.example.restaurant_app.model.viewmyordersmodel.Item;
 import com.example.restaurant_app.model.viewmyordersmodel.Order;
@@ -27,6 +28,7 @@ import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -43,8 +45,10 @@ public class User_view_order extends AppCompatActivity {
     Data data = new Data();
     List<Order> orderList = new ArrayList<>();
     List<Item> itemList = new ArrayList<>();
+    GiveComplaint giveComplaints = new GiveComplaint();
     private RetrofitInterface retrofitInterface;
     private int i;
+    public static String id;
 
 
     @Override
@@ -54,6 +58,7 @@ public class User_view_order extends AppCompatActivity {
 
         Button backbtn = (Button) findViewById( R.id.btnback );
         gridView = (GridView) findViewById( R.id.gridView );
+        Button btn_complaint = (Button) findViewById( R.id.btn_comlaint );
 
         listingdata();
 
@@ -62,6 +67,61 @@ public class User_view_order extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent( User_view_order.this, UserHome.class );
                 startActivity( intent );
+            }
+        } );
+        btn_complaint.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleComplaintDialog();
+                // Toast.makeText( User_view_order.this, "click", Toast.LENGTH_SHORT ).show();
+            }
+        } );
+    }
+
+    private void handleComplaintDialog() {
+        View view = getLayoutInflater().inflate( R.layout.dialogbox_complaint, null );
+
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        builder.setView( view ).show();
+
+
+        final EditText complaint_title = (EditText) view.findViewById( R.id.complaint_title );
+        final EditText complaint_message = (EditText) view.findViewById( R.id.complaint_message );
+        Button make_complaint = (Button) view.findViewById( R.id.btn_make_order );
+        id = getIntent().getStringExtra( "order_id" );
+
+        make_complaint.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Retrofit retrofitClient = RetrofitClient.getInstance();
+                retrofitInterface = retrofitClient.create( RetrofitInterface.class );
+
+               SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
+               String token = gettoken.getString("TOKEN", "");
+
+                HashMap<String, String> map = new HashMap<>();
+
+                map.put( "complaintTitle", complaint_title.getText().toString() );
+                map.put( "complaintMessage", complaint_message.getText().toString() );
+
+                Call<GiveComplaint> call = retrofitInterface.giveComplaint(id,"Bearer " + token, map);
+
+                call.enqueue( new Callback<GiveComplaint>() {
+                    @Override
+                    public void onResponse(Call<GiveComplaint> call, Response<GiveComplaint> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText( User_view_order.this, "Your complaint is save..We will get you soon..", Toast.LENGTH_SHORT ).show();
+                        }else{
+                            Toast.makeText( User_view_order.this, ""+response.message(), Toast.LENGTH_SHORT ).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<GiveComplaint> call, Throwable t) {
+                        Toast.makeText( User_view_order.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+
+                    }
+                });
             }
         } );
     }
@@ -87,7 +147,7 @@ public class User_view_order extends AppCompatActivity {
                     orderList = data.getOrders();
                     itemList = orderList.get( i ).getItems();
 
-                    CustomAdepter customAdepter = new CustomAdepter( User_view_order.this, itemList, orderList );
+                    CustomAdepter customAdepter = new CustomAdepter( User_view_order.this, orderList,itemList );
                     gridView.setAdapter( customAdepter );
 
                 } else {
@@ -108,31 +168,20 @@ class CustomAdepter extends BaseAdapter {
     List<Order> data;
     List<Item> item;
     private Context context;
-    private RetrofitInterface retrofitInterface;
+    private int position;
 
 
-//    public CustomAdepter(User_view_order user_view_order, List<Item> itemList, Data data) {
-//        this.context = user_view_order;
-//        this.item = itemList;
-////        this.dataList = (List<Data>) data;
-//    }
-
-//    public CustomAdepter(User_view_order user_view_order, List<Item> itemList) {
-//        this.context = user_view_order;
-//        this.item = itemList;
-//    }
-
-    public CustomAdepter(User_view_order user_view_order, List<Item> itemList, List<Order> orderList) {
+    public CustomAdepter(User_view_order user_view_order, List<Order> orderList, List<Item> itemList) {
         this.context = user_view_order;
         this.data = orderList;
         this.item = itemList;
-
     }
 
 
     @Override
     public int getCount() {
-        return item.size();
+       
+        return data.size();
     }
 
     @Override
@@ -145,52 +194,31 @@ class CustomAdepter extends BaseAdapter {
         return position;
     }
 
-    @SuppressLint("ViewHolder")
+    @SuppressLint({"ViewHolder", "SetTextI18n"})
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
         view = from( context ).inflate( R.layout.custom_view_your_order, parent, false );
 
-//        TextView date = view.findViewById( R.id.item_date );
+        TextView date = view.findViewById( R.id.item_date );
+        TextView name = view.findViewById( R.id.item_name );
+        TextView order_status = view.findViewById( R.id.item_status );
         TextView priority = view.findViewById( R.id.item_priority );
         TextView quantity = view.findViewById( R.id.item_Quantity );
         TextView totalPrice = view.findViewById( R.id.cart_item_price );
         ImageView imageView = view.findViewById( R.id.cart_image );
-        Button complaint_btn = view.findViewById( R.id.complaint_btn );
 
-//        date.setText(data.get(position).getCreatedAt());
-//        date.setText(dataList.get(position).getCreatedAt());
 
-        complaint_btn.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handledialodbox();
-                Toast.makeText( context, "check", Toast.LENGTH_SHORT ).show();
-            }
+        date.setText(data.get(position).getCreatedAt());
+        order_status.setText( data.get( position ).getOrderIs() );
+        name.setText( data.get( position ).getItems().get( position ).getProductId().getName() );
+        priority.setText( data.get( position).getItems().get( position ).getPriority()+"");
+        quantity.setText( data.get( position ).getItems().get( position ).getQty() + "" );
+        totalPrice.setText( data.get( position ).getItems().get( position ).getTotal() + "" + "₹" );
+        Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
 
-        } );
-        priority.setText( item.get( position ).getPriority() + "" );
-        quantity.setText( item.get( position ).getQty() + "" );
-        totalPrice.setText( item.get( position ).getTotal() + "" + "₹" );
-        Picasso.with( context ).load( item.get( position ).getProductId().getImageUrl() ).into( imageView );
-        //  date.setText(data.get(position).getCreatedAt());
 
         return view;
-    }
-
-    private void handledialodbox() {
-        AlertDialog.Builder builder = new AlertDialog.Builder( context );
-
-        LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate( R.layout.dialogbox_complaint, null );
-
-        builder.setView( dialogView );
-
-
-    }
-
-    private LayoutInflater getLayoutInflater() {
-        return null;
     }
 
 }

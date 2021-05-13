@@ -9,6 +9,7 @@ import com.example.restaurant_app.model.Subcategory;
 import com.example.restaurant_app.model.allmenuitems.AllMenuItems;
 import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
 import com.example.restaurant_app.model.getingrideintmodel.GetIngredients;
+import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.vcomplaintmodel.UserComplaint;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
@@ -92,24 +93,32 @@ public interface RetrofitInterface {
 
     //User Make Order
     @PUT("/order/makeorder")
-    Call<MakeOrder> makeOrder(@Header("Authorization") String auth,@Body HashMap<String, String> map);
+    Call<MakeOrder> makeOrder(@Header("Authorization") String auth,
+                              @Body HashMap<String, String> map);
 
     //User give feedback
     @POST("/feedback/feedback")
-    Call<Feedback> giveFeedback(@Header("Authorization") String auth,@Body HashMap<String, String> map);
+    Call<Feedback> giveFeedback(@Header("Authorization") String auth,
+                                @Body HashMap<String, String> map);
 
 
     //user view order
     @GET("/order/myorders")
-    Call<ViewMyOrders> viewmyorders(@Header("Authorization")String auth);
+    Call<ViewMyOrders> viewmyorders(@Header("Authorization") String auth);
 
     //view user complaint
     @GET("/complaint/complaints")
-    Call<UserComplaint> viewComplaint(@Header("Authorization")String auth);
+    Call<UserComplaint> viewComplaint(@Header("Authorization") String auth);
 
     //ingrediant call
     @GET("/ingredients/getIngredients")
     Call<GetIngredients> addIngredients();
+
+    @POST("/complaint/complaint/{path2}")
+    Call<GiveComplaint> giveComplaint(@Path("path1") String path,
+                                      @Header("Authorization") String auth,
+                                      @Body HashMap<String, String> map);
+
 
 }
 
