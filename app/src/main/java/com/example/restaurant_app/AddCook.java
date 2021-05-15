@@ -1,24 +1,35 @@
 package com.example.restaurant_app;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
+import com.example.restaurant_app.model.viewmyordersmodel.Item;
+import com.example.restaurant_app.model.viewmyordersmodel.Order;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static android.view.LayoutInflater.from;
 
 public class AddCook extends AppCompatActivity {
 
@@ -111,5 +122,54 @@ public class AddCook extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        class CustomAdepter extends BaseAdapter {
+            List<Order> data;
+            List<Item> item;
+            private Context context;
+            private int position;
+
+            @Override
+            public int getCount() {
+
+                return data.size();
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return position;
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return position;
+            }
+
+            @SuppressLint({"ViewHolder", "SetTextI18n"})
+            @Override
+            public View getView(int position, View view, ViewGroup parent) {
+
+                view = from( context ).inflate( R.layout.custom_view_your_order, parent, false );
+
+                TextView date = view.findViewById( R.id.item_date );
+                TextView order_status = view.findViewById( R.id.item_status );
+                TextView priority = view.findViewById( R.id.item_priority );
+                TextView quantity = view.findViewById( R.id.item_Quantity );
+                TextView totalPrice = view.findViewById( R.id.cart_item_price );
+                ImageView imageView = view.findViewById( R.id.cart_image );
+
+
+                date.setText(data.get(position).getCreatedAt());
+                order_status.setText( data.get( position ).getOrderIs() );
+                priority.setText( data.get( position).getItems().get( position ).getPriority()+"");
+                quantity.setText( data.get( position ).getItems().get( position ).getQty() + "" );
+                totalPrice.setText( data.get( position ).getItems().get( position ).getTotal() + "" + "₹" );
+                Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
+
+
+                return view;
+            }
+
+        }
     }
 }

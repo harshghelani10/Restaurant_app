@@ -37,25 +37,14 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Item Name:"
-                android:layout_below="@id/tv_date"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_order_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Order Status"
-                android:layout_below="@id/tv_name"
+                android:text="Order Status:"
+                android:layout_below="@id/tv_date"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -107,24 +96,14 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <TextView
-                android:id="@+id/item_name"
+                android:id="@+id/item_status"
                 android:layout_below="@id/item_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="130dp"
-                android:text="Name"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/item_status"
-                android:layout_below="@id/item_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="130dp"
+                android:layout_marginLeft="135dp"
                 android:text="status"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -174,14 +153,15 @@
                 android:layout_margin="15sp"
                 />
         </RelativeLayout>
+<!--        <Button-->
+<!--            android:id="@+id/complaint_btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Compalint"-->
+<!--            android:layout_marginTop="200dp"-->
+<!--            android:layout_marginLeft="260dp"/>-->
+
     </androidx.cardview.widget.CardView>
-<!--    <Button-->
-<!--        android:id="@+id/complaint_btn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="For Complaint on food"-->
-<!--        android:layout_marginLeft="100dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_below="@id/cart_item_price"/>-->
+
 
 </LinearLayout>

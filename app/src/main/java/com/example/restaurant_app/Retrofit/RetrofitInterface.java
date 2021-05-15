@@ -114,9 +114,8 @@ public interface RetrofitInterface {
     @GET("/ingredients/getIngredients")
     Call<GetIngredients> addIngredients();
 
-    @POST("/complaint/complaint/{path2}")
-    Call<GiveComplaint> giveComplaint(@Path("path1") String path,
-                                      @Header("Authorization") String auth,
+    @POST("/complaint/complaint/609f8daadc449509e0b578cc")
+    Call<GiveComplaint> giveComplaint(@Header("Authorization") String auth,
                                       @Body HashMap<String, String> map);
 
 

@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
+import com.example.restaurant_app.model.givecomplaint.Complaint;
 import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
 import com.example.restaurant_app.model.viewmyordersmodel.Data;
 import com.example.restaurant_app.model.viewmyordersmodel.Item;
@@ -46,6 +47,7 @@ public class User_view_order extends AppCompatActivity {
     List<Order> orderList = new ArrayList<>();
     List<Item> itemList = new ArrayList<>();
     GiveComplaint giveComplaints = new GiveComplaint();
+    Complaint complaint = new Complaint();
     private RetrofitInterface retrofitInterface;
     private int i;
     public static String id;
@@ -90,6 +92,7 @@ public class User_view_order extends AppCompatActivity {
         Button make_complaint = (Button) view.findViewById( R.id.btn_make_order );
         id = getIntent().getStringExtra( "order_id" );
 
+ //       id = "609f8daadc449509e0b578cc";
         make_complaint.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,13 +107,20 @@ public class User_view_order extends AppCompatActivity {
                 map.put( "complaintTitle", complaint_title.getText().toString() );
                 map.put( "complaintMessage", complaint_message.getText().toString() );
 
-                Call<GiveComplaint> call = retrofitInterface.giveComplaint(id,"Bearer " + token, map);
+                Call<GiveComplaint> call = retrofitInterface.giveComplaint("Bearer " + token, map);
 
                 call.enqueue( new Callback<GiveComplaint>() {
                     @Override
                     public void onResponse(Call<GiveComplaint> call, Response<GiveComplaint> response) {
                         if (response.isSuccessful()) {
+
+                            giveComplaints = response.body();
+                            complaint = giveComplaints.getComplaint();
+
                             Toast.makeText( User_view_order.this, "Your complaint is save..We will get you soon..", Toast.LENGTH_SHORT ).show();
+                            Intent intent = new Intent(getApplicationContext(),UserHome.class);
+                            startActivity( intent );
+
                         }else{
                             Toast.makeText( User_view_order.this, ""+response.message(), Toast.LENGTH_SHORT ).show();
                         }
@@ -171,10 +181,13 @@ class CustomAdepter extends BaseAdapter {
     private int position;
 
 
+
+
     public CustomAdepter(User_view_order user_view_order, List<Order> orderList, List<Item> itemList) {
         this.context = user_view_order;
-        this.data = orderList;
         this.item = itemList;
+        this.data = orderList;
+        item = data.get( position ).getItems();
     }
 
 
@@ -201,7 +214,6 @@ class CustomAdepter extends BaseAdapter {
         view = from( context ).inflate( R.layout.custom_view_your_order, parent, false );
 
         TextView date = view.findViewById( R.id.item_date );
-        TextView name = view.findViewById( R.id.item_name );
         TextView order_status = view.findViewById( R.id.item_status );
         TextView priority = view.findViewById( R.id.item_priority );
         TextView quantity = view.findViewById( R.id.item_Quantity );
@@ -211,7 +223,6 @@ class CustomAdepter extends BaseAdapter {
 
         date.setText(data.get(position).getCreatedAt());
         order_status.setText( data.get( position ).getOrderIs() );
-        name.setText( data.get( position ).getItems().get( position ).getProductId().getName() );
         priority.setText( data.get( position).getItems().get( position ).getPriority()+"");
         quantity.setText( data.get( position ).getItems().get( position ).getQty() + "" );
         totalPrice.setText( data.get( position ).getItems().get( position ).getTotal() + "" + "₹" );
