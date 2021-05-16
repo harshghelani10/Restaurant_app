@@ -63,9 +63,6 @@
             android:name=".ManagerHome"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AddCook"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ViewPayment"
             android:screenOrientation="portrait" />
         <activity

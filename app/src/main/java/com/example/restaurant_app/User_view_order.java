@@ -187,13 +187,15 @@ class CustomAdepter extends BaseAdapter {
         this.context = user_view_order;
         this.item = itemList;
         this.data = orderList;
-        item = data.get( position ).getItems();
     }
 
 
     @Override
     public int getCount() {
-       
+////        item = data.get( position ).getItems();
+//       for (int i = 0; i<data.size(); i++ ){
+//        item = data.get( position ).getItems();
+//       }
         return data.size();
     }
 

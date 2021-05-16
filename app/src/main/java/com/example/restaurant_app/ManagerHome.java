@@ -45,7 +45,7 @@ public class ManagerHome extends AppCompatActivity {
                         startActivity(home);
                         break;
                     case R.id.add_cook:
-                        Intent add_cook = new Intent(ManagerHome.this, AddCook.class);
+                        Intent add_cook = new Intent(ManagerHome.this, Addcook.class);
                         startActivity(add_cook);
                         break;
                     case R.id.view_cook:
