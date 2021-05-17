@@ -26,37 +26,62 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/cart_image"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="20sp"
+                android:src="@drawable/ic_launcher_background" />
+
             <TextView
-                android:id="@+id/tv_p"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
-                android:text="Priority:"
-                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="170dp"
+                android:layout_marginRight="170dp"
+                android:text="Name:"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/tv_price1"-->
-            <!--                android:layout_below="@id/tv_q"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="15dp"-->
-            <!--                android:text="Price:"-->
-            <!--                android:layout_marginLeft="10dp"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:textSize="18sp"-->
-            <!--                android:textStyle="bold" />-->
+            <TextView
+                android:id="@+id/cart_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/tv_p"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="158dp"
+                android:text="Priority:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_q"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_p"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="28dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="150dp"
                 android:text="Quantity:"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -67,83 +92,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_q"
-                android:layout_marginLeft="5dp"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="20dp"
-                android:text="Total Price:"
+                android:layout_marginRight="175dp"
+                android:text="Price:"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/b_min_p"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignLeft="@id/tv_p"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="15dp"
-                android:foregroundGravity="center_horizontal"
-                android:background="@drawable/btn_min" />
-
-            <TextView
-                android:id="@+id/item_priority"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="130dp"
-                android:layout_marginTop="15dp"
-                android:text="0"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/b_plus_p"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="15dp"
-                android:layout_toEndOf="@+id/item_priority"
-                android:layout_toRightOf="@+id/item_priority"
-                android:foregroundGravity="center_horizontal"
-                android:background="@drawable/btn_plus" />
-
-            <Button
-                android:id="@+id/b_min_q"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_below="@id/b_min_p"
-                android:layout_alignLeft="@id/tv_p"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="25dp"
-                android:foregroundGravity="center_horizontal"
-                android:background="@drawable/btn_min" />
-
-            <TextView
-                android:id="@+id/item_Quantity"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="130dp"
-                android:layout_below="@id/item_priority"
-                android:layout_marginTop="25dp"
-                android:text="0"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/b_plus_q"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_below="@id/b_plus_p"
-                android:layout_marginStart="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="25dp"
-                android:layout_toEndOf="@+id/item_priority"
-                android:layout_toRightOf="@+id/item_priority"
-                android:foregroundGravity="center_horizontal"
-                android:background="@drawable/btn_plus" />
 
 
             <!--            <TextView-->
@@ -157,25 +112,104 @@
             <!--                android:textSize="18sp"-->
             <!--                android:textStyle="bold" />-->
 
+            <Button
+                android:id="@+id/b_min_p"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/cart_item_name"
+                android:layout_marginStart="-120dp"
+                android:layout_marginLeft="-120dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/tv_p"
+                android:layout_toRightOf="@+id/tv_p"
+                android:background="@drawable/btn_min"
+                android:foregroundGravity="center_horizontal" />
+
+            <Button
+                android:id="@+id/b_plus_p"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/cart_item_name"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/item_priority"
+                android:layout_toRightOf="@+id/item_priority"
+                android:background="@drawable/btn_plus"
+                android:foregroundGravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/item_priority"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/cart_item_name"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/b_min_p"
+                android:layout_toRightOf="@+id/b_min_p"
+                android:gravity="center_horizontal"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_Quantity"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/item_priority"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/b_min_q"
+                android:layout_toRightOf="@+id/b_min_q"
+                android:gravity="center_horizontal"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/b_min_q"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/b_min_p"
+                android:layout_marginStart="-120dp"
+                android:layout_marginLeft="-120dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/tv_q"
+                android:layout_toRightOf="@+id/tv_q"
+                android:background="@drawable/btn_min"
+                android:foregroundGravity="center_horizontal" />
+
+            <Button
+                android:id="@+id/b_plus_q"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/b_plus_p"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/item_Quantity"
+                android:layout_toRightOf="@+id/item_Quantity"
+                android:background="@drawable/btn_plus"
+                android:foregroundGravity="center_horizontal" />
+
             <TextView
                 android:id="@+id/cart_item_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_Quantity"
-                android:layout_marginLeft="115dp"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="35dp"
                 android:text="Total Price"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/cart_image"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
-                android:layout_alignParentRight="true"
-                android:layout_margin="20sp"
-                android:src="@drawable/ic_launcher_background" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

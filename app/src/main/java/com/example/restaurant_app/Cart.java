@@ -28,6 +28,7 @@ import com.example.restaurant_app.model.deletecartmodel.DeletedCart;
 import com.example.restaurant_app.model.deletecartmodel.Item;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.makeordermodel.Order;
+import com.example.restaurant_app.model.viewcartmodel.ProductId;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
 import com.example.restaurant_app.model.viewcartmodel.YourCart;
 
@@ -49,6 +50,7 @@ public class Cart extends AppCompatActivity {
     ViewCart viewcart = new ViewCart();
     YourCart yourCart = new YourCart();
     MakeOrder makeOrder = new MakeOrder();
+    ProductId productId = new ProductId();
     List<Order> orders = new ArrayList<>();
     List<com.example.restaurant_app.model.viewcartmodel.Item> items = new ArrayList<>();
     private int i;
@@ -206,12 +208,14 @@ public class Cart extends AppCompatActivity {
                     viewcart = response.body();
                     yourCart = viewcart.getYourCart();
                     items = yourCart.getItems();
+                    productId = items.get( i ).getProductId();
+
 
                     CustomAdapter customAdepter = new CustomAdapter( Cart.this, items );
                     gridView.setAdapter( customAdepter );
 
                     TextView sub_total = (TextView) findViewById( R.id.sub_total );
-                    sub_total.setText( viewcart.getYourCart().getSubTotal() + "" );
+                    sub_total.setText( viewcart.getYourCart().getSubTotal() + "" + "₹" );
 
                 } else {
                     Toast.makeText( Cart.this, "Your Cart is Empty...!", Toast.LENGTH_SHORT ).show();
@@ -267,11 +271,14 @@ class CustomAdapter extends BaseAdapter {
         Button btn_min_p = view.findViewById( R.id.b_min_p );
         Button btn_plus_q = view.findViewById( R.id.b_plus_q );
         Button btn_min_q = view.findViewById( R.id.b_min_q );
+        TextView  cart_item_name = view.findViewById( R.id.cart_item_name );
 
 
         priority.setText( item.get( position ).getPriority() + "" );
         quantity.setText( item.get( position ).getQty() + "" );
-        totalPrice.setText( item.get( position ).getTotal() + "" + "₹" );
+        totalPrice.setText( item.get( position ).getTotal() + "" +  "₹" );
+        cart_item_name.setText( item.get( position ).getProductId().getName());
+ //       cart_item_name.setText( item.get( position ).getProductId().getName());
 //        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
         //      Picasso.with( context ).load( item.get( position ).getProductId().getImageUrl() ).into( imageView );
         // Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
@@ -311,3 +318,4 @@ class CustomAdapter extends BaseAdapter {
         return view;
     }
 }
+
