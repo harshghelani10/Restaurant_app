@@ -65,7 +65,7 @@
             android:layout_below="@id/main">
 
             <SearchView
-                android:layout_width="350dp"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:scrollbarSize="20sp" />
 
@@ -135,7 +135,7 @@
                 android:layout_marginTop="-5dp"
                 android:layout_marginBottom="1dp"
                 android:horizontalSpacing="4dp"
-                android:numColumns="4"
+                android:numColumns="3"
                 android:scrollbarAlwaysDrawHorizontalTrack="true"
                 android:verticalSpacing="4dp" />
 

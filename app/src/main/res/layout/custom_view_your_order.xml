@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -30,9 +28,9 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="15dp"
                 android:text="Date:"
-                android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -42,46 +40,63 @@
                 android:id="@+id/tv_order_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Order Status:"
                 android:layout_below="@id/tv_date"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="13dp"
+                android:text="Order Status:"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
 
             <TextView
                 android:id="@+id/tv_p"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/tv_order_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="12dp"
                 android:text="Priority:"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tv_q"
-                android:layout_below="@id/tv_p"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Quantity:"
-                android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_price"
-                android:layout_below="@id/tv_q"
+                android:id="@+id/tv_q"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/tv_p"
+                android:layout_marginLeft="150dp"
                 android:layout_marginTop="15dp"
-                android:text="Total Price:"
-                android:layout_marginLeft="10dp"
+                android:text="Quantity:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/cart_image"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:layout_below="@id/tv_date"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="15sp"
+                android:src="@drawable/ic_launcher_background" />
+
+            <Button
+                android:id="@+id/complaint_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Compalint"
+                android:layout_marginLeft="15dp"
+                android:layout_below="@id/cart_image"/>
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_q"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="15dp"
+                android:text="Price:"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -90,8 +105,9 @@
                 android:id="@+id/item_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="120dp"
+                android:layout_marginRight="10dp"
                 android:text="Date"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -99,35 +115,39 @@
 
             <TextView
                 android:id="@+id/item_status"
-                android:layout_below="@id/item_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/item_date"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="135dp"
+                android:layout_marginRight="10dp"
                 android:text="status"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_below="@id/item_status"
                 android:id="@+id/item_priority"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/item_status"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="120dp"
+                android:layout_marginRight="10dp"
                 android:text="Priority"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/item_Quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="120dp"
-                android:text="Quantity"
                 android:layout_below="@id/item_priority"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:text="Quantity"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -136,30 +156,17 @@
                 android:id="@+id/cart_item_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="120dp"
-                android:text="Total Price"
                 android:layout_below="@id/item_Quantity"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:text="Price"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-            <ImageView
-                android:layout_below="@id/tv_date"
-                android:id="@+id/cart_image"
-                android:layout_width="120sp"
-                android:layout_height="120sp"
-                android:src="@drawable/ic_launcher_background"
-                android:layout_alignParentRight="true"
-                android:layout_margin="15sp"
-                />
+
         </RelativeLayout>
-<!--        <Button-->
-<!--            android:id="@+id/complaint_btn"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Compalint"-->
-<!--            android:layout_marginTop="200dp"-->
-<!--            android:layout_marginLeft="260dp"/>-->
+
 
     </androidx.cardview.widget.CardView>
 

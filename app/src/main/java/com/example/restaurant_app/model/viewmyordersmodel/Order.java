@@ -4,14 +4,16 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 
-public class Order {
+public class Order implements Serializable
+{
 
     @SerializedName("grandTotal")
     @Expose
-    private Double grandTotal;
+    private Integer grandTotal;
     @SerializedName("paymentMethod")
     @Expose
     private String paymentMethod;
@@ -45,12 +47,13 @@ public class Order {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    private final static long serialVersionUID = 1041242714249553444L;
 
-    public Double getGrandTotal() {
+    public Integer getGrandTotal() {
         return grandTotal;
     }
 
-    public void setGrandTotal(Double grandTotal) {
+    public void setGrandTotal(Integer grandTotal) {
         this.grandTotal = grandTotal;
     }
 

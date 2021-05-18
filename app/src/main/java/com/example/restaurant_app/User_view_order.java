@@ -26,7 +26,6 @@ import com.example.restaurant_app.model.viewmyordersmodel.Data;
 import com.example.restaurant_app.model.viewmyordersmodel.Item;
 import com.example.restaurant_app.model.viewmyordersmodel.Order;
 import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -228,10 +227,11 @@ class CustomAdepter extends BaseAdapter {
         priority.setText( data.get( position).getItems().get( position ).getPriority()+"");
         quantity.setText( data.get( position ).getItems().get( position ).getQty() + "" );
         totalPrice.setText( data.get( position ).getItems().get( position ).getTotal() + "" + "₹" );
-        Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
+        //Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
 
 
         return view;
+
     }
 
 }

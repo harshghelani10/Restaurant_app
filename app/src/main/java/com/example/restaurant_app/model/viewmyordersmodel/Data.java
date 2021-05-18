@@ -4,9 +4,12 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Data {
+
+public class Data implements Serializable
+{
 
     @SerializedName("cart")
     @Expose
@@ -56,6 +59,7 @@ public class Data {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    private final static long serialVersionUID = -4825970082147419944L;
 
     public Cart getCart() {
         return cart;

@@ -9,7 +9,7 @@ public class Item {
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("productId")
+    @SerializedName("product_id")
     @Expose
     private ProductId productId;
     @SerializedName("qty")
@@ -18,9 +18,9 @@ public class Item {
     @SerializedName("priority")
     @Expose
     private Integer priority;
-    @SerializedName("price")
+    @SerializedName("productPrice")
     @Expose
-    private Integer price;
+    private Integer productPrice;
     @SerializedName("total")
     @Expose
     private Integer total;
@@ -57,12 +57,12 @@ public class Item {
         this.priority = priority;
     }
 
-    public Integer getPrice() {
-        return price;
+    public Integer getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setProductPrice(Integer productPrice) {
+        this.productPrice = productPrice;
     }
 
     public Integer getTotal() {

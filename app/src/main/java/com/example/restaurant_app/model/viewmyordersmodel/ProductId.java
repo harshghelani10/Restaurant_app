@@ -4,8 +4,11 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class ProductId {
+
+public class ProductId implements Serializable
+{
 
     @SerializedName("availability")
     @Expose
@@ -43,6 +46,7 @@ public class ProductId {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    private final static long serialVersionUID = 7171457482922161689L;
 
     public Boolean getAvailability() {
         return availability;

@@ -4,8 +4,11 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class Item {
+
+public class Item implements Serializable
+{
 
     @SerializedName("progress")
     @Expose
@@ -28,6 +31,7 @@ public class Item {
     @SerializedName("total")
     @Expose
     private Integer total;
+    private final static long serialVersionUID = -7042669506828786611L;
 
     public String getProgress() {
         return progress;
