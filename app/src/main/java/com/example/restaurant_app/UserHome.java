@@ -67,6 +67,15 @@ public class UserHome extends AppCompatActivity {
         gridView = (GridView) findViewById( R.id.gridView );
         gridview_tpfu = (GridView) findViewById( R.id.gridView_tpfu );
         TextView offers = (TextView) findViewById( R.id.tv_offer );
+        TextView show_menu = (TextView) findViewById( R.id.show_menu );
+
+        show_menu.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( getApplicationContext(), Menu.class );
+                startActivity( intent );
+            }
+        } );
 
         offers.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -266,6 +275,9 @@ public class UserHome extends AppCompatActivity {
                         Intent user_view_order = new Intent( UserHome.this, User_view_order.class );
                         startActivity( user_view_order );
                         break;
+                    case R.id.user_view_order_history:
+                        Intent user_view_order_history = new Intent( UserHome.this, User_View_Order_History.class);
+                        startActivity( user_view_order_history );
 
                 }
                 return true;
@@ -384,14 +396,14 @@ class CustomAdepterall extends BaseAdapter {
         imageView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(context.getApplicationContext(),Menu.class);
-               context.startActivity( intent );
+                Intent intent = new Intent( context.getApplicationContext(), Menu.class );
+                context.startActivity( intent );
 
             }
         } );
 
-        textview.setText( productList.get( position ).getName());
-        Picasso.with( context ).load( productList.get(position).getImageUrl() ).into( imageView );
+        textview.setText( productList.get( position ).getName() );
+        Picasso.with( context ).load( productList.get( position ).getImageUrl() ).into( imageView );
         return convertView;
     }
 }

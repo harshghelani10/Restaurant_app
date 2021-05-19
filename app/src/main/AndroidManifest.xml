@@ -11,15 +11,16 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:hardwareAccelerated="false"
         android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Restaurant_App"
         android:usesCleartextTraffic="true">
-        <activity android:name=".offers"></activity>
+        <activity android:name=".User_View_Order_History"></activity>
+        <activity android:name=".offers" />
         <activity android:name=".User_view_order" />
         <activity android:name=".UserComplaint" />
         <activity android:name=".SubMenu" />
