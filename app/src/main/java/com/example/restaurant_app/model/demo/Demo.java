@@ -69,8 +69,46 @@ public class Demo {
         return ingredient;
     }
 
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
-    }
+//    public void setIngredient(Ingredient ingredient) {
+//        this.ingredient = ingredient;
+//    }
+//    email = (EditText) findViewById(R.id.email);
+//    send_email = (Button) findViewById(R.id.send_email);
+//
+//        send_email.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//
+//            HashMap<String, String> map = new HashMap<>();
+//            map.put("email", email.getText().toString());
+//
+//            Call<ForgotResult> call = retrofitInterface.executeforgotpass(map);
+//            call.enqueue(new Callback<ForgotResult>() {
+//                @Override
+//                public void onResponse(Call<ForgotResult> call, Response<ForgotResult> response) {
+//                    if (response.code() == 200) {
+//                        Toast.makeText( AdminForgotPassword.this,
+//                                "Check Your Email for Reset Password", Toast.LENGTH_LONG).show();
+//
+//                        startActivity(new Intent(AdminForgotPassword.this, UserLogin.class));
+//
+//                    } else if (response.code() == 401) {
+//                        Toast.makeText(AdminForgotPassword.this,
+//                                "Email is not found", Toast.LENGTH_LONG).show();
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<ForgotResult> call, Throwable t) {
+//                    Toast.makeText(AdminForgotPassword.this, "Please! Check Network of Your Device",
+//                            Toast.LENGTH_LONG).show();
+//
+//                }
+//            });
+//        }
+//    });
+//}
+//}
 
 }

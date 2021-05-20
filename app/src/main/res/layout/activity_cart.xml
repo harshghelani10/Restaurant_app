@@ -41,7 +41,7 @@
         android:layout_below="@id/v_cart"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="510sp"
+        android:layout_height="500sp"
         android:layout_marginBottom="1dp"
         android:horizontalSpacing="4dp"
         android:numColumns="1"
@@ -63,14 +63,41 @@
         android:id="@+id/sub_total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tv_total"
-        android:text = "Total Price"
-        android:layout_marginLeft="130sp"
-        android:layout_below="@id/gridView"
+        android:layout_alignParentRight="true"
+        android:text="Total Price"
+        android:textAlignment="viewEnd"
+        android:background="@drawable/radius_design_menu"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
+        android:layout_below="@id/gridView"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:gravity="end" />
+
+    <TextView
+        android:id="@+id/parcel"
+        android:layout_below="@id/tv_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parcel Your Order"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"/>
+
+    <TextView
+        android:id="@+id/reserve_table"
+        android:layout_below="@id/tv_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pre-Register Your Table"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+       android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"/>
 
     <Button
         android:id="@+id/delete_cart"
@@ -90,6 +117,49 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="10dp"
         android:text="Make Order" />
+<!--    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
+
+<!--        <ImageView-->
+<!--            android:id="@+id/logo_image"-->
+<!--            android:layout_width="110dp"-->
+<!--            android:layout_height="110dp"-->
+<!--            android:src="@drawable/logo"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="100dp"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/email"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/logo_image"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:layout_marginTop="80dp"-->
+<!--            android:layout_marginRight="15dp"-->
+<!--            android:background="@drawable/input_design"-->
+<!--            android:hint="Email"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:padding="20dp"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <Button-->
+<!--            android:id="@+id/send_email"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_below="@id/email"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:layout_marginRight="15dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:background="@drawable/buttons"-->
+<!--            android:text="Send Email"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textAllCaps="false" />-->
+
+<!--    </RelativeLayout>-->
 
 </RelativeLayout>

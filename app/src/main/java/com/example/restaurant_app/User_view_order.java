@@ -219,16 +219,16 @@ class CustomAdepter extends BaseAdapter {
         TextView quantity = view.findViewById( R.id.item_Quantity );
         TextView totalPrice = view.findViewById( R.id.cart_item_price );
         ImageView imageView = view.findViewById( R.id.cart_image );
-        Button btn_complaint = view.findViewById( R.id.complaint_btn );
-
-        btn_complaint.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(context.getApplicationContext(), UserHome.class);
-//                context.startActivity( intent );
-                Toast.makeText( context, "clicked....", Toast.LENGTH_SHORT ).show();
-            }
-        } );
+//        Button btn_complaint = view.findViewById( R.id.complaint_btn );
+//
+//        btn_complaint.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent intent = new Intent(context.getApplicationContext(), UserHome.class);
+////                context.startActivity( intent );
+//                Toast.makeText( context, "clicked....", Toast.LENGTH_SHORT ).show();
+//            }
+//        } );
         date.setText(data.get(position).getCreatedAt());
         order_status.setText( data.get( position ).getOrderIs() );
         priority.setText( data.get( position).getItems().get( position ).getPriority()+"");
