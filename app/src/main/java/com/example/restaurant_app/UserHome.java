@@ -68,11 +68,38 @@ public class UserHome extends AppCompatActivity {
         gridview_tpfu = (GridView) findViewById( R.id.gridView_tpfu );
         TextView offers = (TextView) findViewById( R.id.tv_offer );
         TextView show_menu = (TextView) findViewById( R.id.show_menu );
+        TextView show_cart = (TextView) findViewById( R.id.show_cart );
+        TextView book_table = (TextView) findViewById( R.id.book_table );
+        TextView view_order = (TextView) findViewById( R.id.view_order );
 
         show_menu.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent( getApplicationContext(), Menu.class );
+                startActivity( intent );
+            }
+        } );
+
+        show_cart.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Cart.class);
+                startActivity( intent );
+            }
+        } );
+
+        book_table.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),BookTable.class);
+                startActivity( intent );
+            }
+        } );
+
+        view_order.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),User_view_order.class);
                 startActivity( intent );
             }
         } );
@@ -276,7 +303,7 @@ public class UserHome extends AppCompatActivity {
                         startActivity( user_view_order );
                         break;
                     case R.id.user_view_order_history:
-                        Intent user_view_order_history = new Intent( UserHome.this, User_View_Order_History.class);
+                        Intent user_view_order_history = new Intent( UserHome.this, User_View_Order_History.class );
                         startActivity( user_view_order_history );
 
                 }

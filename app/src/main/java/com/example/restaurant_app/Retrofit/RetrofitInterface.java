@@ -14,6 +14,7 @@ import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.vcomplaintmodel.UserComplaint;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
 import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
+import com.example.restaurant_app.model.vieworderhistorymodel.ViewOrderHistory;
 
 import java.util.HashMap;
 
@@ -114,9 +115,14 @@ public interface RetrofitInterface {
     @GET("/ingredients/getIngredients")
     Call<GetIngredients> addIngredients();
 
+    //Give complaint
     @POST("/complaint/complaint/609f8daadc449509e0b578cc")
     Call<GiveComplaint> giveComplaint(@Header("Authorization") String auth,
                                       @Body HashMap<String, String> map);
+
+    //View Order History
+    @GET("/order/myorders")
+    Call<ViewOrderHistory> viewOrderHistory(@Header("Authorization") String auth);
 
 
 }

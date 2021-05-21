@@ -1,5 +1,5 @@
 
-package com.example.restaurant_app.model.viewcartmodel;
+package com.example.restaurant_app.model.vieworderhistorymodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,24 +7,24 @@ import com.google.gson.annotations.SerializedName;
 
 public class Item {
 
-    @SerializedName("notes")
+    @SerializedName("progress")
     @Expose
-    private Object notes;
+    private String progress;
+    @SerializedName("ToKitchen")
+    @Expose
+    private Boolean toKitchen;
     @SerializedName("_id")
     @Expose
     private String id;
     @SerializedName("product_id")
     @Expose
-    private String productId;
+    private ProductId productId;
     @SerializedName("qty")
     @Expose
     private Integer qty;
     @SerializedName("priority")
     @Expose
     private Integer priority;
-    @SerializedName("categoryId")
-    @Expose
-    private String categoryId;
     @SerializedName("productPrice")
     @Expose
     private Integer productPrice;
@@ -32,12 +32,20 @@ public class Item {
     @Expose
     private Integer total;
 
-    public Object getNotes() {
-        return notes;
+    public String getProgress() {
+        return progress;
     }
 
-    public void setNotes(Object notes) {
-        this.notes = notes;
+    public void setProgress(String progress) {
+        this.progress = progress;
+    }
+
+    public Boolean getToKitchen() {
+        return toKitchen;
+    }
+
+    public void setToKitchen(Boolean toKitchen) {
+        this.toKitchen = toKitchen;
     }
 
     public String getId() {
@@ -48,11 +56,11 @@ public class Item {
         this.id = id;
     }
 
-    public String getProductId() {
+    public ProductId getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(ProductId productId) {
         this.productId = productId;
     }
 
@@ -70,14 +78,6 @@ public class Item {
 
     public void setPriority(Integer priority) {
         this.priority = priority;
-    }
-
-    public String getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
     }
 
     public Integer getProductPrice() {

@@ -208,7 +208,7 @@ public class Cart extends AppCompatActivity {
                     viewcart = response.body();
                     yourCart = viewcart.getYourCart();
                     items = yourCart.getItems();
-                    productId = items.get( i ).getProductId();
+//                    productId = items.get( i ).getProductId();
 
 
                     CustomAdapter customAdepter = new CustomAdapter( Cart.this, items );
@@ -224,7 +224,7 @@ public class Cart extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ViewCart> call, Throwable t) {
-                System.out.println( "############################ " + t.getLocalizedMessage() );
+                Toast.makeText( Cart.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
             }
         } );
     }
@@ -277,7 +277,7 @@ class CustomAdapter extends BaseAdapter {
         priority.setText( item.get( position ).getPriority() + "" );
         quantity.setText( item.get( position ).getQty() + "" );
         totalPrice.setText( item.get( position ).getTotal() + "" +  "₹" );
-        cart_item_name.setText( item.get( position ).getProductId().getName());
+//        cart_item_name.setText( item.get( position ).getProductId().getName());
  //       cart_item_name.setText( item.get( position ).getProductId().getName());
 //        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
         //      Picasso.with( context ).load( item.get( position ).getProductId().getImageUrl() ).into( imageView );
