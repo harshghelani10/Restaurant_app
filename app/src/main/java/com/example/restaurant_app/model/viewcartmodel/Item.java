@@ -4,7 +4,6 @@ package com.example.restaurant_app.model.viewcartmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
 public class Item {
 
     @SerializedName("notes")
@@ -15,7 +14,7 @@ public class Item {
     private String id;
     @SerializedName("product_id")
     @Expose
-    private String productId;
+    private ProductId productId;
     @SerializedName("qty")
     @Expose
     private Integer qty;
@@ -48,11 +47,11 @@ public class Item {
         this.id = id;
     }
 
-    public String getProductId() {
+    public ProductId getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(ProductId productId) {
         this.productId = productId;
     }
 

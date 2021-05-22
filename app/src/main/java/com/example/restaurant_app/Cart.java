@@ -56,7 +56,6 @@ public class Cart extends AppCompatActivity {
     private int i;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -64,11 +63,10 @@ public class Cart extends AppCompatActivity {
 
         backbtn = (Button) findViewById( R.id.btnback );
         gridView = (GridView) findViewById( R.id.gridView );
-        TextView tv_total = (TextView) findViewById( R.id.tv_total );
         Button delete_cart = (Button) findViewById( R.id.delete_cart );
         Button make_order = (Button) findViewById( R.id.make_order );
-
-        // sub_total.setText(viewcart.getYourCart().getSubTotal()+"");
+        TextView parcel = (TextView) findViewById( R.id.parcel );
+        TextView reserve_table = (TextView) findViewById( R.id.reserve_table );
 
         listingdata();
 
@@ -77,6 +75,22 @@ public class Cart extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent( Cart.this, UserHome.class );
                 startActivity( intent );
+            }
+        } );
+
+        parcel.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText( Cart.this, "clicked", Toast.LENGTH_SHORT ).show();
+            }
+        } );
+
+        reserve_table.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Cart.this,BookTable.class);
+                startActivity( intent );
+
             }
         } );
 
@@ -166,7 +180,7 @@ public class Cart extends AppCompatActivity {
 
                             String get = orders.get( i ).getId();
                             Intent intent = new Intent( Cart.this, User_view_order.class );
-                            intent.putExtra( "order_id",orders.get( i ). getId());
+                            intent.putExtra( "order_id", orders.get( i ).getId() );
                             startActivity( intent );
                             Toast.makeText( Cart.this, "Your Order Is Placed.....!!", Toast.LENGTH_SHORT ).show();
 
@@ -208,7 +222,7 @@ public class Cart extends AppCompatActivity {
                     viewcart = response.body();
                     yourCart = viewcart.getYourCart();
                     items = yourCart.getItems();
-//                    productId = items.get( i ).getProductId();
+                    productId = items.get( i ).getProductId();
 
 
                     CustomAdapter customAdepter = new CustomAdapter( Cart.this, items );
@@ -224,7 +238,7 @@ public class Cart extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ViewCart> call, Throwable t) {
-                Toast.makeText( Cart.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+                Toast.makeText( Cart.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
             }
         } );
     }
@@ -271,14 +285,14 @@ class CustomAdapter extends BaseAdapter {
         Button btn_min_p = view.findViewById( R.id.b_min_p );
         Button btn_plus_q = view.findViewById( R.id.b_plus_q );
         Button btn_min_q = view.findViewById( R.id.b_min_q );
-        TextView  cart_item_name = view.findViewById( R.id.cart_item_name );
+        TextView cart_item_name = view.findViewById( R.id.cart_item_name );
 
 
         priority.setText( item.get( position ).getPriority() + "" );
         quantity.setText( item.get( position ).getQty() + "" );
-        totalPrice.setText( item.get( position ).getTotal() + "" +  "₹" );
-//        cart_item_name.setText( item.get( position ).getProductId().getName());
- //       cart_item_name.setText( item.get( position ).getProductId().getName());
+        totalPrice.setText( item.get( position ).getTotal() + "" + "₹" );
+        cart_item_name.setText( item.get( position ).getProductId().getName() );
+        //       cart_item_name.setText( item.get( position ).getProductId().getName());
 //        Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
         //      Picasso.with( context ).load( item.get( position ).getProductId().getImageUrl() ).into( imageView );
         // Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);

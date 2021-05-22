@@ -22,7 +22,6 @@ import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
 import com.example.restaurant_app.model.givecomplaint.Complaint;
 import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
-import com.example.restaurant_app.model.viewmyordersmodel.Data;
 import com.example.restaurant_app.model.viewmyordersmodel.Item;
 import com.example.restaurant_app.model.viewmyordersmodel.Order;
 import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
@@ -42,8 +41,7 @@ public class User_view_order extends AppCompatActivity {
 
     GridView gridView;
     ViewMyOrders viewMyOrders = new ViewMyOrders();
-    Data data = new Data();
-    List<Order> orderList = new ArrayList<>();
+    Order order = new Order();
     List<Item> itemList = new ArrayList<>();
     GiveComplaint giveComplaints = new GiveComplaint();
     Complaint complaint = new Complaint();
@@ -151,11 +149,10 @@ public class User_view_order extends AppCompatActivity {
                     Toast.makeText( User_view_order.this, "Here is your order", Toast.LENGTH_SHORT ).show();
 
                     viewMyOrders = response.body();
-                    data = viewMyOrders.getData();
-                    orderList = data.getOrders();
-                    itemList = orderList.get( i ).getItems();
+                    order = viewMyOrders.getOrder();
+                    itemList = order.getItems();
 
-                    CustomAdepter customAdepter = new CustomAdepter( User_view_order.this, orderList,itemList );
+                    CustomAdepter customAdepter = new CustomAdepter( User_view_order.this, itemList );
                     gridView.setAdapter( customAdepter );
 
                 } else {
@@ -173,28 +170,19 @@ public class User_view_order extends AppCompatActivity {
 }
 
 class CustomAdepter extends BaseAdapter {
-    List<Order> data;
     List<Item> item;
+    Order order = new Order();
     private Context context;
-    private int position;
 
-
-
-
-    public CustomAdepter(User_view_order user_view_order, List<Order> orderList, List<Item> itemList) {
+    public CustomAdepter(User_view_order user_view_order, List<Item> itemList) {
         this.context = user_view_order;
         this.item = itemList;
-        this.data = orderList;
     }
 
 
     @Override
     public int getCount() {
-////        item = data.get( position ).getItems();
-//       for (int i = 0; i<data.size(); i++ ){
-//        item = data.get( position ).getItems();
-//       }
-        return data.size();
+        return item.size();
     }
 
     @Override
@@ -229,13 +217,19 @@ class CustomAdepter extends BaseAdapter {
 //                Toast.makeText( context, "clicked....", Toast.LENGTH_SHORT ).show();
 //            }
 //        } );
-        date.setText(data.get(position).getCreatedAt());
-        order_status.setText( data.get( position ).getOrderIs() );
-        priority.setText( data.get( position).getItems().get( position ).getPriority()+"");
-        quantity.setText( data.get( position ).getItems().get( position ).getQty() + "" );
-        totalPrice.setText( data.get( position ).getItems().get( position ).getTotal() + "" + "₹" );
+//        date.setText(data.get(position).getCreatedAt());
+//        order_status.setText( data.get( position ).getOrderIs() );
+//        priority.setText( data.get( position).getItems().get( position ).getPriority()+"");
+//        quantity.setText( data.get( position ).getItems().get( position ).getQty() + "" );
+//        totalPrice.setText( data.get( position ).getItems().get( position ).getTotal() + "" + "₹" );
         //Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
 
+        date.setText( item.get( position ).getProductId().getCreatedAt() );
+        order_status.setText(order.getOrderIs() );
+        priority.setText( item.get( position ).getPriority()+"");
+        quantity.setText( item.get( position ).getQty()+"" );
+        totalPrice.setText( item.get( position ).getTotal()+"" +"₹");
+        //Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
 
         return view;
 

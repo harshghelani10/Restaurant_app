@@ -4,6 +4,7 @@ package com.example.restaurant_app.model.vieworderhistorymodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 public class ViewOrderHistory {
 
     @SerializedName("message")

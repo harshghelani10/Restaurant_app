@@ -4,19 +4,15 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 
-
-public class ViewMyOrders implements Serializable
-{
+public class ViewMyOrders {
 
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("data")
+    @SerializedName("order")
     @Expose
-    private Data data;
-    private final static long serialVersionUID = 3790778175386690399L;
+    private Order order;
 
     public String getMessage() {
         return message;
@@ -26,12 +22,12 @@ public class ViewMyOrders implements Serializable
         this.message = message;
     }
 
-    public Data getData() {
-        return data;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setData(Data data) {
-        this.data = data;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
 }

@@ -4,15 +4,15 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 
-
-public class Item implements Serializable
-{
+public class Item {
 
     @SerializedName("progress")
     @Expose
     private String progress;
+    @SerializedName("ToKitchen")
+    @Expose
+    private Boolean toKitchen;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -31,7 +31,6 @@ public class Item implements Serializable
     @SerializedName("total")
     @Expose
     private Integer total;
-    private final static long serialVersionUID = -7042669506828786611L;
 
     public String getProgress() {
         return progress;
@@ -39,6 +38,14 @@ public class Item implements Serializable
 
     public void setProgress(String progress) {
         this.progress = progress;
+    }
+
+    public Boolean getToKitchen() {
+        return toKitchen;
+    }
+
+    public void setToKitchen(Boolean toKitchen) {
+        this.toKitchen = toKitchen;
     }
 
     public String getId() {

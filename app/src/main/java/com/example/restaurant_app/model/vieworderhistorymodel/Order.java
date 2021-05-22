@@ -20,7 +20,7 @@ public class Order {
     private String orderIs;
     @SerializedName("complaints")
     @Expose
-    private List<Object> complaints = null;
+    private List<String> complaints = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -45,6 +45,9 @@ public class Order {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    @SerializedName("table")
+    @Expose
+    private String table;
 
     public Integer getGrandTotal() {
         return grandTotal;
@@ -70,11 +73,11 @@ public class Order {
         this.orderIs = orderIs;
     }
 
-    public List<Object> getComplaints() {
+    public List<String> getComplaints() {
         return complaints;
     }
 
-    public void setComplaints(List<Object> complaints) {
+    public void setComplaints(List<String> complaints) {
         this.complaints = complaints;
     }
 
@@ -140,6 +143,14 @@ public class Order {
 
     public void setV(Integer v) {
         this.v = v;
+    }
+
+    public String getTable() {
+        return table;
+    }
+
+    public void setTable(String table) {
+        this.table = table;
     }
 
 }

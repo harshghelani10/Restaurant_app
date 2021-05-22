@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BookTable extends AppCompatActivity {
 
-    Button backbtn,scan_barcode;
+    Button backbtn,scan_barcode,prebook_table;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class BookTable extends AppCompatActivity {
 
         backbtn = (Button)findViewById(R.id.btnback);
         scan_barcode = (Button) findViewById(R.id.scan_barcode);
+        prebook_table = (Button) findViewById( R.id.reserve_table );
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,5 +36,12 @@ public class BookTable extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        prebook_table.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText( BookTable.this, "CLicked......", Toast.LENGTH_SHORT ).show();
+            }
+        } );
     }
 }

@@ -75,15 +75,17 @@ public class User_View_Order_History extends AppCompatActivity {
             public void onResponse(Call<ViewOrderHistory> call, Response<ViewOrderHistory> response) {
                 if (response.isSuccessful()) {
 
+                    Toast.makeText( User_View_Order_History.this, "Your Order History", Toast.LENGTH_SHORT ).show();
+
                     viewOrderHistory = response.body();
                     data = viewOrderHistory.getData();
                     orderList = data.getOrders();
                     itemList = orderList.get( i ).getItems();
-//                    Toast.makeText( User_View_Order_History.this, "Success", Toast.LENGTH_SHORT ).show();
+
                     CustomAdepter2 customAdepter = new CustomAdepter2( User_View_Order_History.this, orderList, itemList );
                     gridView.setAdapter( customAdepter );
                 } else {
-                    Toast.makeText( User_View_Order_History.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( User_View_Order_History.this, "No Order History..!!", Toast.LENGTH_SHORT ).show();
                 }
             }
 
@@ -125,21 +127,20 @@ class CustomAdepter2 extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-       convertView = from( context ).inflate( R.layout.custom_order_history, parent, false );
+        convertView = from( context ).inflate( R.layout.custom_order_history, parent, false );
 
         TextView date = convertView.findViewById( R.id.item_date );
-//        TextView order_status = convertView.findViewById( R.id.item_status );
         TextView priority = convertView.findViewById( R.id.item_priority );
         TextView quantity = convertView.findViewById( R.id.item_Quantity );
         TextView totalPrice = convertView.findViewById( R.id.cart_item_price );
-//        ImageView imageView = convertView.findViewById( R.id.cart_image );
+//         ImageView imageView = convertView.findViewById( R.id.cart_image );
 
-        priority.setText( orderList.get( position ).getItems().get( position ).getPriority()+"" );
-        quantity.setText( orderList.get( position ).getItems().get( position ).getQty()+"" );
+
         date.setText( orderList.get( position ).getCreatedAt() );
-        totalPrice.setText( orderList.get( position ).getItems().get( position ).getProductPrice()+""+"₹" );
-        //Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
-
+        priority.setText( itemList.get( position ).getPriority()+"" );
+        quantity.setText( itemList.get( position ).getQty()+"" );
+        totalPrice.setText( itemList.get( position ).getTotal()+""+"₹" );
+//        Picasso.with( context ).load( itemList.get( position ).getProductId().getImageUrl() ).into( imageView );
 
         return convertView;
     }

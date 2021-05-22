@@ -4,6 +4,9 @@ package com.example.restaurant_app.model.vieworderhistorymodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
+
 public class ProductId {
 
     @SerializedName("availability")
@@ -42,6 +45,9 @@ public class ProductId {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    @SerializedName("complaints")
+    @Expose
+    private List<String> complaints = null;
 
     public Boolean getAvailability() {
         return availability;
@@ -137,6 +143,14 @@ public class ProductId {
 
     public void setV(Integer v) {
         this.v = v;
+    }
+
+    public List<String> getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(List<String> complaints) {
+        this.complaints = complaints;
     }
 
 }

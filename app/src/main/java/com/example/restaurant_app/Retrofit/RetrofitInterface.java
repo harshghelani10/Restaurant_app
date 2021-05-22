@@ -104,7 +104,7 @@ public interface RetrofitInterface {
 
 
     //user view order
-    @GET("/order/myorders")
+    @POST("/order/current")
     Call<ViewMyOrders> viewmyorders(@Header("Authorization") String auth);
 
     //view user complaint

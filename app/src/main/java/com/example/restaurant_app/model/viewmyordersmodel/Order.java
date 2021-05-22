@@ -4,12 +4,9 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.List;
 
-
-public class Order implements Serializable
-{
+public class Order {
 
     @SerializedName("grandTotal")
     @Expose
@@ -22,7 +19,7 @@ public class Order implements Serializable
     private String orderIs;
     @SerializedName("complaints")
     @Expose
-    private List<String> complaints = null;
+    private List<Object> complaints = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -47,7 +44,6 @@ public class Order implements Serializable
     @SerializedName("__v")
     @Expose
     private Integer v;
-    private final static long serialVersionUID = 1041242714249553444L;
 
     public Integer getGrandTotal() {
         return grandTotal;
@@ -73,11 +69,11 @@ public class Order implements Serializable
         this.orderIs = orderIs;
     }
 
-    public List<String> getComplaints() {
+    public List<Object> getComplaints() {
         return complaints;
     }
 
-    public void setComplaints(List<String> complaints) {
+    public void setComplaints(List<Object> complaints) {
         this.complaints = complaints;
     }
 
