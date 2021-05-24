@@ -36,13 +36,13 @@
                 android:layout_below="@id/tv_name"
                 android:src="@drawable/ic_launcher_background" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/cart_image"
-                android:hint="Add Notes"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="5dp"/>
+<!--            <EditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/cart_image"-->
+<!--                android:hint="Add Notes"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:layout_marginLeft="5dp"/>-->
 
             <TextView
                 android:id="@+id/tv_name"

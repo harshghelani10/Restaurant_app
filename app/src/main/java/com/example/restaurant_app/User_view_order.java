@@ -225,7 +225,7 @@ class CustomAdepter extends BaseAdapter {
         //Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
 
         date.setText( item.get( position ).getProductId().getCreatedAt() );
-        order_status.setText(order.getOrderIs() );
+        order_status.setText(item.get( position ).getProgress());
         priority.setText( item.get( position ).getPriority()+"");
         quantity.setText( item.get( position ).getQty()+"" );
         totalPrice.setText( item.get( position ).getTotal()+"" +"₹");

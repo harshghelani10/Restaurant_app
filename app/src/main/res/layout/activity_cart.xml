@@ -41,7 +41,7 @@
         android:layout_below="@id/v_cart"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="500sp"
+        android:layout_height="490sp"
         android:layout_marginBottom="1dp"
         android:horizontalSpacing="4dp"
         android:numColumns="1"
@@ -49,13 +49,12 @@
 
     <TextView
         android:id="@+id/tv_total"
-        android:layout_below="@id/gridView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/gridView"
         android:layout_marginLeft="10dp"
         android:text="Total Price:"
         android:textColor="@color/black"
-        android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -63,49 +62,42 @@
         android:id="@+id/sub_total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/gridView"
         android:layout_alignParentRight="true"
+        android:background="@drawable/radius_design_menu"
+        android:gravity="end"
         android:text="Total Price"
         android:textAlignment="viewEnd"
-        android:background="@drawable/radius_design_menu"
         android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/gridView"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="end" />
+        android:textStyle="bold" />
 
-    <TextView
+    <Button
         android:id="@+id/parcel"
-        android:layout_below="@id/tv_total"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Parcel Your Order"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_above="@+id/delete_cart"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="5dp"
+        android:text="Parcel" />
 
-    <TextView
+    <Button
         android:id="@+id/reserve_table"
-        android:layout_below="@id/tv_total"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Register Your Table"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"
-       android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"/>
+        android:layout_above="@+id/make_order"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="5dp"
+        android:text="Book Table" />
 
     <Button
         android:id="@+id/delete_cart"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="5dp"
         android:text="Delete Cart" />
 
     <Button
@@ -115,6 +107,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:text="Make Order" />
 </RelativeLayout>

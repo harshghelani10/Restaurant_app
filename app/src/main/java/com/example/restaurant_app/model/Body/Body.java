@@ -12,6 +12,9 @@ public class Body {
     @SerializedName("priority")
     @Expose
     private Integer priority;
+    @SerializedName("notes")
+    @Expose
+    private String notes;
 
     public Integer getQty() {
         return qty;
@@ -27,6 +30,14 @@ public class Body {
 
     public void setPriority(Integer priority) {
         this.priority = priority;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
 }

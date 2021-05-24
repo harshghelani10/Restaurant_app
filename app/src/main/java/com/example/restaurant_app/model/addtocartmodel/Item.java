@@ -1,5 +1,5 @@
 
-package com.example.restaurant_app.model.vieworderhistorymodel;
+package com.example.restaurant_app.model.addtocartmodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,21 +7,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Item {
 
-    @SerializedName("paymentstatus")
+    @SerializedName("notes")
     @Expose
-    private String paymentstatus;
-    @SerializedName("progress")
-    @Expose
-    private String progress;
-    @SerializedName("ToKitchen")
-    @Expose
-    private Boolean toKitchen;
+    private String notes;
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("notes")
-    @Expose
-    private Object notes;
     @SerializedName("product_id")
     @Expose
     private ProductId productId;
@@ -41,28 +32,12 @@ public class Item {
     @Expose
     private Integer total;
 
-    public String getPaymentstatus() {
-        return paymentstatus;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setPaymentstatus(String paymentstatus) {
-        this.paymentstatus = paymentstatus;
-    }
-
-    public String getProgress() {
-        return progress;
-    }
-
-    public void setProgress(String progress) {
-        this.progress = progress;
-    }
-
-    public Boolean getToKitchen() {
-        return toKitchen;
-    }
-
-    public void setToKitchen(Boolean toKitchen) {
-        this.toKitchen = toKitchen;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public String getId() {
@@ -71,14 +46,6 @@ public class Item {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Object getNotes() {
-        return notes;
-    }
-
-    public void setNotes(Object notes) {
-        this.notes = notes;
     }
 
     public ProductId getProductId() {

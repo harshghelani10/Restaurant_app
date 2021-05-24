@@ -28,6 +28,8 @@ import com.example.restaurant_app.model.deletecartmodel.DeletedCart;
 import com.example.restaurant_app.model.deletecartmodel.Item;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.makeordermodel.Order;
+import com.example.restaurant_app.model.parcelordermodel.ParcelOrder;
+import com.example.restaurant_app.model.parcelordermodel.UserDetails;
 import com.example.restaurant_app.model.viewcartmodel.ProductId;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
 import com.example.restaurant_app.model.viewcartmodel.YourCart;
@@ -47,12 +49,21 @@ public class Cart extends AppCompatActivity {
     GridView gridView;
     RetrofitInterface retrofitInterface;
     Button backbtn;
+    //viewcart api
     ViewCart viewcart = new ViewCart();
     YourCart yourCart = new YourCart();
-    MakeOrder makeOrder = new MakeOrder();
-    ProductId productId = new ProductId();
     List<Order> orders = new ArrayList<>();
     List<com.example.restaurant_app.model.viewcartmodel.Item> items = new ArrayList<>();
+
+    //make order api
+    MakeOrder makeOrder = new MakeOrder();
+    ProductId productId = new ProductId();
+
+    //parcel order
+    ParcelOrder parcelOrder = new ParcelOrder();
+    List<com.example.restaurant_app.model.parcelordermodel.Order> orderList = new ArrayList<>();
+    UserDetails userDetails = new UserDetails();
+    List<com.example.restaurant_app.model.parcelordermodel.Item> itemList = new ArrayList<>();
     private int i;
 
 
@@ -65,8 +76,8 @@ public class Cart extends AppCompatActivity {
         gridView = (GridView) findViewById( R.id.gridView );
         Button delete_cart = (Button) findViewById( R.id.delete_cart );
         Button make_order = (Button) findViewById( R.id.make_order );
-        TextView parcel = (TextView) findViewById( R.id.parcel );
-        TextView reserve_table = (TextView) findViewById( R.id.reserve_table );
+        Button parcel = (Button) findViewById( R.id.parcel );
+        Button reserve_table = (Button) findViewById( R.id.reserve_table );
 
         listingdata();
 
@@ -81,6 +92,7 @@ public class Cart extends AppCompatActivity {
         parcel.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                handleParcelYourOrder();
                 Toast.makeText( Cart.this, "clicked", Toast.LENGTH_SHORT ).show();
             }
         } );
@@ -139,6 +151,63 @@ public class Cart extends AppCompatActivity {
                 handleMakeOrderDialog();
             }
         } );
+    }
+
+    private void handleParcelYourOrder() {
+        View view2 = getLayoutInflater().inflate( R.layout.dialogbox_makeorder,null );
+
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        builder.setView( view2 ).show();
+
+        final EditText make_order_name = (EditText) view2.findViewById( R.id.make_order_name );
+        final EditText pay_method = (EditText) view2.findViewById( R.id.pay_method );
+        Button btn_make_order = (Button) view2.findViewById( R.id.btn_make_order );
+
+        btn_make_order.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Retrofit retrofitClient = RetrofitClient.getInstance();
+                retrofitInterface = retrofitClient.create( RetrofitInterface.class );
+
+                SharedPreferences gettoken = getSharedPreferences( "token", MODE_PRIVATE );
+                String token = gettoken.getString( "TOKEN", "" );
+
+                HashMap<String, String> map = new HashMap<>();
+
+                map.put( "name", make_order_name.getText().toString() );
+                map.put( "paymentMethod", pay_method.getText().toString() );
+
+                Call<ParcelOrder> call = retrofitInterface.parcelYourOrder( "Bearer " + token, map );
+
+                call.enqueue( new Callback<ParcelOrder>() {
+                    @Override
+                    public void onResponse(Call<ParcelOrder> call, Response<ParcelOrder> response) {
+                        if (response.isSuccessful()){
+                            parcelOrder = response.body();
+                            userDetails = parcelOrder.getUserDetails();
+                            orderList = parcelOrder.getOrder();
+                            itemList = userDetails.getItems();
+
+                            Intent intent = new Intent(Cart.this,User_view_order.class);
+                            startActivity( intent );
+
+                            Toast.makeText( Cart.this, "Your Parcel Order Is Placed...", Toast.LENGTH_SHORT ).show();
+
+                        }else{
+                            Toast.makeText( Cart.this, ""+response.message(), Toast.LENGTH_SHORT ).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ParcelOrder> call, Throwable t) {
+                        Toast.makeText( Cart.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+                    }
+                } );
+
+            }
+        } );
+
     }
 
     private void handleMakeOrderDialog() {

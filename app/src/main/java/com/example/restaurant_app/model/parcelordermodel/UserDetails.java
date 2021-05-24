@@ -1,13 +1,12 @@
 
-package com.example.restaurant_app.model.vieworderhistorymodel;
+package com.example.restaurant_app.model.parcelordermodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-
-public class Order {
+public class UserDetails {
 
     @SerializedName("grandTotal")
     @Expose
@@ -33,15 +32,6 @@ public class Order {
     @SerializedName("items")
     @Expose
     private List<Item> items = null;
-    @SerializedName("createdAt")
-    @Expose
-    private String createdAt;
-    @SerializedName("updatedAt")
-    @Expose
-    private String updatedAt;
-    @SerializedName("__v")
-    @Expose
-    private Integer v;
 
     public Integer getGrandTotal() {
         return grandTotal;
@@ -105,30 +95,6 @@ public class Order {
 
     public void setItems(List<Item> items) {
         this.items = items;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Integer getV() {
-        return v;
-    }
-
-    public void setV(Integer v) {
-        this.v = v;
     }
 
 }

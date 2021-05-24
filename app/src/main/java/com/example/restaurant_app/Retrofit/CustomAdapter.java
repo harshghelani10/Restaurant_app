@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,11 +18,10 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.example.restaurant_app.R;
 import com.example.restaurant_app.SubMenu;
-import com.example.restaurant_app.model.Addtocart;
 import com.example.restaurant_app.model.Body.Body;
 import com.example.restaurant_app.model.Product;
+import com.example.restaurant_app.model.addtocartmodel.AddtoCart;
 import com.example.restaurant_app.model.getingrideintmodel.Ingredient;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -74,6 +74,7 @@ public class CustomAdapter extends BaseAdapter {
         add_ingredient = convertView.findViewById(R.id.add_ingredient);
         TextView quantity = convertView.findViewById(R.id.enter_qty);
         TextView priority = convertView.findViewById(R.id.set_priority);
+        EditText notes = convertView.findViewById( R.id.add_notes );
         TextView ingredient_name = convertView.findViewById(R.id.ingredient_name);
         TextView ingredient_price = convertView.findViewById(R.id.ingredient_price);
 
@@ -127,18 +128,20 @@ public class CustomAdapter extends BaseAdapter {
                 String get = product.get(position).getId();
                 String pri = priority.getText().toString();
                 String qty = quantity.getText().toString();
+                String note = notes.getText().toString();
 
                 Body body = new Body();
                 body.setPriority(Integer.valueOf(pri));
                 body.setQty(Integer.valueOf(qty));
+                body.setNotes(note);
 
 
-                Call<Addtocart> call = retrofitInterface.executecart(get, "Bearer " + token, body);
+                Call<AddtoCart> call = retrofitInterface.executecart(get, "Bearer " + token, body);
 
-                call.enqueue(new Callback<Addtocart>() {
+                call.enqueue(new Callback<AddtoCart>() {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
-                    public void onResponse(Call<Addtocart> call, Response<Addtocart> response) {
+                    public void onResponse(Call<AddtoCart> call, Response<AddtoCart> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(activity, "Item added in your cart..", Toast.LENGTH_SHORT).show();
 //                            Intent intent = new Intent(activity, Cart.class);
@@ -150,7 +153,7 @@ public class CustomAdapter extends BaseAdapter {
 
 
                     @Override
-                    public void onFailure(Call<Addtocart> call, Throwable t) {
+                    public void onFailure(Call<AddtoCart> call, Throwable t) {
                         System.out.println("############################" + t.getLocalizedMessage());
 
                     }
@@ -173,7 +176,7 @@ public class CustomAdapter extends BaseAdapter {
 
         textview1.setText(product.get(position).getName());
         textview2.setText(product.get(position).getOriginalPrice() + " " + "₹");
-        Picasso.with(activity).load(product.get(position).getImageUrl()).into(imageView);
+//        Picasso.with(activity).load(product.get(position).getImageUrl()).into(imageView);
 //        ingredient_name.setText(ingredientList.get(position).getIngredientName());
 //        ingredient_price.setText(ingredientList.get(position).getPrice() + "" + "₹");
 

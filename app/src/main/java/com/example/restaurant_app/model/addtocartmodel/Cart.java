@@ -1,5 +1,5 @@
 
-package com.example.restaurant_app.model.vieworderhistorymodel;
+package com.example.restaurant_app.model.addtocartmodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,23 +7,20 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
-public class CategoryId {
+public class Cart {
 
-    @SerializedName("products")
+    @SerializedName("subTotal")
     @Expose
-    private List<String> products = null;
+    private Integer subTotal;
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("categoryName")
+    @SerializedName("email")
     @Expose
-    private String categoryName;
-    @SerializedName("imageUrl")
+    private String email;
+    @SerializedName("items")
     @Expose
-    private String imageUrl;
-    @SerializedName("creator")
-    @Expose
-    private Creator creator;
+    private List<Item> items = null;
     @SerializedName("createdAt")
     @Expose
     private String createdAt;
@@ -34,12 +31,12 @@ public class CategoryId {
     @Expose
     private Integer v;
 
-    public List<String> getProducts() {
-        return products;
+    public Integer getSubTotal() {
+        return subTotal;
     }
 
-    public void setProducts(List<String> products) {
-        this.products = products;
+    public void setSubTotal(Integer subTotal) {
+        this.subTotal = subTotal;
     }
 
     public String getId() {
@@ -50,28 +47,20 @@ public class CategoryId {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Creator getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Creator creator) {
-        this.creator = creator;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public String getCreatedAt() {

@@ -158,12 +158,25 @@
 
             <Button
                 android:id="@+id/add_to_cart"
-                android:layout_width="match_parent"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/add_ingredient"
                 android:layout_alignParentRight="true"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="Add To Cart" />
+
+            <EditText
+                android:id="@+id/add_notes"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/add_ingredient"
+                android:layout_marginTop="15dp"
+                android:hint="Add Notes" />
 
             <Button
                 android:id="@+id/add_ingredient"

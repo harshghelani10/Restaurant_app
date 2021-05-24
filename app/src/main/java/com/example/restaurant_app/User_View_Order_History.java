@@ -135,7 +135,6 @@ class CustomAdepter2 extends BaseAdapter {
         TextView totalPrice = convertView.findViewById( R.id.cart_item_price );
 //         ImageView imageView = convertView.findViewById( R.id.cart_image );
 
-
         date.setText( orderList.get( position ).getCreatedAt() );
         priority.setText( itemList.get( position ).getPriority()+"" );
         quantity.setText( itemList.get( position ).getQty()+"" );

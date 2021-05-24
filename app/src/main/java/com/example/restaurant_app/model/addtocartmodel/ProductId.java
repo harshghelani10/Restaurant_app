@@ -1,5 +1,5 @@
 
-package com.example.restaurant_app.model.vieworderhistorymodel;
+package com.example.restaurant_app.model.addtocartmodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -48,9 +48,6 @@ public class ProductId {
     @SerializedName("complaints")
     @Expose
     private List<String> complaints = null;
-    @SerializedName("ingredients")
-    @Expose
-    private List<Object> ingredients = null;
 
     public Boolean getAvailability() {
         return availability;
@@ -154,14 +151,6 @@ public class ProductId {
 
     public void setComplaints(List<String> complaints) {
         this.complaints = complaints;
-    }
-
-    public List<Object> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Object> ingredients) {
-        this.ingredients = ingredients;
     }
 
 }

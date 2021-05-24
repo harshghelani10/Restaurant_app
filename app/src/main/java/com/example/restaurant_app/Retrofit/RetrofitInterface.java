@@ -2,15 +2,16 @@ package com.example.restaurant_app.Retrofit;
 
 import com.example.restaurant_app.ForgotResult;
 import com.example.restaurant_app.LoginResult;
-import com.example.restaurant_app.model.Addtocart;
 import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Feedback;
 import com.example.restaurant_app.model.Subcategory;
+import com.example.restaurant_app.model.addtocartmodel.AddtoCart;
 import com.example.restaurant_app.model.allmenuitems.AllMenuItems;
 import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
 import com.example.restaurant_app.model.getingrideintmodel.GetIngredients;
 import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
+import com.example.restaurant_app.model.parcelordermodel.ParcelOrder;
 import com.example.restaurant_app.model.vcomplaintmodel.UserComplaint;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
 import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
@@ -80,7 +81,7 @@ public interface RetrofitInterface {
 
     //Add To Cart
     @POST("/cart/addtocart/{path1}")
-    Call<Addtocart> executecart(@Path("path1") String path,
+    Call<AddtoCart> executecart(@Path("path1") String path,
                                 @Header("Authorization") String auth,
                                 @Body com.example.restaurant_app.model.Body.Body body);
 
@@ -124,6 +125,10 @@ public interface RetrofitInterface {
     @GET("/order/myorders")
     Call<ViewOrderHistory> viewOrderHistory(@Header("Authorization") String auth);
 
+    //parcel your order
+    @PUT("/order/parcel/makeorder")
+    Call<ParcelOrder> parcelYourOrder(@Header("Authorization") String auth,
+                                      @Body HashMap<String, String> map);
 
 }
 

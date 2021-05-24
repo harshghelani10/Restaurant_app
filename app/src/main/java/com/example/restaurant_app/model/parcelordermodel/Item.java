@@ -1,5 +1,5 @@
 
-package com.example.restaurant_app.model.vieworderhistorymodel;
+package com.example.restaurant_app.model.parcelordermodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -24,7 +24,7 @@ public class Item {
     private Object notes;
     @SerializedName("product_id")
     @Expose
-    private ProductId productId;
+    private String productId;
     @SerializedName("qty")
     @Expose
     private Integer qty;
@@ -33,7 +33,7 @@ public class Item {
     private Integer priority;
     @SerializedName("categoryId")
     @Expose
-    private Object categoryId;
+    private String categoryId;
     @SerializedName("productPrice")
     @Expose
     private Integer productPrice;
@@ -81,11 +81,11 @@ public class Item {
         this.notes = notes;
     }
 
-    public ProductId getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(ProductId productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -105,11 +105,11 @@ public class Item {
         this.priority = priority;
     }
 
-    public Object getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Object categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 
