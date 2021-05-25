@@ -117,9 +117,10 @@ public interface RetrofitInterface {
     Call<GetIngredients> addIngredients();
 
     //Give complaint
-    @POST("/complaint/complaint/609f8daadc449509e0b578cc")
-    Call<GiveComplaint> giveComplaint(@Header("Authorization") String auth,
-                                      @Body HashMap<String, String> map);
+    @POST("/complaint/complaint/{path2}")
+    Call<GiveComplaint> giveComplaint(@Path(value = "path2") String path,
+                                      @Header("Authorization") String auth,
+                                      @Body com.example.restaurant_app.model.givecomplaint.Body body);
 
     //View Order History
     @GET("/order/myorders")

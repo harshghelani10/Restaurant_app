@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
+import com.example.restaurant_app.model.givecomplaint.Body;
 import com.example.restaurant_app.model.givecomplaint.Complaint;
 import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
 import com.example.restaurant_app.model.viewmyordersmodel.Item;
@@ -27,7 +28,6 @@ import com.example.restaurant_app.model.viewmyordersmodel.Order;
 import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -47,8 +47,6 @@ public class User_view_order extends AppCompatActivity {
     Complaint complaint = new Complaint();
     private RetrofitInterface retrofitInterface;
     private int i;
-    public static String id;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,47 +85,55 @@ public class User_view_order extends AppCompatActivity {
         final EditText complaint_title = (EditText) view.findViewById( R.id.complaint_title );
         final EditText complaint_message = (EditText) view.findViewById( R.id.complaint_message );
         Button make_complaint = (Button) view.findViewById( R.id.btn_make_order );
-        id = getIntent().getStringExtra( "order_id" );
 
- //       id = "609f8daadc449509e0b578cc";
         make_complaint.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Retrofit retrofitClient = RetrofitClient.getInstance();
                 retrofitInterface = retrofitClient.create( RetrofitInterface.class );
 
-               SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
-               String token = gettoken.getString("TOKEN", "");
 
-                HashMap<String, String> map = new HashMap<>();
+                String get = order.getId();
+                String c_title = complaint_title.getText().toString();
+                String c_message = complaint_message.getText().toString();
 
-                map.put( "complaintTitle", complaint_title.getText().toString() );
-                map.put( "complaintMessage", complaint_message.getText().toString() );
+                Body body = new Body();
+                body.setTitle( c_title );
+                body.setMessage( c_message );
 
-                Call<GiveComplaint> call = retrofitInterface.giveComplaint("Bearer " + token, map);
+                SharedPreferences gettoken = getSharedPreferences( "token", MODE_PRIVATE );
+                String token = gettoken.getString( "TOKEN", "" );
+
+//                HashMap<String, String> map = new HashMap<>();
+//
+//
+//                map.put( "complaintTitle", complaint_title.getText().toString() );
+//                map.put( "complaintMessage", complaint_message.getText().toString() );
+
+                Call<GiveComplaint> call = retrofitInterface.giveComplaint( get, "Bearer " + token, body );
 
                 call.enqueue( new Callback<GiveComplaint>() {
                     @Override
                     public void onResponse(Call<GiveComplaint> call, Response<GiveComplaint> response) {
                         if (response.isSuccessful()) {
 
-                            giveComplaints = response.body();
-                            complaint = giveComplaints.getComplaint();
+//                            giveComplaints = response.body();
+//                            complaint = giveComplaints.getComplaint();
 
                             Toast.makeText( User_view_order.this, "Your complaint is save..We will get you soon..", Toast.LENGTH_SHORT ).show();
-                            Intent intent = new Intent(getApplicationContext(),UserHome.class);
+                            Intent intent = new Intent( getApplicationContext(), UserHome.class );
                             startActivity( intent );
 
-                        }else{
-                            Toast.makeText( User_view_order.this, ""+response.message(), Toast.LENGTH_SHORT ).show();
+                        } else {
+                            Toast.makeText( User_view_order.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<GiveComplaint> call, Throwable t) {
-                        Toast.makeText( User_view_order.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( User_view_order.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
                     }
-                });
+                } );
             }
         } );
     }
@@ -225,10 +231,10 @@ class CustomAdepter extends BaseAdapter {
         //Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
 
         date.setText( item.get( position ).getProductId().getCreatedAt() );
-        order_status.setText(item.get( position ).getProgress());
-        priority.setText( item.get( position ).getPriority()+"");
-        quantity.setText( item.get( position ).getQty()+"" );
-        totalPrice.setText( item.get( position ).getTotal()+"" +"₹");
+        order_status.setText( item.get( position ).getProgress() );
+        priority.setText( item.get( position ).getPriority() + "" );
+        quantity.setText( item.get( position ).getQty() + "" );
+        totalPrice.setText( item.get( position ).getTotal() + "" + "₹" );
         //Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
 
         return view;

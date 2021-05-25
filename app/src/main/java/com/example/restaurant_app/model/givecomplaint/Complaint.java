@@ -4,8 +4,14 @@ package com.example.restaurant_app.model.givecomplaint;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
+
 public class Complaint {
 
+    @SerializedName("replyId")
+    @Expose
+    private List<Object> replyId = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -21,6 +27,14 @@ public class Complaint {
     @SerializedName("userId")
     @Expose
     private String userId;
+
+    public List<Object> getReplyId() {
+        return replyId;
+    }
+
+    public void setReplyId(List<Object> replyId) {
+        this.replyId = replyId;
+    }
 
     public String getId() {
         return id;

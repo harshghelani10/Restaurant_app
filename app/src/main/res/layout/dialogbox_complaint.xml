@@ -5,12 +5,19 @@
     android:layout_height="match_parent">
 
 
+<!--    <EditText-->
+<!--        android:id="@+id/complaint_title"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="8dp"-->
+<!--        android:hint="Enter Title"/>-->
+
     <EditText
         android:id="@+id/complaint_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Enter Title"/>
+        android:hint="Enter Title"
+        android:layout_margin="8dp"/>
 
     <EditText
         android:id="@+id/complaint_message"
