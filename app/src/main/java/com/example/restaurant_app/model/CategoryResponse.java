@@ -8,12 +8,15 @@ import java.util.List;
 
 public class CategoryResponse {
 
+
     @SerializedName("message")
     @Expose
     private String message;
+
     @SerializedName("categoryposts")
     @Expose
     private List<Categorypost> categoryposts = null;
+
     @SerializedName("totalItems")
     @Expose
     private Integer totalItems;
