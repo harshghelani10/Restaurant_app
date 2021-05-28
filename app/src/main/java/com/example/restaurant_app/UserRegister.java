@@ -79,7 +79,7 @@ public class UserRegister extends AppCompatActivity {
                             Toast.makeText(UserRegister.this,
                                     "Signed up successfully", Toast.LENGTH_LONG).show();
 
-                           startActivity(new Intent(UserRegister.this,UserLogin.class));
+                           startActivity(new Intent(UserRegister.this, Loginall.class));
                         } else if (response.code() == 405) {
                             Toast.makeText(UserRegister.this,
                                     "Already registered", Toast.LENGTH_LONG).show();

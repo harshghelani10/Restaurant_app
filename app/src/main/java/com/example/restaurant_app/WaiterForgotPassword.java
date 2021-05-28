@@ -49,7 +49,7 @@ public class WaiterForgotPassword extends AppCompatActivity {
                             Toast.makeText(WaiterForgotPassword.this,
                                     "Check Your Email for Reset Password", Toast.LENGTH_LONG).show();
 
-                            startActivity(new Intent(WaiterForgotPassword.this, UserLogin.class));
+                            startActivity(new Intent(WaiterForgotPassword.this, Loginall.class));
 
                         } else if (response.code() == 401) {
                             Toast.makeText(WaiterForgotPassword.this,

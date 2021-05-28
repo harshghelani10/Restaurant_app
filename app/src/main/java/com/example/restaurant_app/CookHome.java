@@ -70,7 +70,7 @@ public class CookHome extends AppCompatActivity {
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("remember","false");
                         editor.apply();
-                        Intent logout = new Intent(CookHome.this,  MainActivity.class);
+                        Intent logout = new Intent(CookHome.this,  Loginall.class);
                         startActivity(logout);
                         break;
                 }

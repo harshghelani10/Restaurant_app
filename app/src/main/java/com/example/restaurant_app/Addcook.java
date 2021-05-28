@@ -88,7 +88,7 @@ public class Addcook extends AppCompatActivity {
                             Toast.makeText(Addcook.this,
                                     "Signed up successfully", Toast.LENGTH_LONG).show();
 
-                            startActivity(new Intent(Addcook.this, UserLogin.class));
+                            startActivity(new Intent(Addcook.this, Loginall.class));
                         } else if (response.code() == 422) {
                             Toast.makeText(Addcook.this,
                                     "Already registered", Toast.LENGTH_LONG).show();

@@ -82,7 +82,7 @@ public class AdminAddManager extends AppCompatActivity {
                             Toast.makeText(AdminAddManager.this,
                                     "Signed up successfully", Toast.LENGTH_LONG).show();
 
-                            startActivity(new Intent(AdminAddManager.this, UserLogin.class));
+                            startActivity(new Intent(AdminAddManager.this, Loginall.class));
                         } else if (response.code() == 422) {
                             Toast.makeText(AdminAddManager.this,
                                     "Already registered", Toast.LENGTH_LONG).show();

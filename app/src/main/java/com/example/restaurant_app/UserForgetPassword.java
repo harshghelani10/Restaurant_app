@@ -57,7 +57,7 @@ public class UserForgetPassword extends AppCompatActivity {
                             Toast.makeText(UserForgetPassword.this,
                                     "Check Your Email for Reset Password", Toast.LENGTH_LONG).show();
 
-                            startActivity(new Intent(UserForgetPassword.this, UserLogin.class));
+                            startActivity(new Intent(UserForgetPassword.this, Loginall.class));
 
                         } else if (response.code() == 401) {
                             Toast.makeText(UserForgetPassword.this,

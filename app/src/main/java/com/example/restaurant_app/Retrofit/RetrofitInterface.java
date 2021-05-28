@@ -1,7 +1,7 @@
 package com.example.restaurant_app.Retrofit;
 
 import com.example.restaurant_app.ForgotResult;
-import com.example.restaurant_app.LoginResult;
+import com.example.restaurant_app.model.loginallmodel.LoginResult;
 import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Feedback;
 import com.example.restaurant_app.model.Subcategory;
@@ -28,7 +28,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
-public interface RetrofitInterface {
+public interface   RetrofitInterface {
 
     //Admin Login
     @POST("/admin/login")

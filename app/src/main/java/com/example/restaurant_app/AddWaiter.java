@@ -77,7 +77,7 @@ public class AddWaiter extends AppCompatActivity {
                             Toast.makeText(AddWaiter.this,
                                     "Signed up successfully", Toast.LENGTH_LONG).show();
 
-                            startActivity(new Intent(AddWaiter.this, UserLogin.class));
+                            startActivity(new Intent(AddWaiter.this, Loginall.class));
                         } else if (response.code() == 401) {
                             Toast.makeText(AddWaiter.this,
                                     "Already registered", Toast.LENGTH_LONG).show();

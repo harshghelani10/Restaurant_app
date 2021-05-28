@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
+import com.example.restaurant_app.model.loginallmodel.LoginResult;
 
 import java.util.HashMap;
 
@@ -28,20 +29,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class UserLogin extends AppCompatActivity {
+public class Loginall extends AppCompatActivity {
 
     ImageView logo_image;
     EditText email, password;
-    TextView forgot_password, admin_panel_link, manager_panel_link, cook_panel_link, waiter_panel_link;
+    TextView forgot_password;
     Button sign_up, login_btn;
     private CheckBox rememberMe;
-    private  static String token;
     RetrofitInterface retrofitInterface;
+//    LoginResult loginResult;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_login);
+        setContentView(R.layout.login_all );
 
         //Init Services
 
@@ -52,10 +53,6 @@ public class UserLogin extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         forgot_password = (TextView) findViewById(R.id.forgot_password);
-        admin_panel_link = (TextView) findViewById(R.id.admin_panel_link);
-        cook_panel_link = (TextView) findViewById(R.id.cook_panel_link);
-        manager_panel_link = (TextView) findViewById(R.id.manager_panel_link);
-        waiter_panel_link = (TextView) findViewById(R.id.waiter_panel_link);
         sign_up = (Button) findViewById(R.id.sign_up);
         login_btn = (Button) findViewById(R.id.login_btn);
         rememberMe = (CheckBox) findViewById(R.id.rememberMe);
@@ -64,7 +61,7 @@ public class UserLogin extends AppCompatActivity {
 
         String checkbox = preferences.getString("remember","");
         if (checkbox.equals("true")) {
-            Intent intent = new Intent(UserLogin.this, UserHome.class);
+            Intent intent = new Intent( Loginall.this, UserHome.class);
             startActivity(intent);
         }else if(checkbox.equals("false")){
             //Toast.makeText(UserLogin.this, "Please Sign in...", Toast.LENGTH_SHORT).show();
@@ -73,7 +70,7 @@ public class UserLogin extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(UserLogin.this, UserRegister.class);
+                Intent i = new Intent( Loginall.this, UserRegister.class);
                 startActivity(i);
             }
         });
@@ -96,8 +93,7 @@ public class UserLogin extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(UserLogin.this, "Success", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText( Loginall.this, "Login Success", Toast.LENGTH_SHORT).show();
 
                             LoginResult loginResult = new LoginResult();
                             loginResult = response.body();
@@ -109,11 +105,30 @@ public class UserLogin extends AppCompatActivity {
                             editor.putString("TOKEN",token);
                             editor.commit();
 
-                            Intent intent = new Intent(UserLogin.this, UserHome.class);
-                            startActivity(intent);
+                            if (response.body().getRole().matches( "user" )){
+                                Intent user = new Intent(Loginall.this,UserHome.class);
+                                startActivity( user );
+                            }
+                            else if (response.body().getRole().matches( "admin" )){
+                                Intent admin = new Intent(Loginall.this,AdminHome.class);
+                                startActivity( admin );
+                            }
+                            else if (response.body().getRole().matches( "manager" )){
+                                Intent manager = new Intent(Loginall.this,ManagerHome.class);
+                                startActivity( manager );
+                            }
+                            else if (response.body().getRole().matches( "cook" )){
+                                Intent cook = new Intent(Loginall.this,CookHome.class);
+                                startActivity( cook );
+                            }
+//                            else if (response.body().getRole().matches( "waiter" )){
+//                                Intent waiter = new Intent(Loginall.this,WaiterHome.class);
+//                                startActivity( waiter );
+//                            }
+
 
                         } else {
-                            Toast.makeText(UserLogin.this, "" + response.message(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText( Loginall.this, "" + response.message(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -145,43 +160,10 @@ public class UserLogin extends AppCompatActivity {
             }
         });
 
-        admin_panel_link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(UserLogin.this, AdminLogin.class);
-                startActivity(i);
-            }
-        });
-
-        manager_panel_link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent j = new Intent(UserLogin.this, ManagerLogin.class);
-                startActivity(j);
-            }
-        });
-
-        cook_panel_link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent k = new Intent(UserLogin.this, CookLogin.class);
-                startActivity(k);
-
-            }
-        });
-
-        waiter_panel_link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent l = new Intent(UserLogin.this, WaiterLogin.class);
-                startActivity(l);
-            }
-        });
-
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent m = new Intent(UserLogin.this, UserForgetPassword.class);
+                Intent m = new Intent( Loginall.this, UserForgetPassword.class);
                 startActivity(m);
             }
         });

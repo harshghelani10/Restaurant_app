@@ -49,7 +49,7 @@ public class AdminForgotPassword extends AppCompatActivity {
                             Toast.makeText(AdminForgotPassword.this,
                                     "Check Your Email for Reset Password", Toast.LENGTH_LONG).show();
 
-                            startActivity(new Intent(AdminForgotPassword.this, UserLogin.class));
+                            startActivity(new Intent(AdminForgotPassword.this, Loginall.class));
 
                         } else if (response.code() == 401) {
                             Toast.makeText(AdminForgotPassword.this,

@@ -63,7 +63,7 @@ public class waiter_home extends AppCompatActivity {
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("remember","false");
                         editor.apply();
-                        Intent logout = new Intent(waiter_home.this,  MainActivity.class);
+                        Intent logout = new Intent(waiter_home.this,  Loginall.class);
                         startActivity(logout);
                         break;
                 }

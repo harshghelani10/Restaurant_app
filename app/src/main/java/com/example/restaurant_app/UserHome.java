@@ -295,7 +295,7 @@ public class UserHome extends AppCompatActivity {
                         editor.putString( "remember", "false" );
                         editor.apply();
                         finish();
-                        Intent logout = new Intent( UserHome.this, MainActivity.class );
+                        Intent logout = new Intent( UserHome.this, Loginall.class );
                         startActivity( logout );
                         break;
                     case R.id.user_view_order:

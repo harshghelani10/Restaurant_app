@@ -25,7 +25,7 @@
         <activity android:name=".UserComplaint" />
         <activity android:name=".SubMenu" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Loginall"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,9 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".UserLogin"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".Loginall"-->
+<!--            android:screenOrientation="portrait" />-->
         <activity
             android:name=".UserRegister"
             android:screenOrientation="portrait" />

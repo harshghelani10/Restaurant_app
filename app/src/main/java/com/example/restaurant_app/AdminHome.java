@@ -60,7 +60,7 @@ public class AdminHome extends AppCompatActivity {
                         startActivity(feedback);
                         break;
                     case R.id.logout:
-                        Intent logout = new Intent(AdminHome.this, MainActivity.class);
+                        Intent logout = new Intent(AdminHome.this, Loginall.class);
                         startActivity(logout);
                         break;
                 }

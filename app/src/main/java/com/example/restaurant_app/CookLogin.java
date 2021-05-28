@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
+import com.example.restaurant_app.model.loginallmodel.LoginResult;
 
 import java.util.HashMap;
 

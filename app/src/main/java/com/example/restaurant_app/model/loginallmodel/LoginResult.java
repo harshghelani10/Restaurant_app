@@ -1,8 +1,10 @@
 
-package com.example.restaurant_app;
+package com.example.restaurant_app.model.loginallmodel;
+
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 
 public class LoginResult {
 
