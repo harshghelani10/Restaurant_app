@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.restaurant_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -24,6 +23,7 @@
         <activity android:name=".User_view_order" />
         <activity android:name=".UserComplaint" />
         <activity android:name=".SubMenu" />
+
         <activity
             android:name=".Loginall"
             android:screenOrientation="portrait">
@@ -33,9 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity-->
-<!--            android:name=".Loginall"-->
-<!--            android:screenOrientation="portrait" />-->
+        <!--        <activity-->
+        <!--            android:name=".Loginall"-->
+        <!--            android:screenOrientation="portrait" />-->
         <activity
             android:name=".UserRegister"
             android:screenOrientation="portrait" />
