@@ -4,15 +4,17 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 
 public class ViewMyOrders {
 
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("order")
+    @SerializedName("orders")
     @Expose
-    private Order order;
+    private List<Order> orders = null;
 
     public String getMessage() {
         return message;
@@ -22,12 +24,12 @@ public class ViewMyOrders {
         this.message = message;
     }
 
-    public Order getOrder() {
-        return order;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
 }

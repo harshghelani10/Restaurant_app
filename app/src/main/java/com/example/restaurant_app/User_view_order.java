@@ -41,7 +41,7 @@ public class User_view_order extends AppCompatActivity {
 
     GridView gridView;
     ViewMyOrders viewMyOrders = new ViewMyOrders();
-    Order order = new Order();
+    List<Order> orderList = new ArrayList<>();
     List<Item> itemList = new ArrayList<>();
     GiveComplaint giveComplaints = new GiveComplaint();
     Complaint complaint = new Complaint();
@@ -93,7 +93,7 @@ public class User_view_order extends AppCompatActivity {
                 retrofitInterface = retrofitClient.create( RetrofitInterface.class );
 
 
-                String get = order.getId();
+                String get = orderList.get( i ).getId();
                 String c_title = complaint_title.getText().toString();
                 String c_message = complaint_message.getText().toString();
 
@@ -103,12 +103,6 @@ public class User_view_order extends AppCompatActivity {
 
                 SharedPreferences gettoken = getSharedPreferences( "token", MODE_PRIVATE );
                 String token = gettoken.getString( "TOKEN", "" );
-
-//                HashMap<String, String> map = new HashMap<>();
-//
-//
-//                map.put( "complaintTitle", complaint_title.getText().toString() );
-//                map.put( "complaintMessage", complaint_message.getText().toString() );
 
                 Call<GiveComplaint> call = retrofitInterface.giveComplaint( get, "Bearer " + token, body );
 
@@ -155,8 +149,9 @@ public class User_view_order extends AppCompatActivity {
                     Toast.makeText( User_view_order.this, "Here is your order", Toast.LENGTH_SHORT ).show();
 
                     viewMyOrders = response.body();
-                    order = viewMyOrders.getOrder();
-                    itemList = order.getItems();
+                    orderList = viewMyOrders.getOrders();
+                    itemList = orderList.get( i ).getItems();
+//                    itemList = orderList.get( i ).getItems();
 
                     CustomAdepter customAdepter = new CustomAdepter( User_view_order.this, itemList );
                     gridView.setAdapter( customAdepter );
@@ -207,7 +202,7 @@ class CustomAdepter extends BaseAdapter {
 
         view = from( context ).inflate( R.layout.custom_view_your_order, parent, false );
 
-        TextView date = view.findViewById( R.id.item_date );
+//        TextView date = view.findViewById( R.id.item_date );
         TextView order_status = view.findViewById( R.id.item_status );
         TextView priority = view.findViewById( R.id.item_priority );
         TextView quantity = view.findViewById( R.id.item_Quantity );
@@ -230,7 +225,7 @@ class CustomAdepter extends BaseAdapter {
 //        totalPrice.setText( data.get( position ).getItems().get( position ).getTotal() + "" + "₹" );
         //Picasso.with( context ).load( data.get( position ).getItems().get( position ).getProductId().getImageUrl() ).into( imageView );
 
-        date.setText( item.get( position ).getProductId().getCreatedAt() );
+//        date.setText( item.get( position ).getProductId().getCreatedAt() );
         order_status.setText( item.get( position ).getProgress() );
         priority.setText( item.get( position ).getPriority() + "" );
         quantity.setText( item.get( position ).getQty() + "" );

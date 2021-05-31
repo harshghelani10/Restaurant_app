@@ -4,6 +4,8 @@ package com.example.restaurant_app.model.viewmyordersmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 
 public class ProductId {
 
@@ -12,7 +14,10 @@ public class ProductId {
     private Boolean availability;
     @SerializedName("offer")
     @Expose
-    private Double offer;
+    private Integer offer;
+    @SerializedName("ingredients")
+    @Expose
+    private List<Object> ingredients = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -27,10 +32,10 @@ public class ProductId {
     private String description;
     @SerializedName("originalPrice")
     @Expose
-    private Double originalPrice;
+    private Integer originalPrice;
     @SerializedName("offerPrice")
     @Expose
-    private Double offerPrice;
+    private Integer offerPrice;
     @SerializedName("imageUrl")
     @Expose
     private String imageUrl;
@@ -52,7 +57,21 @@ public class ProductId {
         this.availability = availability;
     }
 
+    public Integer getOffer() {
+        return offer;
+    }
 
+    public void setOffer(Integer offer) {
+        this.offer = offer;
+    }
+
+    public List<Object> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Object> ingredients) {
+        this.ingredients = ingredients;
+    }
 
     public String getId() {
         return id;
@@ -86,27 +105,19 @@ public class ProductId {
         this.description = description;
     }
 
-    public Double getOffer() {
-        return offer;
-    }
-
-    public void setOffer(Double offer) {
-        this.offer = offer;
-    }
-
-    public Double getOriginalPrice() {
+    public Integer getOriginalPrice() {
         return originalPrice;
     }
 
-    public void setOriginalPrice(Double originalPrice) {
+    public void setOriginalPrice(Integer originalPrice) {
         this.originalPrice = originalPrice;
     }
 
-    public Double getOfferPrice() {
+    public Integer getOfferPrice() {
         return offerPrice;
     }
 
-    public void setOfferPrice(Double offerPrice) {
+    public void setOfferPrice(Integer offerPrice) {
         this.offerPrice = offerPrice;
     }
 

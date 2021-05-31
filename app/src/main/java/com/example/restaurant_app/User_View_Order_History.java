@@ -83,7 +83,7 @@ public class User_View_Order_History extends AppCompatActivity {
                     orderList = data.getOrders();
                     itemList = orderList.get( i ).getItems();
 
-                    CustomAdepter2 customAdepter = new CustomAdepter2( User_View_Order_History.this, orderList, itemList,order );
+                    CustomAdepter2 customAdepter = new CustomAdepter2( User_View_Order_History.this, orderList, itemList, order, data );
                     gridView.setAdapter( customAdepter );
                 } else {
                     Toast.makeText( User_View_Order_History.this, "No Order History..!!", Toast.LENGTH_SHORT ).show();
@@ -103,12 +103,15 @@ class CustomAdepter2 extends BaseAdapter {
     List<Order> orderList;
     List<Item> itemList;
     Order order;
+    Data data;
+    private int i;
 
-    public CustomAdepter2(User_View_Order_History user_view_order_history, List<Order> orderList, List<Item> itemList, Order order) {
+    public CustomAdepter2(User_View_Order_History user_view_order_history, List<Order> orderList, List<Item> itemList, Order order, Data data) {
         this.context = user_view_order_history;
         this.orderList = orderList;
         this.itemList = itemList;
         this.order = order;
+        this.data = data;
     }
 
 
@@ -137,12 +140,11 @@ class CustomAdepter2 extends BaseAdapter {
         TextView quantity = convertView.findViewById( R.id.item_Quantity );
         TextView totalPrice = convertView.findViewById( R.id.cart_item_price );
 //         ImageView imageView = convertView.findViewById( R.id.cart_image );
-date.setText( order.getCreatedAt() );
-//       date.setText( orderList.get( position ).getCreatedAt() );
-//        date.setText( orderList.get( position ).getCreatedAt() );
-        priority.setText( itemList.get( position ).getPriority()+"" );
-        quantity.setText( itemList.get( position ).getQty()+"" );
-        totalPrice.setText( itemList.get( position ).getTotal()+""+"₹" );
+
+        date.setText( data.getCreatedAt() );
+        priority.setText( itemList.get( position ).getPriority() + "" );
+        quantity.setText( itemList.get( position ).getQty() + "" );
+        totalPrice.setText( itemList.get( position ).getTotal() + "" + "₹" );
 //        Picasso.with( context ).load( itemList.get( position ).getProductId().getImageUrl() ).into( imageView );
 
         return convertView;

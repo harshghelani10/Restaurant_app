@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+
 public class Product {
 
     @SerializedName("availability")
@@ -13,13 +14,16 @@ public class Product {
     private Boolean availability;
     @SerializedName("offer")
     @Expose
-    private Integer offer;
+    private Double offer;
+    @SerializedName("ingredients")
+    @Expose
+    private List<Object> ingredients = null;
     @SerializedName("_id")
     @Expose
     private String id;
     @SerializedName("categoryId")
     @Expose
-    private String categoryId;
+    private CategoryId categoryId;
     @SerializedName("name")
     @Expose
     private String name;
@@ -28,12 +32,7 @@ public class Product {
     private String description;
     @SerializedName("originalPrice")
     @Expose
-    private Integer originalPrice;
-
-    public void setOfferPrice(Double offerPrice) {
-        this.offerPrice = offerPrice;
-    }
-
+    private Double originalPrice;
     @SerializedName("offerPrice")
     @Expose
     private Double offerPrice;
@@ -49,9 +48,6 @@ public class Product {
     @SerializedName("__v")
     @Expose
     private Integer v;
-    @SerializedName("complaints")
-    @Expose
-    private List<String> complaints = null;
 
     public Boolean getAvailability() {
         return availability;
@@ -61,12 +57,36 @@ public class Product {
         this.availability = availability;
     }
 
-    public Integer getOffer() {
+    public Double getOffer() {
         return offer;
     }
 
-    public void setOffer(Integer offer) {
+    public void setOffer(Double offer) {
         this.offer = offer;
+    }
+
+    public Double getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(Double originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Double getOfferPrice() {
+        return offerPrice;
+    }
+
+    public void setOfferPrice(Double offerPrice) {
+        this.offerPrice = offerPrice;
+    }
+
+    public List<Object> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Object> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public String getId() {
@@ -77,11 +97,11 @@ public class Product {
         this.id = id;
     }
 
-    public String getCategoryId() {
+    public CategoryId getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(String categoryId) {
+    public void setCategoryId(CategoryId categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -100,15 +120,6 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Integer getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(Integer originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
 
     public String getImageUrl() {
         return imageUrl;
@@ -140,14 +151,6 @@ public class Product {
 
     public void setV(Integer v) {
         this.v = v;
-    }
-
-    public List<String> getComplaints() {
-        return complaints;
-    }
-
-    public void setComplaints(List<String> complaints) {
-        this.complaints = complaints;
     }
 
 }
