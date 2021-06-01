@@ -14,7 +14,7 @@ public class ProductId {
     private Boolean availability;
     @SerializedName("offer")
     @Expose
-    private Integer offer;
+    private Double offer;
     @SerializedName("ingredients")
     @Expose
     private List<Object> ingredients = null;
@@ -32,10 +32,10 @@ public class ProductId {
     private String description;
     @SerializedName("originalPrice")
     @Expose
-    private Integer originalPrice;
+    private Double originalPrice;
     @SerializedName("offerPrice")
     @Expose
-    private Integer offerPrice;
+    private Double offerPrice;
     @SerializedName("imageUrl")
     @Expose
     private String imageUrl;
@@ -57,13 +57,13 @@ public class ProductId {
         this.availability = availability;
     }
 
-    public Integer getOffer() {
-        return offer;
-    }
-
-    public void setOffer(Integer offer) {
-        this.offer = offer;
-    }
+//    public Integer getOffer() {
+//        return offer;
+//    }
+//
+//    public void setOffer(Integer offer) {
+//        this.offer = offer;
+//    }
 
     public List<Object> getIngredients() {
         return ingredients;
@@ -105,19 +105,43 @@ public class ProductId {
         this.description = description;
     }
 
-    public Integer getOriginalPrice() {
+//    public Integer getOriginalPrice() {
+//        return originalPrice;
+//    }
+//
+//    public void setOriginalPrice(Integer originalPrice) {
+//        this.originalPrice = originalPrice;
+//    }
+//
+//    public Integer getOfferPrice() {
+//        return offerPrice;
+//    }
+//
+//    public void setOfferPrice(Integer offerPrice) {
+//        this.offerPrice = offerPrice;
+//    }
+
+    public Double getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Double offer) {
+        this.offer = offer;
+    }
+
+    public Double getOriginalPrice() {
         return originalPrice;
     }
 
-    public void setOriginalPrice(Integer originalPrice) {
+    public void setOriginalPrice(Double originalPrice) {
         this.originalPrice = originalPrice;
     }
 
-    public Integer getOfferPrice() {
+    public Double getOfferPrice() {
         return offerPrice;
     }
 
-    public void setOfferPrice(Integer offerPrice) {
+    public void setOfferPrice(Double offerPrice) {
         this.offerPrice = offerPrice;
     }
 
