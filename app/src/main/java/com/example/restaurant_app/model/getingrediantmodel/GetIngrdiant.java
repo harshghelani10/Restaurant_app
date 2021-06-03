@@ -1,5 +1,5 @@
 
-package com.example.restaurant_app.model.getingrideintmodel;
+package com.example.restaurant_app.model.getingrediantmodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
-public class GetIngredients {
+public class GetIngrdiant {
 
     @SerializedName("message")
     @Expose

@@ -1,15 +1,15 @@
 package com.example.restaurant_app.Retrofit;
 
 import com.example.restaurant_app.ForgotResult;
-import com.example.restaurant_app.model.loginallmodel.LoginResult;
 import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Feedback;
 import com.example.restaurant_app.model.Subcategory;
 import com.example.restaurant_app.model.addtocartmodel.AddtoCart;
 import com.example.restaurant_app.model.allmenuitems.AllMenuItems;
 import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
-import com.example.restaurant_app.model.getingrideintmodel.GetIngredients;
+import com.example.restaurant_app.model.getingrediantmodel.GetIngrdiant;
 import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
+import com.example.restaurant_app.model.loginallmodel.LoginResult;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.parcelordermodel.ParcelOrder;
 import com.example.restaurant_app.model.vcomplaintmodel.UserComplaint;
@@ -112,9 +112,6 @@ public interface   RetrofitInterface {
     @GET("/complaint/complaints")
     Call<UserComplaint> viewComplaint(@Header("Authorization") String auth);
 
-    //ingrediant call
-    @GET("/ingredients/getIngredients")
-    Call<GetIngredients> addIngredients();
 
     //Give complaint
     @POST("/complaint/complaint/{path2}")
@@ -130,6 +127,10 @@ public interface   RetrofitInterface {
     @PUT("/order/parcel/makeorder")
     Call<ParcelOrder> parcelYourOrder(@Header("Authorization") String auth,
                                       @Body HashMap<String, String> map);
+
+    //get all ingrediant
+    @GET("/ingredients/getIngredients")
+    Call<GetIngrdiant> getIngredient();
 
 }
 

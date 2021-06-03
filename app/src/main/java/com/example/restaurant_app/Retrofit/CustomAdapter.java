@@ -21,8 +21,10 @@ import com.example.restaurant_app.SubMenu;
 import com.example.restaurant_app.model.Body.Body;
 import com.example.restaurant_app.model.Product;
 import com.example.restaurant_app.model.addtocartmodel.AddtoCart;
-import com.example.restaurant_app.model.getingrideintmodel.Ingredient;
+import com.example.restaurant_app.model.getingrediantmodel.GetIngrdiant;
+import com.example.restaurant_app.model.getingrediantmodel.Ingredient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -34,7 +36,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class CustomAdapter extends BaseAdapter {
     Activity activity;
     List<Product> product;
-    List<Ingredient> ingredientList;
+    GetIngrdiant getIngrdiant =  new GetIngrdiant();
+    List<Ingredient> ingredientList  = new ArrayList<>();
     RetrofitInterface retrofitInterface;
     private int mInteger = 0;
     private int i;
@@ -170,6 +173,30 @@ public class CustomAdapter extends BaseAdapter {
                 builder.setView(view).show();
 
                 retrofitInterface = RetrofitClient.getInstance().create(RetrofitInterface.class);
+
+                Call<GetIngrdiant> call = retrofitInterface.getIngredient();
+
+                call.enqueue( new Callback<GetIngrdiant>() {
+                    @Override
+                    public void onResponse(Call<GetIngrdiant> call, Response<GetIngrdiant> response) {
+                       if (response.isSuccessful()){
+
+                           getIngrdiant = response.body();
+                           ingredientList = getIngrdiant.getIngredients();
+
+                           Toast.makeText( activity, "sucesss...", Toast.LENGTH_SHORT ).show();
+
+
+                       }else {
+                           Toast.makeText( activity, ""+response.message(), Toast.LENGTH_SHORT ).show();
+                       }
+                    }
+
+                    @Override
+                    public void onFailure(Call<GetIngrdiant> call, Throwable t) {
+                        Toast.makeText( activity, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+                    }
+                } );
 
             }
         });

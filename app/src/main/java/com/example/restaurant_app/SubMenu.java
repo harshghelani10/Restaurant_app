@@ -16,8 +16,8 @@ import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
 import com.example.restaurant_app.model.Product;
 import com.example.restaurant_app.model.Subcategory;
-import com.example.restaurant_app.model.getingrideintmodel.GetIngredients;
-import com.example.restaurant_app.model.getingrideintmodel.Ingredient;
+import com.example.restaurant_app.model.getingrediantmodel.GetIngrdiant;
+import com.example.restaurant_app.model.getingrediantmodel.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +33,11 @@ public class SubMenu extends AppCompatActivity {
     RetrofitInterface retrofitInterface;
     Button backbtn;
 
+    GetIngrdiant getIngrdiant = new GetIngrdiant();
+    List<Ingredient> ingredientList = new ArrayList<>();
 
     Subcategory subcategoryList = new Subcategory();
     List<Product> product = new ArrayList<>();
-    GetIngredients ingredients = new GetIngredients();
-    List<Ingredient> ingredientList = new ArrayList<>();
     public static String id;
 
 
