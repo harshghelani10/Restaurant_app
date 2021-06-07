@@ -11,6 +11,7 @@ import com.example.restaurant_app.model.getingrediantmodel.GetIngrdiant;
 import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
 import com.example.restaurant_app.model.loginallmodel.LoginResult;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
+import com.example.restaurant_app.model.offersmodel.Offers;
 import com.example.restaurant_app.model.parcelordermodel.ParcelOrder;
 import com.example.restaurant_app.model.vcomplaintmodel.UserComplaint;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
@@ -131,6 +132,10 @@ public interface   RetrofitInterface {
     //get all ingrediant
     @GET("/ingredients/getIngredients")
     Call<GetIngrdiant> getIngredient();
+    
+    //view offers
+    @GET("/offer/codes")
+    Call<Offers> viewoffer();
 
 }
 
