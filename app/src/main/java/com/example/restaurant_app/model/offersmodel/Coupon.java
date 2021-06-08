@@ -12,7 +12,7 @@ public class Coupon {
     private Object percent;
     @SerializedName("amount")
     @Expose
-    private Integer amount;
+    private Double amount;
     @SerializedName("expireDate")
     @Expose
     private String expireDate;
@@ -46,12 +46,24 @@ public class Coupon {
         this.percent = percent;
     }
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public void setPercent(Boolean percent) {
+        isPercent = percent;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     public String getExpireDate() {
