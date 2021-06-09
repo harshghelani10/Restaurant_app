@@ -1,12 +1,14 @@
 package com.example.restaurant_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,8 +40,17 @@ public class UserComplaint extends AppCompatActivity {
         setContentView(R.layout.activity_user_complaint);
 
         gridView = (GridView) findViewById(R.id.gridView);
+        Button backbtn = (Button) findViewById( R.id.btnback );
 
         listingdata();
+
+        backbtn.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( UserComplaint.this, UserHome.class );
+                startActivity( intent );
+            }
+        } );
     }
 
     private void listingdata() {

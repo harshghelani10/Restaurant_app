@@ -137,5 +137,19 @@ public interface   RetrofitInterface {
     @GET("/offer/codes")
     Call<Offers> viewoffer();
 
+    //home menu
+    @GET("/menu/menu/609a0d0d23025806dc494525")
+    Call<Subcategory> getchinese();
+    @GET("/menu/menu/609a0d2123025806dc494526")
+    Call<Subcategory> getItalian();
+    @GET("/menu/menu/609a0d3323025806dc494527")
+    Call<Subcategory> getSouthIndian();
+    @GET("/menu/menu/609a0d4423025806dc494528")
+    Call<Subcategory> getColdDrinks();
+    @GET("/menu/menu/609a0d5623025806dc494529")
+    Call<Subcategory> getDessert();
+    @GET("/menu/menu/609c9292d33a433ae88acd41")
+    Call<Subcategory> getIndian();
+
 }
 
