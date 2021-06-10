@@ -6,6 +6,7 @@ import com.example.restaurant_app.model.Feedback;
 import com.example.restaurant_app.model.Subcategory;
 import com.example.restaurant_app.model.addtocartmodel.AddtoCart;
 import com.example.restaurant_app.model.allmenuitems.AllMenuItems;
+import com.example.restaurant_app.model.complaintReply.ComplaintReply;
 import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
 import com.example.restaurant_app.model.getingrediantmodel.GetIngrdiant;
 import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
@@ -110,7 +111,7 @@ public interface   RetrofitInterface {
     Call<ViewMyOrders> viewmyorders(@Header("Authorization") String auth);
 
     //view user complaint
-    @GET("/complaint/complaints")
+    @GET("/complaint/complaintsuser")
     Call<UserComplaint> viewComplaint(@Header("Authorization") String auth);
 
 
@@ -148,8 +149,12 @@ public interface   RetrofitInterface {
     Call<Subcategory> getColdDrinks();
     @GET("/menu/menu/609a0d5623025806dc494529")
     Call<Subcategory> getDessert();
-    @GET("/menu/menu/609c9292d33a433ae88acd41")
-    Call<Subcategory> getIndian();
+//    @GET("/menu/menu/609c9292d33a433ae88acd41")
+//    Call<Subcategory> getIndian();
+
+    //View Complaint Reply
+    @GET("/reply/reply/{path3}")
+    Call<ComplaintReply> getComplaintReply(@Path(value = "path3") String path);
 
 }
 

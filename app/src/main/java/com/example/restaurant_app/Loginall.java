@@ -93,7 +93,7 @@ public class Loginall extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText( Loginall.this, "Login Success", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText( Loginall.this, "Login Success", Toast.LENGTH_SHORT).show();
 
                             LoginResult loginResult = new LoginResult();
                             loginResult = response.body();

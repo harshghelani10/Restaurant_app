@@ -56,4 +56,7 @@ dependencies {
 
     //qrcode scanner
     implementation 'com.google.android.gms:play-services-vision:11.8.0'
+
+    //Recycler view
+    implementation 'com.github.IntruderShanky:Sectioned-RecyclerView:2.1.1'
 }

@@ -52,20 +52,16 @@
         android:id="@+id/scan_barcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/reserve_table"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
-        android:text="Scan Barcode" />
-    <Button
-        android:id="@+id/reserve_table"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="35dp"
-        android:text="Pre-Register Your Table" />
+        android:layout_margin="40dp"
+        android:text="Scan Barcode" />
+<!--    <Button-->
+<!--        android:id="@+id/reserve_table"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_margin="35dp"-->
+<!--        android:text="Pre-Register Your Table" />-->
 
 
 </RelativeLayout>

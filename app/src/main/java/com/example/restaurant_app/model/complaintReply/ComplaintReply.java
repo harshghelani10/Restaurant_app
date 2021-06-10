@@ -1,18 +1,18 @@
 
-package com.example.restaurant_app.model.vcomplaintmodel;
+package com.example.restaurant_app.model.complaintReply;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class UserComplaint {
+public class ComplaintReply {
 
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("data")
+    @SerializedName("complaint")
     @Expose
-    private Data data;
+    private Complaint complaint;
 
     public String getMessage() {
         return message;
@@ -22,12 +22,12 @@ public class UserComplaint {
         this.message = message;
     }
 
-    public Data getData() {
-        return data;
+    public Complaint getComplaint() {
+        return complaint;
     }
 
-    public void setData(Data data) {
-        this.data = data;
+    public void setComplaint(Complaint complaint) {
+        this.complaint = complaint;
     }
 
 }

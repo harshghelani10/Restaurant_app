@@ -1,5 +1,5 @@
 
-package com.example.restaurant_app.model.vcomplaintmodel;
+package com.example.restaurant_app.model.complaintReply;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,7 +11,7 @@ public class Complaint {
 
     @SerializedName("replyId")
     @Expose
-    private List<String> replyId = null;
+    private List<ReplyId> replyId = null;
     @SerializedName("status")
     @Expose
     private String status;
@@ -34,11 +34,11 @@ public class Complaint {
     @Expose
     private Integer v;
 
-    public List<String> getReplyId() {
+    public List<ReplyId> getReplyId() {
         return replyId;
     }
 
-    public void setReplyId(List<String> replyId) {
+    public void setReplyId(List<ReplyId> replyId) {
         this.replyId = replyId;
     }
 

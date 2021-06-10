@@ -69,6 +69,16 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/view_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Reply"
+                android:layout_below="@id/c_message"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

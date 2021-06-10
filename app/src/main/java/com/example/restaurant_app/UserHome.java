@@ -112,7 +112,7 @@ public class UserHome extends AppCompatActivity {
         gridView_southIndian = (GridView) findViewById( R.id.gridView_SouthIndian );
         gridView_coldDrinks = (GridView) findViewById( R.id.gridView_coldDrinks );
         gridView_dessert = (GridView) findViewById( R.id.gridView_Dessert );
-        gridView_indians = (GridView) findViewById( R.id.gridView_Indians );
+//        gridView_indians = (GridView) findViewById( R.id.gridView_Indians );
         scrollView = (ScrollView) findViewById( R.id.scrollView );
 
         menuChinese();
@@ -120,7 +120,7 @@ public class UserHome extends AppCompatActivity {
         menuSouthIndian();
         menuColdDrinks();
         menuDessert();
-        menuIndian();
+//        menuIndian();
         setSupportActionBar( toolbar );
 
         toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.open, R.string.close );
@@ -321,33 +321,33 @@ public class UserHome extends AppCompatActivity {
         } );
     }
 
-    private void menuIndian() {
-        Retrofit retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = retrofitClient.create( RetrofitInterface.class );
-
-        Call<Subcategory> call = retrofitInterface.getIndian();
-
-        call.enqueue( new Callback<Subcategory>() {
-            @Override
-            public void onResponse(Call<Subcategory> call, Response<Subcategory> response) {
-                if (response.isSuccessful()) {
-                    Subcategory subcategory = response.body();
-                    productList = subcategory.getProducts();
-
-                    CustomAdepterall customAdepterall = new CustomAdepterall( productList, UserHome.this );
-                    gridView_indians.setAdapter( customAdepterall );
-                   // Toast.makeText( UserHome.this, "Success", Toast.LENGTH_SHORT ).show();
-                } else {
-                    Toast.makeText( UserHome.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Subcategory> call, Throwable t) {
-                Toast.makeText( UserHome.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
-            }
-        } );
-    }
+//    private void menuIndian() {
+//        Retrofit retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = retrofitClient.create( RetrofitInterface.class );
+//
+//        Call<Subcategory> call = retrofitInterface.getIndian();
+//
+//        call.enqueue( new Callback<Subcategory>() {
+//            @Override
+//            public void onResponse(Call<Subcategory> call, Response<Subcategory> response) {
+//                if (response.isSuccessful()) {
+//                    Subcategory subcategory = response.body();
+//                    productList = subcategory.getProducts();
+//
+//                    CustomAdepterall customAdepterall = new CustomAdepterall( productList, UserHome.this );
+//                    gridView_indians.setAdapter( customAdepterall );
+//                   // Toast.makeText( UserHome.this, "Success", Toast.LENGTH_SHORT ).show();
+//                } else {
+//                    Toast.makeText( UserHome.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Subcategory> call, Throwable t) {
+//                Toast.makeText( UserHome.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+//            }
+//        } );
+//    }
 
 
 
