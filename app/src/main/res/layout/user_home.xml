@@ -79,139 +79,145 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-
                 android:layout_marginLeft="20dp" />
         </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_below="@id/offers"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+<!--        <ScrollView-->
+<!--            android:id="@+id/scrollView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_below="@id/offers"-->
+<!--            android:layout_marginTop="10dp">-->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
 
-                    <TextView
-                        android:id="@+id/tv_chinese"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Chinese"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent">-->
 
-                    <GridView
-                        android:id="@+id/gridView_chinese"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:layout_below="@id/tv_chinese"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="1dp"
-                        android:horizontalSpacing="4dp"
-                        android:numColumns="1"
-                        android:verticalSpacing="4dp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_chinese"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Chinese"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/black"/>-->
 
-                    <TextView
-                        android:id="@+id/tv_Italian"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/gridView_chinese"
-                        android:text="Italian"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
+<!--                    <GridView-->
+<!--                        android:id="@+id/gridView_chinese"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="300dp"-->
+<!--                        android:layout_below="@id/tv_chinese"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginBottom="1dp"-->
+<!--                        android:horizontalSpacing="4dp"-->
+<!--                        android:numColumns="1"-->
+<!--                        android:verticalSpacing="4dp" />-->
 
-                    <GridView
-                        android:id="@+id/gridView_Italian"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:layout_below="@id/tv_Italian"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="1dp"
-                        android:horizontalSpacing="4dp"
-                        android:numColumns="1"
-                        android:verticalSpacing="4dp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_Italian"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/gridView_chinese"-->
+<!--                        android:text="Italian"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/black" />-->
 
-                    <TextView
-                        android:id="@+id/tv_SouthIndian"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/gridView_Italian"
-                        android:text="South Indian"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
+<!--                    <GridView-->
+<!--                        android:id="@+id/gridView_Italian"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="300dp"-->
+<!--                        android:layout_below="@id/tv_Italian"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginBottom="1dp"-->
+<!--                        android:horizontalSpacing="4dp"-->
+<!--                        android:numColumns="1"-->
+<!--                        android:verticalSpacing="4dp" />-->
 
-                    <GridView
-                        android:id="@+id/gridView_SouthIndian"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_below="@id/tv_SouthIndian"
-                        android:layout_marginBottom="1dp"
-                        android:horizontalSpacing="4dp"
-                        android:numColumns="1"
-                        android:verticalSpacing="4dp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_SouthIndian"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/gridView_Italian"-->
+<!--                        android:text="South Indian"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/black" />-->
 
-                    <TextView
-                        android:id="@+id/tv_coldDrinks"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/gridView_SouthIndian"
-                        android:text="Cold Drinks"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
+<!--                    <GridView-->
+<!--                        android:id="@+id/gridView_SouthIndian"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="300dp"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_below="@id/tv_SouthIndian"-->
+<!--                        android:layout_marginBottom="1dp"-->
+<!--                        android:horizontalSpacing="4dp"-->
+<!--                        android:numColumns="1"-->
+<!--                        android:verticalSpacing="4dp" />-->
 
-                    <GridView
-                        android:id="@+id/gridView_coldDrinks"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_below="@id/tv_coldDrinks"
-                        android:layout_marginBottom="1dp"
-                        android:horizontalSpacing="4dp"
-                        android:numColumns="1"
-                        android:verticalSpacing="4dp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_coldDrinks"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/gridView_SouthIndian"-->
+<!--                        android:text="Cold Drinks"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/black" />-->
 
-                    <TextView
-                        android:id="@+id/tv_Dessert"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/gridView_coldDrinks"
-                        android:text="Dessert"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
+<!--                    <GridView-->
+<!--                        android:id="@+id/gridView_coldDrinks"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="300dp"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_below="@id/tv_coldDrinks"-->
+<!--                        android:layout_marginBottom="1dp"-->
+<!--                        android:horizontalSpacing="4dp"-->
+<!--                        android:numColumns="1"-->
+<!--                        android:verticalSpacing="4dp" />-->
 
-                    <GridView
-                        android:id="@+id/gridView_Dessert"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_below="@id/tv_Dessert"
-                        android:layout_marginBottom="1dp"
-                        android:horizontalSpacing="4dp"
-                        android:numColumns="1"
-                        android:verticalSpacing="4dp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_Dessert"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/gridView_coldDrinks"-->
+<!--                        android:text="Dessert"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/black" />-->
+
+<!--                    <GridView-->
+<!--                        android:id="@+id/gridView_Dessert"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="300dp"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_below="@id/tv_Dessert"-->
+<!--                        android:layout_marginBottom="1dp"-->
+<!--                        android:horizontalSpacing="4dp"-->
+<!--                        android:numColumns="1"-->
+<!--                        android:verticalSpacing="4dp" />-->
 
 <!--                    <TextView-->
 <!--                        android:id="@+id/tv_Indian"-->
@@ -224,20 +230,9 @@
 <!--                        android:textSize="20sp"-->
 <!--                        android:textStyle="bold"-->
 <!--                        android:textColor="@color/black" />-->
-
-<!--                    <GridView-->
-<!--                        android:id="@+id/gridView_Indians"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="300dp"-->
-<!--                        android:layout_marginTop="5dp"-->
-<!--                        android:layout_below="@id/tv_Indian"-->
-<!--                        android:layout_marginBottom="1dp"-->
-<!--                        android:horizontalSpacing="4dp"-->
-<!--                        android:numColumns="1"-->
-<!--                        android:verticalSpacing="4dp" />-->
-                </RelativeLayout>
-            </LinearLayout>
-        </ScrollView>
+<!--                </RelativeLayout>-->
+<!--            </LinearLayout>-->
+<!--        </ScrollView>-->
 
 
 

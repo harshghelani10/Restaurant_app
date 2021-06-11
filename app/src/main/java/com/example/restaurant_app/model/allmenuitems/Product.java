@@ -17,7 +17,7 @@ public class Product {
     private Double offer;
     @SerializedName("ingredients")
     @Expose
-    private List<Object> ingredients = null;
+    private List<Ingredient> ingredients = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -48,6 +48,9 @@ public class Product {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    @SerializedName("categoryName")
+    @Expose
+    private String categoryName;
 
     public Boolean getAvailability() {
         return availability;
@@ -57,35 +60,19 @@ public class Product {
         this.availability = availability;
     }
 
-    public Double getOffer() {
-        return offer;
-    }
+//    public Integer getOffer() {
+//        return offer;
+//    }
+//
+//    public void setOffer(Integer offer) {
+//        this.offer = offer;
+//    }
 
-    public void setOffer(Double offer) {
-        this.offer = offer;
-    }
-
-    public Double getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(Double originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
-    public Double getOfferPrice() {
-        return offerPrice;
-    }
-
-    public void setOfferPrice(Double offerPrice) {
-        this.offerPrice = offerPrice;
-    }
-
-    public List<Object> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Object> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -121,6 +108,22 @@ public class Product {
         this.description = description;
     }
 
+//    public Integer getOriginalPrice() {
+//        return originalPrice;
+//    }
+//
+//    public void setOriginalPrice(Integer originalPrice) {
+//        this.originalPrice = originalPrice;
+//    }
+//
+//    public Integer getOfferPrice() {
+//        return offerPrice;
+//    }
+//
+//    public void setOfferPrice(Integer offerPrice) {
+//        this.offerPrice = offerPrice;
+//    }
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -153,4 +156,35 @@ public class Product {
         this.v = v;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public Double getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Double offer) {
+        this.offer = offer;
+    }
+
+    public Double getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(Double originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Double getOfferPrice() {
+        return offerPrice;
+    }
+
+    public void setOfferPrice(Double offerPrice) {
+        this.offerPrice = offerPrice;
+    }
 }

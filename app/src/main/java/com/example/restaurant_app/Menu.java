@@ -23,7 +23,6 @@ import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
 import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Categorypost;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,7 +154,7 @@ public class Menu extends AppCompatActivity {
             });
 
             textview.setText(categorypostList.get(i).getCategoryName());
-            Picasso.with(Menu.this).load(categorypostList.get(i).getImageUrl()).into(imageView);
+ //           Picasso.with(Menu.this).load(categorypostList.get(i).getImageUrl()).into(imageView);
             return view;
         }
     }

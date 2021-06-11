@@ -4,26 +4,26 @@ package com.example.restaurant_app.model.allmenuitems;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+public class Ingredient {
 
-
-public class CategoryId {
-
-    @SerializedName("products")
-    @Expose
-    private List<String> products = null;
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("categoryName")
+    @SerializedName("IngredientName")
     @Expose
-    private String categoryName;
+    private String ingredientName;
     @SerializedName("imageUrl")
     @Expose
     private String imageUrl;
+    @SerializedName("price")
+    @Expose
+    private Double price;
+    @SerializedName("description")
+    @Expose
+    private String description;
     @SerializedName("creator")
     @Expose
-    private Creator__1 creator;
+    private Creator creator;
     @SerializedName("createdAt")
     @Expose
     private String createdAt;
@@ -34,14 +34,6 @@ public class CategoryId {
     @Expose
     private Integer v;
 
-    public List<String> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<String> products) {
-        this.products = products;
-    }
-
     public String getId() {
         return id;
     }
@@ -50,12 +42,12 @@ public class CategoryId {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getIngredientName() {
+        return ingredientName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 
     public String getImageUrl() {
@@ -66,11 +58,36 @@ public class CategoryId {
         this.imageUrl = imageUrl;
     }
 
-    public Creator__1 getCreator() {
+//    public Integer getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(Integer price) {
+//        this.price = price;
+//    }
+
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Creator getCreator() {
         return creator;
     }
 
-    public void setCreator(Creator__1 creator) {
+    public void setCreator(Creator creator) {
         this.creator = creator;
     }
 
