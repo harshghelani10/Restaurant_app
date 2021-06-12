@@ -200,7 +200,7 @@ public class UserHome extends AppCompatActivity {
                     allMenuItems = response.body();
                     productList = allMenuItems.getProducts();
 
-                    recycleradepter adepter = new recycleradepter( productList );
+                    final recycleradepter adepter = new recycleradepter( productList );
                     recyclerView.setAdapter( adepter );
 
 
@@ -247,8 +247,11 @@ public class UserHome extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
             holder.item_name.setText( productList.get( position ).getName() );
             holder.item_price.setText( productList.get( position ).getOriginalPrice() + "" + "₹" );
+            holder.catagory_name.setText( productList.get( position ).getCategoryId().getCategoryName() );
+
             Picasso.with( getApplicationContext() ).load( productList.get( position ).getImageUrl() )
                     .placeholder( R.drawable.ic_launcher_background ).fit().into( holder.imageView );
         }
@@ -262,7 +265,7 @@ public class UserHome extends AppCompatActivity {
         class MyViewHolder extends RecyclerView.ViewHolder {
 
             ImageView imageView;
-            TextView item_name, tv_price, item_price;
+            TextView item_name, tv_price, item_price,catagory_name;
 
             public MyViewHolder(@NonNull View itemView) {
                 super( itemView );
@@ -271,9 +274,60 @@ public class UserHome extends AppCompatActivity {
                 item_name = (TextView) itemView.findViewById( R.id.item_name );
                 tv_price = (TextView) itemView.findViewById( R.id.tv_price );
                 item_price = (TextView) itemView.findViewById( R.id.cart_item_price );
+                catagory_name = (TextView) itemView.findViewById( R.id.catagory_name );
             }
         }
 
+    }
+
+    class sectionadepter extends RecyclerView.Adapter<sectionadepter.MyTitle>{
+
+        List<Product> productList;
+
+        public sectionadepter(List<Product> productList) {
+            this.productList = productList;
+        }
+
+        @NonNull
+        @Override
+        public sectionadepter.MyTitle onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from( parent.getContext() ).inflate( R.layout.custom_title_home, null );
+            MyTitle myTitle = new MyTitle( view );
+            return myTitle;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull sectionadepter.MyTitle holder, int position) {
+//            Product product = productList.get(position);
+//            holder.bind(product);
+            holder.title.setText( productList.get( position ).getCategoryName() );
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return productList.size();
+        }
+
+        public class MyTitle extends RecyclerView.ViewHolder {
+
+            TextView title;
+
+            public MyTitle(@NonNull View itemView) {
+                super( itemView );
+
+                title = (TextView) itemView.findViewById( R.id.section );
+            }
+            public void bind(Product product) {
+                title.setText(product.getCategoryName());
+                // RecyclerView for items
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recycleradepter  recycleradepter1= new recycleradepter(productList);
+                recyclerView.setAdapter(recycleradepter1);
+            }
+
+        }
     }
 
 

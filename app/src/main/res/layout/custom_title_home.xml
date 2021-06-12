@@ -14,9 +14,9 @@
         android:text="16sp"
         android:textSize="18sp"
         android:textStyle="bold"/>
-    <View
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/custom_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="#88424242"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" />
 </LinearLayout>

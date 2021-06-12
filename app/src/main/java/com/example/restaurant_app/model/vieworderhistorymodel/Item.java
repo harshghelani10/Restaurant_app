@@ -27,19 +27,19 @@ public class Item {
     private ProductId productId;
     @SerializedName("qty")
     @Expose
-    private Integer qty;
+    private Double qty;
     @SerializedName("priority")
     @Expose
-    private Integer priority;
+    private Double priority;
     @SerializedName("categoryId")
     @Expose
     private Object categoryId;
     @SerializedName("productPrice")
     @Expose
-    private Integer productPrice;
+    private Double productPrice;
     @SerializedName("total")
     @Expose
-    private Integer total;
+    private Double total;
 
     public String getPaymentstatus() {
         return paymentstatus;
@@ -89,21 +89,21 @@ public class Item {
         this.productId = productId;
     }
 
-    public Integer getQty() {
-        return qty;
-    }
-
-    public void setQty(Integer qty) {
-        this.qty = qty;
-    }
-
-    public Integer getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Integer priority) {
-        this.priority = priority;
-    }
+//    public Integer getQty() {
+//        return qty;
+//    }
+//
+//    public void setQty(Integer qty) {
+//        this.qty = qty;
+//    }
+//
+//    public Integer getPriority() {
+//        return priority;
+//    }
+//
+//    public void setPriority(Integer priority) {
+//        this.priority = priority;
+//    }
 
     public Object getCategoryId() {
         return categoryId;
@@ -113,20 +113,52 @@ public class Item {
         this.categoryId = categoryId;
     }
 
-    public Integer getProductPrice() {
-        return productPrice;
-    }
+//    public Integer getProductPrice() {
+//        return productPrice;
+//    }
+//
+//    public void setProductPrice(Integer productPrice) {
+//        this.productPrice = productPrice;
+//    }
 
-    public void setProductPrice(Integer productPrice) {
-        this.productPrice = productPrice;
-    }
+//    public Integer getTotal() {
+//        return total;
+//    }
+//
+//    public void setTotal(Integer total) {
+//        this.total = total;
+//    }
 
-    public Integer getTotal() {
+
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
+    public Double getQty() {
+        return qty;
+    }
+
+    public void setQty(Double qty) {
+        this.qty = qty;
+    }
+
+    public Double getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Double priority) {
+        this.priority = priority;
+    }
+
+    public Double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
+    }
 }

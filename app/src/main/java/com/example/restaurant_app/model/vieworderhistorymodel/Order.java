@@ -11,7 +11,7 @@ public class Order {
 
     @SerializedName("grandTotal")
     @Expose
-    private Integer grandTotal;
+    private Double grandTotal;
     @SerializedName("paymentMethod")
     @Expose
     private String paymentMethod;
@@ -43,13 +43,13 @@ public class Order {
     @Expose
     private Integer v;
 
-    public Integer getGrandTotal() {
-        return grandTotal;
-    }
-
-    public void setGrandTotal(Integer grandTotal) {
-        this.grandTotal = grandTotal;
-    }
+//    public Integer getGrandTotal() {
+//        return grandTotal;
+//    }
+//
+//    public void setGrandTotal(Integer grandTotal) {
+//        this.grandTotal = grandTotal;
+//    }
 
     public String getPaymentMethod() {
         return paymentMethod;
@@ -125,6 +125,14 @@ public class Order {
 
     public Integer getV() {
         return v;
+    }
+
+    public Double getGrandTotal() {
+        return grandTotal;
+    }
+
+    public void setGrandTotal(Double grandTotal) {
+        this.grandTotal = grandTotal;
     }
 
     public void setV(Integer v) {

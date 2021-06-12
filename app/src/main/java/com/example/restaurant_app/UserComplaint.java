@@ -169,7 +169,12 @@ class CustomAdepter1 extends BaseAdapter {
                             replyIdList = complaint.getReplyId();
 
                             TextView tv_Complaint_reply = (TextView) view.findViewById( R.id.tv_complaint_reply );
-                            tv_Complaint_reply.setText( replyIdList.get( i ).getMessage() );
+                            if (replyIdList.get( i ).getMessage().isEmpty()){
+                                Toast.makeText( activity.getApplicationContext(), "No reply for this complaint", Toast.LENGTH_SHORT ).show();
+                            }else{
+                                tv_Complaint_reply.setText( replyIdList.get( i ).getMessage() );
+                            }
+
 
 //                            Toast.makeText( activity.getApplicationContext(), "Success", Toast.LENGTH_SHORT ).show();
                         }else {
