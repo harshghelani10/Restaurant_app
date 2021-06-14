@@ -146,7 +146,8 @@ public class CustomAdapter extends BaseAdapter {
                     @Override
                     public void onResponse(Call<AddtoCart> call, Response<AddtoCart> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(activity, "Item added in your cart..", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(activity, "Item added in your cart..", Toast.LENGTH_SHORT).show();
+                            Toast.makeText( activity, "Item added in your cart....", Toast.LENGTH_SHORT ).show();
 //                            Intent intent = new Intent(activity, Cart.class);
 //                            activity.startActivity(intent);
                         } else {

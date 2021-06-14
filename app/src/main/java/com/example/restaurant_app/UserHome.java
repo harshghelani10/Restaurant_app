@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,6 +55,7 @@ public class UserHome extends AppCompatActivity {
     private NavigationView navigationView;
     private Toolbar toolbar;
     private ActionBarDrawerToggle toggle;
+    private int i;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -183,6 +187,34 @@ public class UserHome extends AppCompatActivity {
                 return true;
             }
         } );
+        recycleradepter adepter = new recycleradepter( productList );
+        recyclerView.setAdapter( adepter );
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate( R.menu.menu, menu );
+
+        MenuItem searchViewItem
+                = menu.findItem( R.id.search_bar );
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView( searchViewItem );
+
+        searchView.setOnQueryTextListener( new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (productList.contains( query )) {
+
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        } );
+        return super.onCreateOptionsMenu( menu );
     }
 
     private void listingData() {
@@ -265,7 +297,7 @@ public class UserHome extends AppCompatActivity {
         class MyViewHolder extends RecyclerView.ViewHolder {
 
             ImageView imageView;
-            TextView item_name, tv_price, item_price,catagory_name;
+            TextView item_name, tv_price, item_price, catagory_name;
 
             public MyViewHolder(@NonNull View itemView) {
                 super( itemView );
@@ -280,7 +312,7 @@ public class UserHome extends AppCompatActivity {
 
     }
 
-    class sectionadepter extends RecyclerView.Adapter<sectionadepter.MyTitle>{
+    class sectionadepter extends RecyclerView.Adapter<sectionadepter.MyTitle> {
 
         List<Product> productList;
 
@@ -318,13 +350,14 @@ public class UserHome extends AppCompatActivity {
 
                 title = (TextView) itemView.findViewById( R.id.section );
             }
+
             public void bind(Product product) {
-                title.setText(product.getCategoryName());
+                title.setText( product.getCategoryName() );
                 // RecyclerView for items
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-                recyclerView.setLayoutManager(linearLayoutManager);
-                recycleradepter  recycleradepter1= new recycleradepter(productList);
-                recyclerView.setAdapter(recycleradepter1);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager( getApplicationContext(), LinearLayoutManager.VERTICAL, false );
+                recyclerView.setLayoutManager( linearLayoutManager );
+                recycleradepter recycleradepter1 = new recycleradepter( productList );
+                recyclerView.setAdapter( recycleradepter1 );
             }
 
         }
