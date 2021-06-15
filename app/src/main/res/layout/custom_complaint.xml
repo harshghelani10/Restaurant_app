@@ -48,6 +48,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/c_title"
                 android:layout_width="match_parent"
@@ -58,6 +59,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/c_message"
                 android:layout_width="match_parent"
@@ -70,15 +72,30 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/view_reply"
+            <TextView
+                android:id="@+id/tv_reply"
+                android:layout_below="@id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View Reply"
-                android:layout_below="@id/c_message"
-                android:layout_alignParentLeft="true"
+                android:layout_marginTop="25dp"
+                android:text="Reply:"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"/>
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/c_reply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="110dp"
+                android:text="reply"
+                android:layout_below="@id/c_message"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

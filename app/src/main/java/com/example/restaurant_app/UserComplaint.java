@@ -13,7 +13,6 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
@@ -44,10 +43,10 @@ public class UserComplaint extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_complaint);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_user_complaint );
 
-        gridView = (GridView) findViewById(R.id.gridView);
+        gridView = (GridView) findViewById( R.id.gridView );
         Button backbtn = (Button) findViewById( R.id.btnback );
 
         listingdata();
@@ -63,14 +62,14 @@ public class UserComplaint extends AppCompatActivity {
 
     private void listingdata() {
         Retrofit retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+        retrofitInterface = retrofitClient.create( RetrofitInterface.class );
 
-        SharedPreferences gettoken = getSharedPreferences("token", MODE_PRIVATE);
-        String token = gettoken.getString("TOKEN", "");
+        SharedPreferences gettoken = getSharedPreferences( "token", MODE_PRIVATE );
+        String token = gettoken.getString( "TOKEN", "" );
 
-        Call<com.example.restaurant_app.model.vcomplaintmodel.UserComplaint> call = retrofitInterface.viewComplaint("Bearer " + token);
+        Call<com.example.restaurant_app.model.vcomplaintmodel.UserComplaint> call = retrofitInterface.viewComplaint( "Bearer " + token );
 
-        call.enqueue(new Callback<com.example.restaurant_app.model.vcomplaintmodel.UserComplaint>() {
+        call.enqueue( new Callback<com.example.restaurant_app.model.vcomplaintmodel.UserComplaint>() {
             @Override
             public void onResponse(Call<com.example.restaurant_app.model.vcomplaintmodel.UserComplaint> call, Response<com.example.restaurant_app.model.vcomplaintmodel.UserComplaint> response) {
                 if (response.isSuccessful()) {
@@ -80,19 +79,19 @@ public class UserComplaint extends AppCompatActivity {
                     data = userComplaint.getData();
                     complaintList = data.getComplaints();
 
-                    CustomAdepter1 customAdepter1 = new CustomAdepter1(UserComplaint.this, complaintList);
-                    gridView.setAdapter(customAdepter1);
+                    CustomAdepter1 customAdepter1 = new CustomAdepter1( UserComplaint.this, complaintList );
+                    gridView.setAdapter( customAdepter1 );
 
                 } else {
-                    Toast.makeText(UserComplaint.this, "" + response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText( UserComplaint.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
                 }
             }
 
             @Override
             public void onFailure(Call<com.example.restaurant_app.model.vcomplaintmodel.UserComplaint> call, Throwable t) {
-                Toast.makeText(UserComplaint.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText( UserComplaint.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
             }
-        });
+        } );
     }
 }
 
@@ -132,28 +131,28 @@ class CustomAdepter1 extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Button view_reply;
 
-        convertView = LayoutInflater.from(activity).inflate(R.layout.custom_complaint, parent, false);
+        convertView = LayoutInflater.from( activity ).inflate( R.layout.custom_complaint, parent, false );
 
-        TextView title = convertView.findViewById(R.id.c_title);
-        TextView message = convertView.findViewById(R.id.c_message);
-        view_reply = convertView.findViewById( R.id.view_reply );
+        TextView title = convertView.findViewById( R.id.c_title );
+        TextView message = convertView.findViewById( R.id.c_message );
+        TextView view_reply = (TextView) convertView.findViewById( R.id.c_reply );
+//        view_reply = convertView.findViewById( R.id.c_reply );
 
-        title.setText(complaints.get(position).getTitle());
-        message.setText(complaints.get(position).getMessage());
+        title.setText( complaints.get( position ).getTitle() );
+        message.setText( complaints.get( position ).getMessage() );
+//        view_reply.setText( replyIdList.get( position ).getMessage() );
 
-
-        view_reply.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View view = LayoutInflater.from( activity ).inflate( R.layout.dialogbox_viewcomplaint,parent,false );
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setView(view).show();
-
+//        view_reply.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                View view = LayoutInflater.from( activity ).inflate( R.layout.dialogbox_viewcomplaint, parent, false );
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder( activity );
+//                builder.setView( view ).show();
+//
                 Retrofit retrofitClient = RetrofitClient.getInstance();
-                retrofitInterface = retrofitClient.create(RetrofitInterface.class);
+                retrofitInterface = retrofitClient.create( RetrofitInterface.class );
 
                 String get = complaints.get( position ).getId();
 
@@ -162,38 +161,36 @@ class CustomAdepter1 extends BaseAdapter {
                 call.enqueue( new Callback<ComplaintReply>() {
                     @Override
                     public void onResponse(Call<ComplaintReply> call, Response<ComplaintReply> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
 
                             complaintReply = response.body();
                             complaint = complaintReply.getComplaint();
                             replyIdList = complaint.getReplyId();
 
-                            TextView tv_Complaint_reply = (TextView) view.findViewById( R.id.tv_complaint_reply );
-                            if (replyIdList.get( i ).getMessage().isEmpty()){
-                                Toast.makeText( activity.getApplicationContext(), "No reply for this complaint", Toast.LENGTH_SHORT ).show();
-                            }else{
-                                tv_Complaint_reply.setText( replyIdList.get( i ).getMessage() );
-                            }
+                            view_reply.setText( replyIdList.get( i ).getMessage() );
 
+//                            if (replyIdList.get( position ).getMessage().isEmpty()){
+//                                view_reply.setText( "There is no reply of your complaint" );
+//                            }else {
+//                                view_reply.setText( replyIdList.get( i ).getMessage() );
+                          //  }
 
-//                            Toast.makeText( activity.getApplicationContext(), "Success", Toast.LENGTH_SHORT ).show();
-                        }else {
-                            Toast.makeText( activity.getApplicationContext(), ""+response.message(), Toast.LENGTH_SHORT ).show();
+                        } else {
+                            Toast.makeText( activity.getApplicationContext(), "" + response.message(), Toast.LENGTH_SHORT ).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ComplaintReply> call, Throwable t) {
-                        Toast.makeText( activity.getApplicationContext(), ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( activity.getApplicationContext(), "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
                     }
                 } );
 
-
-
-                //  Toast.makeText( context, "clicked", Toast.LENGTH_SHORT ).show();
-
-            }
-        } );
+//
+//                //  Toast.makeText( context, "clicked", Toast.LENGTH_SHORT ).show();
+//
+//            }
+//        } );
 
         return convertView;
     }
