@@ -27,10 +27,10 @@ public class Item {
     private ProductId productId;
     @SerializedName("qty")
     @Expose
-    private Double qty;
+    private Integer qty;
     @SerializedName("priority")
     @Expose
-    private Double priority;
+    private Integer priority;
     @SerializedName("categoryId")
     @Expose
     private Object categoryId;
@@ -138,21 +138,37 @@ public class Item {
         this.total = total;
     }
 
-    public Double getQty() {
+    public Integer getQty() {
         return qty;
     }
 
-    public void setQty(Double qty) {
+    public void setQty(Integer qty) {
         this.qty = qty;
     }
 
-    public Double getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
-    public void setPriority(Double priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
     }
+
+    //    public Double getQty() {
+//        return qty;
+//    }
+//
+//    public void setQty(Double qty) {
+//        this.qty = qty;
+//    }
+//
+//    public Double getPriority() {
+//        return priority;
+//    }
+//
+//    public void setPriority(Double priority) {
+//        this.priority = priority;
+//    }
 
     public Double getProductPrice() {
         return productPrice;

@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurant_app.Retrofit.CustomAdapter;
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
-import com.example.restaurant_app.model.Product;
-import com.example.restaurant_app.model.Subcategory;
+import com.example.restaurant_app.model.SubCatagoryModel.Product;
+import com.example.restaurant_app.model.SubCatagoryModel.SubCategory;
 import com.example.restaurant_app.model.getingrediantmodel.GetIngrdiant;
 import com.example.restaurant_app.model.getingrediantmodel.Ingredient;
 
@@ -36,7 +36,7 @@ public class SubMenu extends AppCompatActivity {
     GetIngrdiant getIngrdiant = new GetIngrdiant();
     List<Ingredient> ingredientList = new ArrayList<>();
 
-    Subcategory subcategoryList = new Subcategory();
+    SubCategory subcategoryList = new SubCategory();
     List<Product> product = new ArrayList<>();
     public static String id;
 
@@ -72,12 +72,12 @@ public class SubMenu extends AppCompatActivity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-        Call<Subcategory> call = retrofitInterface.getSubCategory(id);
+        Call<SubCategory> call = retrofitInterface.getSubCategory(id);
 
-        call.enqueue(new Callback<Subcategory>() {
+        call.enqueue(new Callback<SubCategory>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            public void onResponse(Call<Subcategory> call, Response<Subcategory> response) {
+            public void onResponse(Call<SubCategory> call, Response<SubCategory> response) {
                 if (response.isSuccessful()) {
                    // Toast.makeText(SubMenu.this, "Success", Toast.LENGTH_SHORT).show();
 
@@ -93,7 +93,7 @@ public class SubMenu extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Subcategory> call, Throwable t) {
+            public void onFailure(Call<SubCategory> call, Throwable t) {
                 System.out.println("############################ " + t.getLocalizedMessage());
             }
         });

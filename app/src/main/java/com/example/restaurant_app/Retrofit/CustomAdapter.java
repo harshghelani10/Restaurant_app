@@ -19,7 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.example.restaurant_app.R;
 import com.example.restaurant_app.SubMenu;
 import com.example.restaurant_app.model.Body.Body;
-import com.example.restaurant_app.model.Product;
+import com.example.restaurant_app.model.SubCatagoryModel.Product;
 import com.example.restaurant_app.model.addtocartmodel.AddtoCart;
 import com.example.restaurant_app.model.getingrediantmodel.GetIngrdiant;
 import com.example.restaurant_app.model.getingrediantmodel.Ingredient;
@@ -42,8 +42,9 @@ public class CustomAdapter extends BaseAdapter {
     private int mInteger = 0;
     private int i;
 
-    public CustomAdapter(SubMenu subMenu, List<Product> product) {
-        activity = subMenu;
+
+    public CustomAdapter(SubMenu subMenu, List<com.example.restaurant_app.model.SubCatagoryModel.Product> product) {
+        this.activity = subMenu;
         this.product = product;
     }
 
@@ -80,6 +81,7 @@ public class CustomAdapter extends BaseAdapter {
         EditText notes = convertView.findViewById( R.id.add_notes );
         TextView ingredient_name = convertView.findViewById(R.id.ingredient_name);
         TextView ingredient_price = convertView.findViewById(R.id.ingredient_price);
+        TextView tv_catagoory_name = convertView.findViewById( R.id.tv_catagory_name );
 
         Button btn_min_p = convertView.findViewById(R.id.b_min_p);
         Button btn_plus_p = convertView.findViewById(R.id.b_plus_p);
@@ -204,6 +206,7 @@ public class CustomAdapter extends BaseAdapter {
 
         textview1.setText(product.get(position).getName());
         textview2.setText(product.get(position).getOriginalPrice() + " " + "₹");
+//        tv_catagoory_name.setText( product.get( position ).getCategoryId() );
 //        Picasso.with(activity).load(product.get(position).getImageUrl()).into(imageView);
 //        ingredient_name.setText(ingredientList.get(position).getIngredientName());
 //        ingredient_price.setText(ingredientList.get(position).getPrice() + "" + "₹");

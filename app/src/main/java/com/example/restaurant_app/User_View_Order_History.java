@@ -81,10 +81,14 @@ public class User_View_Order_History extends AppCompatActivity {
                     viewOrderHistory = response.body();
                     data = viewOrderHistory.getData();
                     orderList = data.getOrders();
-                    itemList = orderList.get( i ).getItems();
 
-                    CustomAdepter2 customAdepter = new CustomAdepter2( User_View_Order_History.this, orderList, itemList, order, data );
+                    for (int i = 0; i < orderList.size(); i++) {
+                        itemList = orderList.get( i ).getItems();
+                    }
+
+                    CustomAdepter2 customAdepter = new CustomAdepter2( User_View_Order_History.this, orderList,itemList, order, data );
                     gridView.setAdapter( customAdepter );
+
                 } else {
                     Toast.makeText( User_View_Order_History.this, "No Order History..!!", Toast.LENGTH_SHORT ).show();
                 }
@@ -145,6 +149,15 @@ class CustomAdepter2 extends BaseAdapter {
         priority.setText( itemList.get( position ).getPriority() + "" );
         quantity.setText( itemList.get( position ).getQty() + "" );
         totalPrice.setText( itemList.get( position ).getTotal() + "" + "₹" );
+
+
+//        itemList = orderList.get( position ).getItems();
+
+//        for (int i1 = 0; i1 < itemList.size(); i1++) {
+//
+//        }
+
+
 //        Picasso.with( context ).load( itemList.get( position ).getProductId().getImageUrl() ).into( imageView );
 
         return convertView;

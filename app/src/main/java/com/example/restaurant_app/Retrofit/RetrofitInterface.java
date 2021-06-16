@@ -3,7 +3,7 @@ package com.example.restaurant_app.Retrofit;
 import com.example.restaurant_app.ForgotResult;
 import com.example.restaurant_app.model.CategoryResponse;
 import com.example.restaurant_app.model.Feedback;
-import com.example.restaurant_app.model.Subcategory;
+import com.example.restaurant_app.model.SubCatagoryModel.SubCategory;
 import com.example.restaurant_app.model.addtocartmodel.AddtoCart;
 import com.example.restaurant_app.model.allmenuitems.AllMenuItems;
 import com.example.restaurant_app.model.complaintReply.ComplaintReply;
@@ -74,7 +74,7 @@ public interface   RetrofitInterface {
 
     //fetch menu
     @GET("/menu/menu/{path}")
-    Call<Subcategory> getSubCategory(@Path(value = "path") String path);
+    Call<SubCategory> getSubCategory(@Path(value = "path") String path);
 
     //fetch menu all items on homepage
     @GET("/menu/menues")

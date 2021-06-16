@@ -126,6 +126,10 @@ public class Loginall extends AppCompatActivity {
 //                                startActivity( waiter );
 //                            }
 
+                            else if (response.body().getRole().matches( "waiter" )){
+                                Intent waiter = new Intent(Loginall.this,waiter_home.class);
+                                startActivity( waiter );
+                            }
 
                         } else {
                             Toast.makeText( Loginall.this, "" + response.message(), Toast.LENGTH_SHORT).show();
