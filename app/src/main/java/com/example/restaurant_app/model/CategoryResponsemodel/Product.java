@@ -1,5 +1,5 @@
 
-package com.example.restaurant_app.model.SubCatagoryModel;
+package com.example.restaurant_app.model.CategoryResponsemodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,7 +14,7 @@ public class Product {
     private Boolean availability;
     @SerializedName("offer")
     @Expose
-    private Integer offer;
+    private Double offer;
     @SerializedName("ingredients")
     @Expose
     private List<Ingredient> ingredients = null;
@@ -48,6 +48,9 @@ public class Product {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    @SerializedName("categoryName")
+    @Expose
+    private String categoryName;
 
     public Boolean getAvailability() {
         return availability;
@@ -57,12 +60,28 @@ public class Product {
         this.availability = availability;
     }
 
-    public Integer getOffer() {
+    public Double getOffer() {
         return offer;
     }
 
-    public void setOffer(Integer offer) {
+    public void setOffer(Double offer) {
         this.offer = offer;
+    }
+
+    public Double getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(Double originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Double getOfferPrice() {
+        return offerPrice;
+    }
+
+    public void setOfferPrice(Double offerPrice) {
+        this.offerPrice = offerPrice;
     }
 
     public List<Ingredient> getIngredients() {
@@ -105,22 +124,6 @@ public class Product {
         this.description = description;
     }
 
-    public Double getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(Double originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
-    public Double getOfferPrice() {
-        return offerPrice;
-    }
-
-    public void setOfferPrice(Double offerPrice) {
-        this.offerPrice = offerPrice;
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }
@@ -151,6 +154,14 @@ public class Product {
 
     public void setV(Integer v) {
         this.v = v;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
 }

@@ -21,8 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
-import com.example.restaurant_app.model.CategoryResponse;
-import com.example.restaurant_app.model.Categorypost;
+import com.example.restaurant_app.model.CategoryResponsemodel.CategoryResponse;
+import com.example.restaurant_app.model.CategoryResponsemodel.Categorypost;
 
 import java.util.ArrayList;
 import java.util.List;

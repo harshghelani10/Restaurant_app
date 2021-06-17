@@ -6,12 +6,6 @@
     android:gravity="left"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/catagory_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"

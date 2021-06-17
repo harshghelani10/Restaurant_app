@@ -1,25 +1,27 @@
 
-package com.example.restaurant_app.model;
+package com.example.restaurant_app.model.menuhomemodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 
-public class Categorypost {
+public class Ingredient {
 
-    @SerializedName("products")
-    @Expose
-    private List<String> products = null;
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("categoryName")
+    @SerializedName("IngredientName")
     @Expose
-    private String categoryName;
+    private String ingredientName;
     @SerializedName("imageUrl")
     @Expose
     private String imageUrl;
+    @SerializedName("price")
+    @Expose
+    private Double price;
+    @SerializedName("description")
+    @Expose
+    private String description;
     @SerializedName("creator")
     @Expose
     private Creator creator;
@@ -33,14 +35,6 @@ public class Categorypost {
     @Expose
     private Integer v;
 
-    public List<String> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<String> products) {
-        this.products = products;
-    }
-
     public String getId() {
         return id;
     }
@@ -49,12 +43,12 @@ public class Categorypost {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getIngredientName() {
+        return ingredientName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 
     public String getImageUrl() {
@@ -63,6 +57,22 @@ public class Categorypost {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Creator getCreator() {

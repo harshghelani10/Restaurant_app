@@ -1,22 +1,20 @@
 
-package com.example.restaurant_app.model;
+package com.example.restaurant_app.model.menuhomemodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class CategoryResponse {
 
+public class MenuHomePage {
 
     @SerializedName("message")
     @Expose
     private String message;
-
     @SerializedName("categoryposts")
     @Expose
     private List<Categorypost> categoryposts = null;
-
     @SerializedName("totalItems")
     @Expose
     private Integer totalItems;

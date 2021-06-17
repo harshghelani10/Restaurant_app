@@ -145,14 +145,25 @@ class CustomAdepter2 extends BaseAdapter {
         TextView totalPrice = convertView.findViewById( R.id.cart_item_price );
 //         ImageView imageView = convertView.findViewById( R.id.cart_image );
 
-        date.setText( data.getCreatedAt() );
-        priority.setText( itemList.get( position ).getPriority() + "" );
-        quantity.setText( itemList.get( position ).getQty() + "" );
-        totalPrice.setText( itemList.get( position ).getTotal() + "" + "₹" );
+        itemList = orderList.get( position ).getItems();
+        for (int j = 0; j <= itemList.size() ; j++) {
+
+            orderList.size();
+            itemList = orderList.get( position ).getItems();
+            date.setText( data.getCreatedAt() );
+            priority.setText( itemList.get( position ).getPriority() + "" );
+            quantity.setText( itemList.get( position ).getQty() + "" );
+            totalPrice.setText( itemList.get( position ).getTotal() + "" + "₹" );
+
+        }
+
+//        date.setText( data.getCreatedAt() );
+//        priority.setText( itemList.get( position ).getPriority() + "" );
+//        quantity.setText( itemList.get( position ).getQty() + "" );
+//        totalPrice.setText( itemList.get( position ).getTotal() + "" + "₹" );
 
 
 //        itemList = orderList.get( position ).getItems();
-
 //        for (int i1 = 0; i1 < itemList.size(); i1++) {
 //
 //        }

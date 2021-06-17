@@ -1,7 +1,7 @@
 package com.example.restaurant_app.Retrofit;
 
 import com.example.restaurant_app.ForgotResult;
-import com.example.restaurant_app.model.CategoryResponse;
+import com.example.restaurant_app.model.CategoryResponsemodel.CategoryResponse;
 import com.example.restaurant_app.model.Feedback;
 import com.example.restaurant_app.model.SubCatagoryModel.SubCategory;
 import com.example.restaurant_app.model.addtocartmodel.AddtoCart;
@@ -12,6 +12,7 @@ import com.example.restaurant_app.model.getingrediantmodel.GetIngrdiant;
 import com.example.restaurant_app.model.givecomplaint.GiveComplaint;
 import com.example.restaurant_app.model.loginallmodel.LoginResult;
 import com.example.restaurant_app.model.makeordermodel.MakeOrder;
+import com.example.restaurant_app.model.menuhomemodel.MenuHomePage;
 import com.example.restaurant_app.model.offersmodel.Offers;
 import com.example.restaurant_app.model.parcelordermodel.ParcelOrder;
 import com.example.restaurant_app.model.vcomplaintmodel.UserComplaint;
@@ -139,18 +140,9 @@ public interface   RetrofitInterface {
     Call<Offers> viewoffer();
 
     //home menu
-//    @GET("/menu/menu/609a0d0d23025806dc494525")
-//    Call<Subcategory> getchinese();
-//    @GET("/menu/menu/609a0d2123025806dc494526")
-//    Call<Subcategory> getItalian();
-//    @GET("/menu/menu/609a0d3323025806dc494527")
-//    Call<Subcategory> getSouthIndian();
-//    @GET("/menu/menu/609a0d4423025806dc494528")
-//    Call<Subcategory> getColdDrinks();
-//    @GET("/menu/menu/609a0d5623025806dc494529")
-//    Call<Subcategory> getDessert();
-//    @GET("/menu/menu/609c9292d33a433ae88acd41")
-//    Call<Subcategory> getIndian();
+    @GET("/categorypost/categories")
+    Call<MenuHomePage> getMenuHomePage();
+
 
     //View Complaint Reply
     @GET("/reply/reply/{path3}")
