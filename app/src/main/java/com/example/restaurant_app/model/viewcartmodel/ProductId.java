@@ -14,7 +14,7 @@ public class ProductId {
     private Boolean availability;
     @SerializedName("offer")
     @Expose
-    private Integer offer;
+    private Double offer;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -57,11 +57,11 @@ public class ProductId {
         this.availability = availability;
     }
 
-    public Integer getOffer() {
+    public Double getOffer() {
         return offer;
     }
 
-    public void setOffer(Integer offer) {
+    public void setOffer(Double offer) {
         this.offer = offer;
     }
 

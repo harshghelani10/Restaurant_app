@@ -22,6 +22,7 @@ import com.example.restaurant_app.Retrofit.RetrofitClient;
 import com.example.restaurant_app.Retrofit.RetrofitInterface;
 import com.example.restaurant_app.model.menuhomemodel.Categorypost;
 import com.example.restaurant_app.model.menuhomemodel.MenuHomePage;
+import com.example.restaurant_app.model.menuhomemodel.Product;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class UserHome extends AppCompatActivity {
         book_table = (TextView) findViewById( R.id.book_table );
         view_order = (TextView) findViewById( R.id.view_order );
         rvGroup = (RecyclerView) findViewById( R.id.rv_group );
+
 
         listingData();
 
@@ -171,51 +173,7 @@ public class UserHome extends AppCompatActivity {
     }
 
 
-   // @Override
-//    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-//
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate( R.menu.search_menu, menu );
-//
-//        MenuItem searchItem = menu.findItem( R.id.actionSearch );
 
-//   SearchView searchView = (SearchView) searchItem.getActionView();
-
-//        searchView.setOnQueryTextListener( new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//
-//                filter(newText);
-//                return false;
-//            }
-//        } );
-//        return true;
-//    }
-
-//    private  void filter(String text){
-//
-//        ArrayList<Categorypost> filteredList = new ArrayList<>();
-//
-//        for (Categorypost item : categorypostList){
-//
-//            if (item.getCategoryName().toLowerCase().contains( text.toLowerCase() )){
-//
-//                filteredList.add( item );
-//            }
-//        }
-//
-//        if (filteredList.isEmpty()){
-//            Toast.makeText( this, "No Data Found", Toast.LENGTH_SHORT ).show();
-//        }else {
-//            adepterGroup.filterList( filteredList );
-//        }
-//
-//    }
 
     private void listingData() {
 
@@ -234,7 +192,11 @@ public class UserHome extends AppCompatActivity {
                     categorypostList = menuHomePage.getCategoryposts();
 
                     for (int i = 0; i < categorypostList.size() ; i++) {
-                        productList = categorypostList.get( i ).getProducts();
+                        for (int i1 = 0; i1 < categorypostList.get( i ).getProducts().size(); i1++) {
+                            Product product = new Product();
+                            product = categorypostList.get( i ).getProducts().get( i1 );
+                            productList.add( product );
+                        }
                     }
 
                     adepterGroup = new GroupAdp( UserHome.this,categorypostList );

@@ -17,7 +17,7 @@ public class Ingredient {
     private String imageUrl;
     @SerializedName("price")
     @Expose
-    private Integer price;
+    private Double price;
     @SerializedName("description")
     @Expose
     private String description;
@@ -58,11 +58,11 @@ public class Ingredient {
         this.imageUrl = imageUrl;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

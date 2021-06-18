@@ -38,10 +38,11 @@
 
     <GridView
         android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/sub_total"
         android:layout_below="@id/v_cart"
         android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="490sp"
         android:layout_marginBottom="1dp"
         android:horizontalSpacing="4dp"
         android:numColumns="1"
@@ -62,7 +63,7 @@
         android:id="@+id/sub_total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/gridView"
+        android:layout_above="@id/parcel"
         android:layout_alignParentRight="true"
         android:background="@drawable/radius_design_menu"
         android:gravity="end"
@@ -75,7 +76,7 @@
     <Button
         android:id="@+id/parcel"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_above="@+id/delete_cart"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="5dp"
@@ -84,7 +85,7 @@
     <Button
         android:id="@+id/reserve_table"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_above="@+id/make_order"
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
@@ -94,7 +95,7 @@
     <Button
         android:id="@+id/delete_cart"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="5dp"
@@ -103,7 +104,7 @@
     <Button
         android:id="@+id/make_order"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="30dp"

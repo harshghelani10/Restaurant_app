@@ -29,7 +29,7 @@ public class Item {
     private Double productPrice;
     @SerializedName("total")
     @Expose
-    private Integer total;
+    private Double total;
 
     public Object getNotes() {
         return notes;
@@ -88,12 +88,11 @@ public class Item {
         this.productPrice = productPrice;
     }
 
-    public Integer getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
-
 }

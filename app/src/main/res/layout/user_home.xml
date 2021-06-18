@@ -48,44 +48,95 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_baseline_order"
                     android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Offers"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"/>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentRight="true"
+                    app:srcCompat="@drawable/offers"
+                    android:layout_marginLeft="5dp"/>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-        <LinearLayout
-            android:id="@+id/offers"
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/appbar"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/radius_design_menu"
+            android:hint="Search Here"
+            android:imeOptions="actionSearch"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:drawablePadding="4dp"
+            android:maxLines="1"
+            android:drawableLeft="@drawable/ic_search"/>
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/offers"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_below="@id/appbar"-->
+<!--            android:layout_marginTop="10dp">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_offer"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginEnd="5dp"-->
+<!--                android:layout_marginRight="255dp"-->
+<!--                android:layout_toStartOf="@+id/imageView3"-->
+<!--                android:layout_toLeftOf="@+id/imageView3"-->
+<!--                android:text="Offers"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView3"-->
+<!--                android:layout_width="22dp"-->
+<!--                android:layout_height="22dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                app:srcCompat="@drawable/offers" />-->
+<!--        </RelativeLayout>-->
+
+        <RelativeLayout
+            android:id="@+id/menu_title"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_below="@id/appbar"
-            android:layout_marginTop="10dp">
+            android:layout_below="@id/search_bar"
+            android:background="#7E7A7A"
+            android:layout_margin="8dp">
 
             <TextView
-                android:id="@+id/tv_offer"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:text="Offers"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="22dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                app:srcCompat="@drawable/offers" />
+                android:text="Menu"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:textSize="25sp"
+                android:layout_centerVertical="true"/>
 
+        </RelativeLayout>
 
-            <androidx.appcompat.widget.SearchView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp" />
-        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_group"
-            android:layout_below="@id/offers"
-            android:layout_marginTop="5dp"
+            android:layout_below="@id/menu_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

@@ -366,6 +366,13 @@ class CustomAdapter extends BaseAdapter {
         //      Picasso.with( context ).load( item.get( position ).getProductId().getImageUrl() ).into( imageView );
         // Picasso.with(context).load(item.get(position).getProductId().getImageUrl()).into(imageView);
 
+        imageView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context.getApplicationContext(),Menu.class);
+                context.startActivity( intent );
+            }
+        } );
 
         btn_min_p.setOnClickListener( new View.OnClickListener() {
             @Override

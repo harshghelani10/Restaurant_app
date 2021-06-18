@@ -11,7 +11,7 @@ public class YourCart {
 
     @SerializedName("subTotal")
     @Expose
-    private Integer subTotal;
+    private Double subTotal;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -31,11 +31,12 @@ public class YourCart {
     @Expose
     private Integer v;
 
-    public Integer getSubTotal() {
+
+    public Double getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(Integer subTotal) {
+    public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
 
