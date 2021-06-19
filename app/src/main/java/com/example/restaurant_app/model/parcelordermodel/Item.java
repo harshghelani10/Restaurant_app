@@ -7,9 +7,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Item {
 
-    @SerializedName("paymentstatus")
-    @Expose
-    private String paymentstatus;
     @SerializedName("progress")
     @Expose
     private String progress;
@@ -21,7 +18,7 @@ public class Item {
     private String id;
     @SerializedName("notes")
     @Expose
-    private Object notes;
+    private String notes;
     @SerializedName("product_id")
     @Expose
     private String productId;
@@ -36,18 +33,10 @@ public class Item {
     private String categoryId;
     @SerializedName("productPrice")
     @Expose
-    private Integer productPrice;
+    private Double productPrice;
     @SerializedName("total")
     @Expose
     private Integer total;
-
-    public String getPaymentstatus() {
-        return paymentstatus;
-    }
-
-    public void setPaymentstatus(String paymentstatus) {
-        this.paymentstatus = paymentstatus;
-    }
 
     public String getProgress() {
         return progress;
@@ -73,11 +62,11 @@ public class Item {
         this.id = id;
     }
 
-    public Object getNotes() {
+    public String getNotes() {
         return notes;
     }
 
-    public void setNotes(Object notes) {
+    public void setNotes(String notes) {
         this.notes = notes;
     }
 
@@ -113,11 +102,20 @@ public class Item {
         this.categoryId = categoryId;
     }
 
-    public Integer getProductPrice() {
+//    public Integer getProductPrice() {
+//        return productPrice;
+//    }
+//
+//    public void setProductPrice(Integer productPrice) {
+//        this.productPrice = productPrice;
+//    }
+
+
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Integer productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
 

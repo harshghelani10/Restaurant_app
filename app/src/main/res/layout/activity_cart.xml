@@ -33,6 +33,17 @@
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 />
+
+            <TextView
+                android:id="@+id/tv_delete_cart"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_baseline_delete_24"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="250dp"/>
+
+
+
             </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -6,11 +6,18 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+
 public class UserDetails {
 
+    @SerializedName("orderType")
+    @Expose
+    private String orderType;
+    @SerializedName("PaymentStatus")
+    @Expose
+    private String paymentStatus;
     @SerializedName("grandTotal")
     @Expose
-    private Integer grandTotal;
+    private Double grandTotal;
     @SerializedName("paymentMethod")
     @Expose
     private String paymentMethod;
@@ -29,15 +36,43 @@ public class UserDetails {
     @SerializedName("email")
     @Expose
     private String email;
+    @SerializedName("userId")
+    @Expose
+    private String userId;
     @SerializedName("items")
     @Expose
     private List<Item> items = null;
 
-    public Integer getGrandTotal() {
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+//
+//    public Integer getGrandTotal() {
+//        return grandTotal;
+//    }
+//
+//    public void setGrandTotal(Integer grandTotal) {
+//        this.grandTotal = grandTotal;
+//    }
+
+
+    public Double getGrandTotal() {
         return grandTotal;
     }
 
-    public void setGrandTotal(Integer grandTotal) {
+    public void setGrandTotal(Double grandTotal) {
         this.grandTotal = grandTotal;
     }
 
@@ -87,6 +122,14 @@ public class UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public List<Item> getItems() {

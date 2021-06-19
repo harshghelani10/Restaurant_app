@@ -73,11 +73,12 @@ public class Cart extends AppCompatActivity {
         setContentView( R.layout.activity_cart );
 
         backbtn = (Button) findViewById( R.id.btnback );
-        gridView = (GridView) findViewById( R.id.gridView );
+        gridView = (GridView) findViewById( R.id.gridView );//
         Button delete_cart = (Button) findViewById( R.id.delete_cart );
         Button make_order = (Button) findViewById( R.id.make_order );
         Button parcel = (Button) findViewById( R.id.parcel );
         Button reserve_table = (Button) findViewById( R.id.reserve_table );
+        TextView tv_delete_cart = (TextView) findViewById( R.id.tv_delete_cart );
 
         listingdata();
 
@@ -88,6 +89,14 @@ public class Cart extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
+
+//        tv_delete_cart.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                deleteCart();
+//                Toast.makeText( Cart.this, "delete", Toast.LENGTH_SHORT ).show();
+//            }
+//        } );
 
         parcel.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -106,7 +115,7 @@ public class Cart extends AppCompatActivity {
             }
         } );
 
-        delete_cart.setOnClickListener( new View.OnClickListener() {
+        tv_delete_cart.setOnClickListener( new View.OnClickListener() {
 
             DeleteCart deleteCart = new DeleteCart();
             DeletedCart deletedCart = new DeletedCart();
@@ -151,6 +160,9 @@ public class Cart extends AppCompatActivity {
                 handleMakeOrderDialog();
             }
         } );
+    }
+
+    private void deleteCart() {
     }
 
     private void handleParcelYourOrder() {

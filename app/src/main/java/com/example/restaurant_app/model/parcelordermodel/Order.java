@@ -9,7 +9,7 @@ public class Order {
 
     @SerializedName("notes")
     @Expose
-    private Object notes;
+    private String notes;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -27,16 +27,16 @@ public class Order {
     private String categoryId;
     @SerializedName("productPrice")
     @Expose
-    private Integer productPrice;
+    private Double productPrice;
     @SerializedName("total")
     @Expose
     private Integer total;
 
-    public Object getNotes() {
+    public String getNotes() {
         return notes;
     }
 
-    public void setNotes(Object notes) {
+    public void setNotes(String notes) {
         this.notes = notes;
     }
 
@@ -80,11 +80,20 @@ public class Order {
         this.categoryId = categoryId;
     }
 
-    public Integer getProductPrice() {
+//    public Integer getProductPrice() {
+//        return productPrice;
+//    }
+//
+//    public void setProductPrice(Integer productPrice) {
+//        this.productPrice = productPrice;
+//    }
+
+
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Integer productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
 

@@ -145,7 +145,7 @@ class CustomAdepter2 extends BaseAdapter {
         TextView totalPrice = convertView.findViewById( R.id.cart_item_price );
 //         ImageView imageView = convertView.findViewById( R.id.cart_image );
 
-        itemList = orderList.get( position ).getItems();
+//        itemList = orderList.get( position ).getItems();
         for (int j = 0; j <= itemList.size() ; j++) {
 
             orderList.size();
