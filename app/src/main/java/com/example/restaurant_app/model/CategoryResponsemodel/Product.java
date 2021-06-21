@@ -60,29 +60,6 @@ public class Product {
         this.availability = availability;
     }
 
-    public Double getOffer() {
-        return offer;
-    }
-
-    public void setOffer(Double offer) {
-        this.offer = offer;
-    }
-
-    public Double getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(Double originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
-    public Double getOfferPrice() {
-        return offerPrice;
-    }
-
-    public void setOfferPrice(Double offerPrice) {
-        this.offerPrice = offerPrice;
-    }
 
     public List<Ingredient> getIngredients() {
         return ingredients;
@@ -122,6 +99,47 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+//    public Integer getOriginalPrice() {
+//        return originalPrice;
+//    }
+//
+//    public void setOriginalPrice(Integer originalPrice) {
+//        this.originalPrice = originalPrice;
+//    }
+//
+//    public Integer getOfferPrice() {
+//        return offerPrice;
+//    }
+//
+//    public void setOfferPrice(Integer offerPrice) {
+//        this.offerPrice = offerPrice;
+//    }
+
+
+    public Double getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Double offer) {
+        this.offer = offer;
+    }
+
+    public Double getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(Double originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Double getOfferPrice() {
+        return offerPrice;
+    }
+
+    public void setOfferPrice(Double offerPrice) {
+        this.offerPrice = offerPrice;
     }
 
     public String getImageUrl() {

@@ -21,10 +21,10 @@ public class Item {
     private Integer priority;
     @SerializedName("productPrice")
     @Expose
-    private Integer productPrice;
+    private Double productPrice;
     @SerializedName("total")
     @Expose
-    private Integer total;
+    private Double total;
 
     public String getId() {
         return id;
@@ -58,20 +58,36 @@ public class Item {
         this.priority = priority;
     }
 
-    public Integer getProductPrice() {
+//    public Integer getProductPrice() {
+//        return productPrice;
+//    }
+//
+//    public void setProductPrice(Integer productPrice) {
+//        this.productPrice = productPrice;
+//    }
+//
+//    public Integer getTotal() {
+//        return total;
+//    }
+//
+//    public void setTotal(Integer total) {
+//        this.total = total;
+//    }
+
+
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Integer productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
 
-    public Integer getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
-
 }

@@ -74,7 +74,7 @@
         android:id="@+id/sub_total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/parcel"
+        android:layout_above="@id/reservation"
         android:layout_alignParentRight="true"
         android:background="@drawable/radius_design_menu"
         android:gravity="end"
@@ -85,13 +85,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/parcel"
+        android:id="@+id/reservation"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_above="@+id/delete_cart"
+        android:layout_above="@+id/parcel"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="5dp"
-        android:text="Parcel" />
+        android:text="Reservation" />
 
     <Button
         android:id="@+id/reserve_table"
@@ -104,13 +104,13 @@
         android:text="Book Table" />
 
     <Button
-        android:id="@+id/delete_cart"
+        android:id="@+id/parcel"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="5dp"
-        android:text="Delete Cart" />
+        android:text="Parcel" />
 
     <Button
         android:id="@+id/make_order"

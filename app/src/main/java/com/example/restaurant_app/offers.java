@@ -80,7 +80,7 @@ public class offers extends AppCompatActivity {
                     CustomAdepter4 customAdepter = new CustomAdepter4( com.example.restaurant_app.offers.this,couponList );
                     gridView.setAdapter( customAdepter );
 
-                    Toast.makeText( offers.this, "success", Toast.LENGTH_SHORT ).show();
+//                    Toast.makeText( offers.this, "success", Toast.LENGTH_SHORT ).show();
                 } else {
                     Toast.makeText( offers.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
                 }

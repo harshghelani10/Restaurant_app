@@ -3,8 +3,11 @@ package com.example.restaurant_app;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +49,8 @@ public class UserHome extends AppCompatActivity {
     List<com.example.restaurant_app.model.menuhomemodel.Product> productList = new ArrayList<>();
     LinearLayoutManager layoutManagerGroup;
     GroupAdp adepterGroup;
-
+    String categoryName = "Chinese";
+    private EditText searchbar;
 
     private DrawerLayout drawer;
     private NavigationView navigationView;
@@ -68,6 +72,28 @@ public class UserHome extends AppCompatActivity {
         book_table = (TextView) findViewById( R.id.book_table );
         view_order = (TextView) findViewById( R.id.view_order );
         rvGroup = (RecyclerView) findViewById( R.id.rv_group );
+        searchbar = (EditText) findViewById( R.id.search_bar );
+
+        if (getIntent().getStringExtra( "categoryName" ) != null) {
+            categoryName = getIntent().getStringExtra( "categoryName" );
+        }
+
+        searchbar.addTextChangedListener( new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter( s.toString() );
+            }
+        } );
 
 
         listingData();
@@ -172,7 +198,17 @@ public class UserHome extends AppCompatActivity {
 
     }
 
+    private void filter(String text) {
 
+        List<Categorypost> filterList = new ArrayList<>();
+        for (Categorypost items : categorypostList) {
+            if (items.getCategoryName().toLowerCase().contains( text.toLowerCase() ))
+            {
+                filterList.add( items );
+            }
+        }
+        adepterGroup.filterList( (ArrayList<Categorypost>) filterList );
+    }
 
 
     private void listingData() {

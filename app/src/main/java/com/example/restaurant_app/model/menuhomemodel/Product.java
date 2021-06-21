@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-
 public class Product {
 
     @SerializedName("availability")
@@ -60,13 +59,7 @@ public class Product {
         this.availability = availability;
     }
 
-    public Double getOffer() {
-        return offer;
-    }
 
-    public void setOffer(Double offer) {
-        this.offer = offer;
-    }
 
     public List<Ingredient> getIngredients() {
         return ingredients;
@@ -106,6 +99,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Double getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Double offer) {
+        this.offer = offer;
     }
 
     public Double getOriginalPrice() {

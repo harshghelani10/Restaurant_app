@@ -49,6 +49,7 @@ public class Cart extends AppCompatActivity {
     GridView gridView;
     RetrofitInterface retrofitInterface;
     Button backbtn;
+
     //viewcart api
     ViewCart viewcart = new ViewCart();
     YourCart yourCart = new YourCart();
@@ -74,7 +75,7 @@ public class Cart extends AppCompatActivity {
 
         backbtn = (Button) findViewById( R.id.btnback );
         gridView = (GridView) findViewById( R.id.gridView );//
-        Button delete_cart = (Button) findViewById( R.id.delete_cart );
+        Button reservation = (Button) findViewById( R.id.reservation );
         Button make_order = (Button) findViewById( R.id.make_order );
         Button parcel = (Button) findViewById( R.id.parcel );
         Button reserve_table = (Button) findViewById( R.id.reserve_table );
@@ -90,13 +91,6 @@ public class Cart extends AppCompatActivity {
             }
         } );
 
-//        tv_delete_cart.setOnClickListener( new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                deleteCart();
-//                Toast.makeText( Cart.this, "delete", Toast.LENGTH_SHORT ).show();
-//            }
-//        } );
 
         parcel.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -160,10 +154,18 @@ public class Cart extends AppCompatActivity {
                 handleMakeOrderDialog();
             }
         } );
+
+        reservation.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText( Cart.this, "clicked", Toast.LENGTH_SHORT ).show();
+            }
+        } );
     }
 
-    private void deleteCart() {
-    }
+//    private void deleteCart() {
+//    }
 
     private void handleParcelYourOrder() {
         View view2 = getLayoutInflater().inflate( R.layout.dialogbox_makeorder,null );

@@ -11,7 +11,7 @@ public class DeletedCart {
 
     @SerializedName("subTotal")
     @Expose
-    private Integer subTotal;
+    private Double subTotal;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -31,11 +31,20 @@ public class DeletedCart {
     @Expose
     private Integer v;
 
-    public Integer getSubTotal() {
+//    public Integer getSubTotal() {
+//        return subTotal;
+//    }
+//
+//    public void setSubTotal(Integer subTotal) {
+//        this.subTotal = subTotal;
+//    }
+
+
+    public Double getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(Integer subTotal) {
+    public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
 

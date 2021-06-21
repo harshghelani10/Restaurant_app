@@ -83,7 +83,9 @@ public class User_View_Order_History extends AppCompatActivity {
                     orderList = data.getOrders();
 
                     for (int i = 0; i < orderList.size(); i++) {
-                        itemList = orderList.get( i ).getItems();
+                        for (int j = 0; j <orderList.get( i ).getItems().size() ; j++) {
+                            itemList = orderList.get( i ).getItems();
+                        }
                     }
 
                     CustomAdepter2 customAdepter = new CustomAdepter2( User_View_Order_History.this, orderList,itemList, order, data );
@@ -146,17 +148,13 @@ class CustomAdepter2 extends BaseAdapter {
 //         ImageView imageView = convertView.findViewById( R.id.cart_image );
 
 //        itemList = orderList.get( position ).getItems();
-        for (int j = 0; j <= itemList.size() ; j++) {
+                date.setText( data.getCreatedAt() );
+                priority.setText( itemList.get( position ).getPriority() + "" );
+                quantity.setText( itemList.get( position ).getQty() + "" );
+                totalPrice.setText( itemList.get( position ).getTotal() + "" + "₹" );
 
-            orderList.size();
-            itemList = orderList.get( position ).getItems();
-            date.setText( data.getCreatedAt() );
-            priority.setText( itemList.get( position ).getPriority() + "" );
-            quantity.setText( itemList.get( position ).getQty() + "" );
-            totalPrice.setText( itemList.get( position ).getTotal() + "" + "₹" );
-
-        }
-
+//            orderList.size();
+//            itemList = orderList.get( position ).getItems();
 //        date.setText( data.getCreatedAt() );
 //        priority.setText( itemList.get( position ).getPriority() + "" );
 //        quantity.setText( itemList.get( position ).getQty() + "" );
