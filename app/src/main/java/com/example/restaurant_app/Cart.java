@@ -30,6 +30,7 @@ import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.makeordermodel.Order;
 import com.example.restaurant_app.model.parcelordermodel.ParcelOrder;
 import com.example.restaurant_app.model.parcelordermodel.UserDetails;
+import com.example.restaurant_app.model.reservationmodel.Reservation;
 import com.example.restaurant_app.model.viewcartmodel.ProductId;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
 import com.example.restaurant_app.model.viewcartmodel.YourCart;
@@ -65,8 +66,9 @@ public class Cart extends AppCompatActivity {
     List<com.example.restaurant_app.model.parcelordermodel.Order> orderList = new ArrayList<>();
     UserDetails userDetails = new UserDetails();
     List<com.example.restaurant_app.model.parcelordermodel.Item> itemList = new ArrayList<>();
+    //reservation
+    Reservation reservationApi = new Reservation();
     private int i;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +105,7 @@ public class Cart extends AppCompatActivity {
         reserve_table.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Cart.this,BookTable.class);
+                Intent intent = new Intent( Cart.this, BookTable.class );
                 startActivity( intent );
 
             }
@@ -159,16 +161,64 @@ public class Cart extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText( Cart.this, "clicked", Toast.LENGTH_SHORT ).show();
+                handleReservaation();
+
+//                Toast.makeText( Cart.this, "clicked", Toast.LENGTH_SHORT ).show();
             }
         } );
     }
 
-//    private void deleteCart() {
-//    }
+    private void handleReservaation() {
+        View view = getLayoutInflater().inflate( R.layout.dialogbox_reservation, null );
+
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        builder.setView( view ).show();
+
+        EditText person = (EditText) findViewById( R.id.person );
+        Button reservation = (Button) findViewById( R.id.reservation_dialog );
+
+        reservation.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Retrofit retrofitClient = RetrofitClient.getInstance();
+                retrofitInterface = retrofitClient.create( RetrofitInterface.class );
+
+                SharedPreferences gettoken = getSharedPreferences( "token", MODE_PRIVATE );
+                String token = gettoken.getString( "TOKEN", "" );
+
+                HashMap<String, String> map = new HashMap<>();
+
+                map.put( "person", person.getText().toString() );
+
+                Call<Reservation> call = retrofitInterface.executeReservation( "Bearer " + token, map );
+
+                call.enqueue( new Callback<Reservation>() {
+                    @Override
+                    public void onResponse(Call<Reservation> call, Response<Reservation> response) {
+                        if (response.isSuccessful()) {
+
+                            reservationApi = response.body();
+
+                            Toast.makeText( Cart.this, "You are successfully reserve now book your table..", Toast.LENGTH_SHORT ).show();
+                        } else {
+                            Toast.makeText( Cart.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Reservation> call, Throwable t) {
+                        Toast.makeText( Cart.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+                    }
+                } );
+
+            }
+        } );
+
+    }
 
     private void handleParcelYourOrder() {
-        View view2 = getLayoutInflater().inflate( R.layout.dialogbox_makeorder,null );
+        View view2 = getLayoutInflater().inflate( R.layout.dialogbox_makeorder, null );
 
         AlertDialog.Builder builder = new AlertDialog.Builder( this );
         builder.setView( view2 ).show();
@@ -197,25 +247,25 @@ public class Cart extends AppCompatActivity {
                 call.enqueue( new Callback<ParcelOrder>() {
                     @Override
                     public void onResponse(Call<ParcelOrder> call, Response<ParcelOrder> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             parcelOrder = response.body();
                             userDetails = parcelOrder.getUserDetails();
                             orderList = parcelOrder.getOrder();
                             itemList = userDetails.getItems();
 
-                            Intent intent = new Intent(Cart.this,User_view_order.class);
+                            Intent intent = new Intent( Cart.this, User_view_order.class );
                             startActivity( intent );
 
                             Toast.makeText( Cart.this, "Your Parcel Order Is Placed...", Toast.LENGTH_SHORT ).show();
 
-                        }else{
-                            Toast.makeText( Cart.this, ""+response.message(), Toast.LENGTH_SHORT ).show();
+                        } else {
+                            Toast.makeText( Cart.this, "" + response.message(), Toast.LENGTH_SHORT ).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ParcelOrder> call, Throwable t) {
-                        Toast.makeText( Cart.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( Cart.this, "" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
                     }
                 } );
 
@@ -383,7 +433,7 @@ class CustomAdapter extends BaseAdapter {
         imageView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context.getApplicationContext(),Menu.class);
+                Intent intent = new Intent( context.getApplicationContext(), Menu.class );
                 context.startActivity( intent );
             }
         } );

@@ -207,7 +207,7 @@ public class UserHome extends AppCompatActivity {
                 filterList.add( items );
             }
         }
-        adepterGroup.filterList( (ArrayList<Categorypost>) filterList );
+        adepterGroup.filterList( filterList );
     }
 
 

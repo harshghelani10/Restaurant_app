@@ -6,6 +6,7 @@ import com.example.restaurant_app.model.Feedback;
 import com.example.restaurant_app.model.SubCatagoryModel.SubCategory;
 import com.example.restaurant_app.model.addtocartmodel.AddtoCart;
 import com.example.restaurant_app.model.allmenuitems.AllMenuItems;
+import com.example.restaurant_app.model.booktablemodel.BookTable;
 import com.example.restaurant_app.model.complaintReply.ComplaintReply;
 import com.example.restaurant_app.model.deletecartmodel.DeleteCart;
 import com.example.restaurant_app.model.getingrediantmodel.GetIngrdiant;
@@ -15,6 +16,7 @@ import com.example.restaurant_app.model.makeordermodel.MakeOrder;
 import com.example.restaurant_app.model.menuhomemodel.MenuHomePage;
 import com.example.restaurant_app.model.offersmodel.Offers;
 import com.example.restaurant_app.model.parcelordermodel.ParcelOrder;
+import com.example.restaurant_app.model.reservationmodel.Reservation;
 import com.example.restaurant_app.model.vcomplaintmodel.UserComplaint;
 import com.example.restaurant_app.model.viewcartmodel.ViewCart;
 import com.example.restaurant_app.model.viewmyordersmodel.ViewMyOrders;
@@ -147,6 +149,15 @@ public interface   RetrofitInterface {
     //View Complaint Reply
     @GET("/reply/reply/{path3}")
     Call<ComplaintReply> getComplaintReply(@Path(value = "path3") String path);
+
+    //reservation
+    @POST("/book/reservation")
+    Call<Reservation> executeReservation(@Header("Authorization") String auth,
+                                         @Body HashMap<String, String> map);
+
+    //booktable
+    @POST("/book/checkin")
+    Call<BookTable> booktable(@Header("Authorization") String auth);
 
 }
 

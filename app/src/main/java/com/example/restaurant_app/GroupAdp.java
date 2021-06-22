@@ -28,7 +28,7 @@ public class GroupAdp extends RecyclerView.Adapter<GroupAdp.ViewHolder> {
 
     }
 
-    public void filterList(ArrayList<Categorypost> filterllist){
+    public void filterList(List<Categorypost> filterllist){
         catagoryList = filterllist;
         notifyDataSetChanged();
     }
